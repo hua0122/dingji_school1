@@ -38,16 +38,18 @@ function ajaxPost(_url, _data) {
 	});
 	return dataAjax;
 }
-function ajaxWX() {
+function ajaxWX(_url) {
+	var dataAjax = "";
 	$.ajax({
-		type: "get",
-		url: "http://ceshi.yidianxueche.cn/api/user/index",
+		type: "post",
+		url:  domainName + _url,
 		success: function(data) {
-			console.log(data)
-			// document.write(data)
+			dataAjax = data;
 		},
-		error: function(res) {
-			// console.log(res)
+		error: function() {
+			dataAjax = "请求出错";
 		},
+		async: false
 	});
+	return dataAjax;
 }

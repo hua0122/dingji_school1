@@ -43,8 +43,8 @@
 <!--[if lt IE 9]>对不起，浏览器版本太低~！<![endif]-->
 <div class="container">
     <div class="row mine">
-        <img src="{$userwxinfo['headimgurl']}" id="my_model"/>
-        <h1>{$userwxinfo['nickname']}</h1>
+        <img src="" id="my_model"/>
+        <h1 id="nickname"></h1>
     </div>
 
     <div class="row manage">
@@ -167,5 +167,13 @@
         </div>
     </div>
 </div>
+
+		<script src="../static/js/apiRoot.js" type="text/javascript" charset="utf-8"></script>
+		<script src="api.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$(function(){
+		index()
+	})
+</script>
 </body>
 </html>

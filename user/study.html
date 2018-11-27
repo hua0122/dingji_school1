@@ -176,7 +176,12 @@
 </body>
 </html>
 
+		<script src="../static/js/apiRoot.js" type="text/javascript" charset="utf-8"></script>
+		<script src="api.js" type="text/javascript" charset="utf-8"></script>
 <script>
+	$(function(){
+		study();
+	})
     wx.ready(function () {
         wx.getLocation({
             success: function (res) {
