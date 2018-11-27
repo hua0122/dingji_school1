@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no" />
+		<title>鼎吉驾校</title>
+		<meta name="description" content="Yan" />
+		<meta name="keywords" content="Yan" />
+		<meta name="author" content="Yan" />
+		<script src="../static/js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../static/js/custom1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=DBd897f58d7a63e585485e3dea011253"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="../static/css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/default.css">
+		<link rel="stylesheet" href="../static/css/main.css">
+		<link rel="stylesheet" href="../static/css/examples.css">
+		<!-- Themes -->
+		<link rel="stylesheet" href="../static/css/bars-1to10.css">
+		<link rel="stylesheet" href="../static/css/bars-movie.css">
+		<link rel="stylesheet" href="../static/css/bars-square.css">
+		<link rel="stylesheet" href="../static/css/bars-pill.css">
+		<link rel="stylesheet" href="../static/css/bars-reversed.css">
+		<link rel="stylesheet" href="../static/css/bars-horizontal.css">
+
+		<link rel="stylesheet" href="../static/css/fontawesome-stars.css">
+		<link rel="stylesheet" href="../static/css/css-stars.css">
+		<link rel="stylesheet" href="../static/css/bootstrap-stars.css">
+
+
+		<link rel="stylesheet" type="text/css" href="../static/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/swiper-3.4.1.min.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/custom.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/new_add.css" />
+	</head>
+
+	<style type="text/css">
+		/* flexslider */
+		.flexslider {
+			position: relative;
+			height: 200px;
+			overflow: hidden;
+			background: url(../static/images/loading.gif) 50% no-repeat;
+		}
+
+		.slides {
+			position: relative;
+			z-index: 1;
+		}
+
+		.slides li {
+			height: 200px;
+		}
+
+		.flex-control-nav {
+			position: absolute;
+			bottom: 10px;
+			z-index: 2;
+			width: 100%;
+			text-align: center;
+		}
+
+		.flex-control-nav li {
+			display: inline-block;
+			width: 14px;
+			height: 14px;
+			margin: 0 5px;
+			*display: inline;
+			zoom: 1;
+		}
+
+		.flex-control-nav a {
+			display: inline-block;
+			width: 14px;
+			height: 14px;
+			line-height: 40px;
+			overflow: hidden;
+			background: url(../static/images/dot.png) right 0 no-repeat;
+			cursor: pointer;
+		}
+
+		.flex-control-nav .flex-active {
+			background-position: 0 0;
+		}
+
+		.flex-direction-nav {
+			position: absolute;
+			z-index: 3;
+			width: 100%;
+			top: 45%;
+		}
+
+		.flex-direction-nav li a {
+			display: block;
+			width: 50px;
+			height: 50px;
+			overflow: hidden;
+			cursor: pointer;
+			position: absolute;
+		}
+
+		.flex-direction-nav li a.flex-prev {
+			left: 40px;
+			background: url(../static/images/prev.png) center center no-repeat;
+		}
+
+		.flex-direction-nav li a.flex-next {
+			right: 40px;
+			background: url(../static/images/next.png) center center no-repeat;
+		}
+
+		.col-xs-3 {
+			width: 25%;
+		}
+
+		.city {
+			width: 90%;
+			color: #0baae4;
+			height: 30px;
+			border: none;
+		}
+
+		.mold>div>div {
+			padding: 10px 16px 10px 0;
+		}
+
+		.mold>div>div a {
+			display: block;
+			height: 40px;
+			line-height: 40px;
+		}
+
+		.c_alert_dialog {
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			color: #111;
+			position: fixed;
+			left: 0px;
+			top: 0px;
+			z-index: 9999;
+			width: 100%;
+			height: 100%;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-align-items: center;
+			align-items: center;
+			-webkit-justify-content: center;
+			justify-content: center;
+		}
+
+		.c_alert_mask {
+			position: absolute;
+			left: 0;
+			top: 0px;
+			width: 100%;
+			height: 100%;
+			z-index: 505;
+			background: rgba(0, 0, 0, .78);
+			-webkit-transition: all .5s ease;
+			opacity: 1;
+			visibility: initial;
+		}
+
+		.c_alert_width.c_alert_wrap {
+			width: 80%;
+			z-index: 1200;
+			max-width: 400px;
+			position: relative;
+			background: #fff;
+			height: auto;
+			border-radius: 10px;
+			overflow: hidden;
+			box-shadow: 0 2px 20px rgba(0, 0, 0, .25);
+			font-size: 15px;
+			opacity: 1;
+			-webkit-animation-duration: 1s;
+			animation-duration: 1s;
+			-webkit-animation-timing-function: linear;
+			animation-timing-function: linear;
+			-webkit-animation-fill-mode: forwards;
+			animation-fill-mode: forwards;
+			-webkit-animation-name: anim-open;
+			animation-name: anim-open;
+		}
+
+		.c_alert_title {
+			padding: 5px 15px 10px 15px;
+			line-height: 1;
+			margin-bottom: -2px;
+			text-align: left;
+			font-weight: bold;
+			font-size: 16px;
+			position: relative;
+		}
+
+		.c_alert_btn {
+			border-top: 1px solid #e7e7e7;
+			overflow: hidden;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-align-items: center;
+			align-items: center;
+			-webkit-justify-content: center;
+			justify-content: center;
+		}
+
+		.c_alert_btn a {
+			font-weight: bold;
+			line-height: 1;
+			text-align: center;
+			color: #228BFE;
+			text-decoration: none;
+			-webkit-appearance: none;
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			display: block;
+			padding: 13px 0;
+			font-size: 16px;
+			margin: 0;
+			background: 0 0;
+			border: none;
+			border-radius: 0;
+			letter-spacing: 1px;
+			cursor: pointer;
+			border-left: 1px solid #e7e7e7;
+			width: 100%;
+			transition: all .2s ease;
+			-webkit-transition: all .2s ease;
+		}
+
+		.c_alert_con {
+			text-align: left;
+			font-size: 15px;
+			line-height: 1.4;
+			color: #444;
+			padding: 12px 14px;
+		}
+
+		.mold input {
+			margin-right: 5px;
+		}
+
+		.mold label {
+			margin-right: 10px;
+			display: block;
+		}
+
+		.col-xs-3 {
+			width: 20%;
+		}
+
+		.nav-bar-item img {
+			height: 50px;
+		}
+	</style>
+	<body>
+		<!--[if lt IE 9]>对不起，浏览器版本太低~！<![endif]-->
+
+		<div class="container">
+			<div class="flexslider">
+				<ul class="slides">
+
+				</ul>
+			</div>
+
+
+			<div class="row nav-bar">
+				<div class="col-xs-3 nav-bar-item">
+					<a href="../page/index.html?id=6"><img src="../static/images/vrxc.png" /><i>学车流程</i></a>
+				</div>
+				<div class="col-xs-3 nav-bar-item">
+					<a href="../page/index.html?id=7"><img src="../static/images/qbjl.png" /><i>优势服务</i></a>
+				</div>
+				<div class="col-xs-3 nav-bar-item">
+					<a href="../page/index.html?id=8"><img src="../static/images/fwys.png" /><i>学车保障</i></a>
+				</div>
+				<div class="col-xs-3 nav-bar-item">
+					<a href="../page/index.html?id=9"><img src="../static/images/qbcd.png" /><i>常见问题</i></a>
+				</div>
+				<div class="col-xs-3 nav-bar-item">
+					<a href="../enlist/test.html"><img src="../static/images/vrxc.png" /><i>体检申请</i></a>
+				</div>
+
+			</div>
+
+			<div class="row mold">
+				<h1 class="col-xs-12" id="select-city">
+					<div class="form-group">
+						<img src="../static/images/map.png" width="20" />
+						<span style="color:#0baae4;" id="text"></span>
+						<span style="color:#0baae4;float: right"> > </span>
+					</div>
+				</h1>
+				<div class="c_alert_dialog dialog_open" style="display: none">
+					<div class="c_alert_mask" ontouchmove="return false"></div>
+					<div class="c_alert_wrap c_alert_width">
+						<div class="c_alert_title">请选择报名区域</div>
+						<div class="c_alert_con" id="area">
+
+
+						</div>
+						<div class="c_alert_btn">
+							<a href="javascript:;" id="confirm" data-name="确定">确定</a>
+							<a href="javascript:;" id="close" data-name="关闭">关闭</a>
+						</div>
+					</div>
+				</div>
+
+
+
+
+				<div class="col-xs-12" id="course_list">
+					<!-- {volist name="grade" id="item"}
+					<div class="col-xs-12">
+						<a href="../enlist/detail.html?id=item.id">{$item.name}C{$item.type}<span class="right">{$item.price}</span></a>
+					</div>
+					{/volist} -->
+
+				</div>
+			</div>
+
+			<div class="kong row"></div>
+
+		</div>
+
+	</body>
+	<script charset="GBK" src="http://map.qq.com/api/js?v=2.exp"></script>
+	<script>
+		/*
+    function test(){
+        $.post("{$web_path}/enlist/get_sign",function(data){
+            data = eval("("+data+")");
+            if(data.code=="400"){
+                alert(data.msg);
+            }else{
+                location.href="../enlist/test.html.html";
+            }
+        });
+    }*/
+
+
+		$(function() {
+			$("#select-city").click(function() {
+				$(".dialog_open").show();
+			});
+			$("#close").click(function() {
+				$(".dialog_open").hide();
+			});
+			$("#confirm").click(function() {
+				//获取选中的值
+				var city = $('input:radio[name="city"]:checked').val();
+				if (city == null) {
+					alert("请选择一个区域");
+					return false;
+				}
+				//alert(city);
+				get_list(city);
+				$(".dialog_open").hide();
+				var text = $('input:radio[name="city"]:checked')[0].nextSibling.nodeValue;
+				$("#text").html(text);
+
+			});
+
+
+
+			wx.ready(function() {
+				wx.getLocation({
+					success: function(res) {
+						console.log(res.latitude); //纬度
+						console.log(res.longitude); //经度
+
+						var geocoder = new qq.maps.Geocoder({
+							complete: function(result) { //解析成功的回调函数
+								var address = result.detail.address; //获取详细地址信息
+
+								if (address.indexOf("沙坪坝") != -1) {
+									$("#city").val('1');
+									get_list(1);
+								} else if (address.indexOf("南岸") != -1) {
+									$("#city").val('2');
+									get_list(2);
+								} else if (address.indexOf("北碚") != -1) {
+									$("#city").val('3');
+									get_list(3);
+								} else {
+									alert('请选择最近区域');
+								}
+								console.log(address);
+							}
+						});
+						geocoder.getAddress(new qq.maps.LatLng(res.latitude, res.longitude));
+
+					},
+					fail: function(res) {
+						console.log(res.latitude);
+					},
+					cancel: function(res) {}
+				});
+			});
+
+
+			$("#city").change(function() {
+				var city = $(this).val();
+				get_list(city);
+			});
+
+			function get_list(city) {
+				let ajaxdata = {
+					area_id: parseInt(city)
+				};
+				let data = ajaxPost(sign_get_grade, ajaxdata)
+				console.log(data)
+				let src = "";
+				if (data.data != null && data.data.length != 0) {
+
+					for (var i = 0; i < data.data.length; i++) {
+
+						src += "<div class='col-xs-12'>" +
+							"<a href='../enlist/detail.html?id=" + data.data[i].id + "'>" + data.data[i].name + "C" + data.data[i].type +
+							"<span class='right'>" + data.data[i].price + "</span></a>" +
+							"</div>";
+					}
+					$("#course_list").html(src);
+				} else {
+					$("#course_list").empty();
+					$("#course_list").append('<div class="col-xs-12">暂无数据</div>');
+				}
+			}
+
+
+
+
+
+		});
+	</script>
+
+
+
+
+	<div class="footer">
+		<a class="col-xs-4" href="../index/index.html">
+			<i class="iconfont icon-fangxiangpan"></i>
+			<p>首页</p>
+		</a>
+		<a class="col-xs-4 active" href="../enlist/index.html">
+			<i class="iconfont icon-baoming"></i>
+			<p>报名</p>
+		</a>
+		<a class="col-xs-4" href="../user/index.html">
+			<i class="iconfont icon-wode"></i>
+			<p>我的</p>
+		</a>
+	</div>
+	<script src="../static/js/apiRoot.js" type="text/javascript" charset="utf-8"></script>
+	<script src="api.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="../static/js/jquery.flexslider-min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			index();
+			$('.flexslider').flexslider({
+				directionNav: true,
+				pauseOnAction: false
+			});
+		});
+	</script>
+</html>

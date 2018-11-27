@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>鼎吉驾校</title>
+    <meta name="description" content="Yan">
+    <meta name="keywords" content="Yan">
+    <meta name="author" content="Yan">
+    <script src="../static/js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/custom1.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&amp;ak=DBd897f58d7a63e585485e3dea011253"></script>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/getscript?v=2.0&amp;ak=DBd897f58d7a63e585485e3dea011253&amp;services=&amp;t=20181029172410"></script>
+
+    <link rel="stylesheet" type="text/css" href="../static/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/default.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="../static/css/examples.css">
+    <!-- Themes -->
+    <link rel="stylesheet" href="../static/css/bars-1to10.css">
+    <link rel="stylesheet" href="../static/css/bars-movie.css">
+    <link rel="stylesheet" href="../static/css/bars-square.css">
+    <link rel="stylesheet" href="../static/css/bars-pill.css">
+    <link rel="stylesheet" href="../static/css/bars-reversed.css">
+    <link rel="stylesheet" href="../static/css/bars-horizontal.css">
+
+    <link rel="stylesheet" href="../static/css/fontawesome-stars.css">
+    <link rel="stylesheet" href="../static/css/css-stars.css">
+    <link rel="stylesheet" href="../static/css/bootstrap-stars.css">
+
+
+    <link rel="stylesheet" type="text/css" href="../static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/swiper-3.4.1.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/new_add.css"/>
+</head>
+
+<body>
+<!--[if lt IE 9]>对不起，浏览器版本太低~！<![endif]-->
+<div class="container sign">
+    <div class="row mold-on">
+        <label for="">
+            <input type="hidden" name="class" id="grade_id" value="{$grade.id}">{$grade.name}（C{$grade.type}）
+        </label>
+        <span class="right" id="payable">
+					{$grade.price}
+				</span>
+    </div>
+
+    <div class="row address">
+        <span>场地:<span><input type="hidden" name="class" id="area_id" value="{$grade.area_id}">{$grade.area_name}</span></span>
+        <span class="map right"><a href="javascript:" onclick="show_map()"><img
+                src="../static/images/map1.png" width="20"/> > </a></span>
+    </div>
+
+    <div class="row address" onclick="javascript:jts()">
+        <span class="left">活动</span>
+        <span class="map activity right"> > </span>
+    </div>
+
+    <div class="row address" onclick="javascript:dr_submit()">
+        <span class="left">推荐码</span>
+        <span class="map activity right"> 填写推荐码 > </span>
+    </div>
+
+    <div class="row address total" id="total">
+        <span>费用合计</span>
+        <span class="count right"> <span class="total-count">{$grade.price}</span>元</span>
+    </div>
+
+
+    <div class="row notice">
+        <h1 class="col-xs-12">填写信息</h1>
+        <div class="col-xs-12">
+            <input type="text" name="name" id="name" placeholder="请输入您的姓名"/><br/>
+            <input type="text" name="phone" id="phone" placeholder="请输入您的电话"/><br/>
+            <input type="text" name="cno" id="cno" placeholder="请输入您的身份证号码"/>
+        </div>
+        <div class="xieyi">
+            <span>
+                <input id="color-input-red" class="chat-button-location-radio-input" type="checkbox"
+                       name="color-input-red" value="#f0544d"/>
+                <label for="color-input-red"></label>
+
+                <span class="text">我已阅读并同意</span>
+                <span class="color"><a href="javascript:" onclick="xieyi()">《鼎吉驾校学车协议》</a> </span>
+            </span>
+            <span class="right" id="other" onclick="javascript:other()">其他</span></div>
+    </div>
+
+
+    <div class="row kong"></div>
+
+
+    <div class="row enroll">
+        <a href="tel:400-689-8909">
+            <div class="col-xs-4 enroll-call">
+                <p>咨询热线</p>
+                <p>400-689-8909</p>
+            </div>
+        </a>
+        <a class="col-xs-8 enroll-btn" href="javascript:" onclick="sign()">我要报名</a>
+    </div>
+
+</div>
+
+<div class="c_alert_dialog dialog_open" style="display: none">
+    <div class="c_alert_mask" ontouchmove="return false"></div>
+    <div class="c_alert_wrap c_alert_width">
+
+        <div class="row">
+            <div class="modal-body tuijian">
+                <div>
+                    <input type="text" name="code" id="code" placeholder="请输入推荐码">
+                </div>
+                <div id="referral"></div>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <input type="submit" id="confirm" class="confirm" value="确认">
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="c_alert_dialog jts" style="display: none">
+    <div class="c_alert_mask" ontouchmove="return false"></div>
+    <div class="c_alert_wrap c_alert_width">
+
+        <div class="row">
+            {volist name="activity" id="item"}
+            <div class="modal-body">
+                <input type="radio" value="{$item.id}" name="activity_id" style="width: 25px;">
+                <div><img src="{:get_cover($item['icon'],'path')}" width="83" height="83"/> <br/>{$item.name}</div>
+                <div><span>{$item.description}</span></div>
+            </div>
+            {/volist}
+
+        </div>
+
+
+        <div class="modal-body yhq">
+            <div>
+                <input type="text" name="code" id="yhq_code" placeholder="如果你有优惠券请输入优惠券编码">
+            </div>
+            <div id="coupon"></div>
+        </div>
+        <div class="modal-body yhq">
+            <div>
+                <input type="submit" id="yhq" class="confirm" value="确认">
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<div class="c_alert_dialog other" style="display: none">
+    <div class="c_alert_mask" ontouchmove="return false"></div>
+    <div class="c_alert_wrap c_alert_width">
+
+        <div class="row">
+            <div class="modal-body">
+                <div>
+                    <input type="radio" value="1" name="other" checked style="display: none">
+                    <label><input type="radio" value="2" name="other" class="other-input">定金支付</label>
+                    <label><input type="radio" value="3" name="other" class="other-input">线下支付</label>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <input type="submit" id="confirm-other" class="confirm" value="确认">
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<script>
+    //点击选中 再次点击取消
+    $(function(){
+        $('input:radio').click(function(){
+
+            var domName = $(this).attr('name');
+
+            var $radio = $(this);
+            // if this was previously checked
+            if ($radio.data('waschecked') == true){
+                $radio.prop('checked', false);
+                $("input:radio[name='" + domName + "']").data('waschecked',false);
+                //$radio.data('waschecked', false);
+            } else {
+                $radio.prop('checked', true);
+                $("input:radio[name='" + domName + "']").data('waschecked',false);
+                $radio.data('waschecked', true);
+            }
+        });
+    });
+
+
+    //优惠券确认
+    $("#yhq").click(function () {
+        $(".jts").hide();
+        //do something
+        var code = $("#yhq_code").val();
+        if (code) {
+            $.post("{$web_path}/enlist/yhq_code", {code: code}, function (data) {
+                data = eval("(" + data + ")");
+                if (data.code == "400") {
+                    alert("优惠券不正确,请重新输入");
+                    $("#yhq_code").val("");
+                } else {
+                    $("#coupon").html('<input type="hidden" name="coupon_id" id="coupon_id" value="' + data.res.id + '"/>');
+                    var count = parseFloat($(".total-count").html() - data.res.amount).toFixed(2);
+                    $(".total-count").html(count);
+                    $("#yhq").attr('disabled', true);
+                }
+
+            });
+        }
+
+    });
+
+    //推荐码确认
+    $("#confirm").click(function () {
+        $(".dialog_open").hide();
+        //do something 查询推荐码是否有效
+        var code = $("#code").val();
+        $.post("{$web_path}/enlist/referral", {code: code}, function (data) {
+            data = eval("(" + data + ")");
+            if (data.code == "400") {
+                alert(data.msg);
+                $("#code").val("");
+            } else {
+                $("#referral").html('<input type="hidden" name="inviter" id="inviter" value="' + data.res.id + '"/>');
+
+            }
+        });
+
+
+    });
+
+    //活动选择
+    $('input:radio[name="activity_id"]').change(function () {
+        var activity = this.value;
+        $.post("{$web_path}/enlist/activity", {activity_id: activity}, function (data) {
+            data = eval("(" + data + ")");
+            if (data.code == "400") {
+                alert(data.msg);
+            } else {
+                var count = parseFloat("{$grade.price}" - data.res.amount).toFixed(2);
+                $(".total-count").html(count);
+            }
+        });
+
+    });
+
+    function dr_submit() {
+        $(".dialog_open").show();
+
+    }
+
+    function jts() {
+        $(".jts").show();
+    }
+
+    function other() {
+        $(".other").show();
+    }
+
+
+    $(function () {
+        $(".jts .c_alert_mask").click(function () {
+            $(".jts").hide();
+        });
+
+
+        $("#confirm-other").click(function () {
+            $(".other").hide();
+
+            var check_val = $('input:radio[name="other"]:checked').val();
+            //全款支付
+            if (check_val == 1) {
+                var tem = '<span>费用合计</span>' +
+                    '<span class="count right"> <span class="total-count">{$grade.price}</span>元</span>';
+                $("#total").html(tem);
+                $(".sign .total").css('height', '45');
+            }
+            //定金支付
+            if (check_val == 2) {
+                var template = '<div class="left djzf" style="padding-top: 0px;"><span>费用合计<span class="xf">您可以先付定金抢占名额</span></span></div>' +
+                    '<div class="right djzf"><span class="count right"> <input type="text" name="deposit" id="deposit" placeholder="300-{$grade.price}">元(定金)</span></div>';
+
+                $("#total").html(template);
+                $(".sign .total").css('height', '70');
+            }
+            //线下支付
+            if (check_val == 3) {
+                var tem = '<span>费用合计</span>' +
+                    '<span class="count right"> 0元</span>';
+                $("#total").html(tem);
+                $(".sign .total").css('height', '45');
+            }
+
+
+            //do something
+
+
+        });
+
+    });
+
+    function xieyi() {
+        var name = $("#name").val();
+        var phone = $("#phone").val();
+        var cno = $("#cno").val();
+
+        $.post("{$web_path}/enlist/agreement", {name: name, phone: phone, cno: cno}, function (data) {
+            if (data) {
+                location.href = "{$web_path}/enlist/agreement";
+            }
+
+        });
+
+    }
+
+    function sign() {
+        var name = $("#name").val();//姓名
+        var phone = $("#phone").val();//电话
+        var card = $("#cno").val();//身份证号
+
+        if (!name) {
+            alert('姓名不能为空');
+            return false;
+        }
+        if (!(/^[\u4e00-\u9fa5]{2,4}$/).test(name)) {
+            alert("真实姓名填写有误");
+            return false;
+        }
+
+
+        if (!phone) {
+            alert('联系电话不能为空');
+            return false;
+        }
+        if (!(/^1[34578]\d{9}$/.test(phone))) {
+            alert("手机号码有误，请重填");
+            return false;
+        }
+
+
+        if (!card) {
+            alert('身份证号码不能为空');
+            return false;
+        }
+
+        if (!(/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/).test(card)) {
+            alert("身份证号码填写有误");
+            return false;
+        }
+
+        if (!$('#color-input-red').is(':checked')) {
+            alert('请先阅读并同意鼎吉驾校学车协议');
+            return false;
+        }
+
+
+        var payable = $("#payable").text();//应付款
+        var grade_id = $("#grade_id").val();//班级id
+        var area_id = $("#area_id").val();//场地id
+
+        var activity_id = $('input:radio[name="activity_id"]:checked').val();//活动id
+        var coupon = $("#coupon_id").val();//优惠券
+        var inviter = $("#inviter").val();//邀请人 推荐码
+        var pay_type = $('input:radio[name="other"]:checked').val();//缴费类型
+
+        var payment = "";
+        if (pay_type == 1) {
+            payment = $(".total-count").text();//实付款
+        } else if (pay_type == 2) {
+            var deposit = $("#deposit").val();
+            if (!deposit) {
+                alert('请输入定金');
+                return false;
+            }
+            if (deposit < 300) {
+                alert('定金不能低于300');
+                return false;
+            }
+            payment = deposit;
+        } else {
+            payment = 0;
+        }
+
+        $.post("{$web_path}/enlist/sign", {
+            name: name,
+            phone: phone,
+            card: card,
+            payable: payable,
+            grade_id: grade_id,
+            area_id: area_id,
+            activity_id: activity_id,
+            coupon: coupon,
+            inviter: inviter,
+            pay_type: pay_type,
+            payment: payment
+        }, function (data) {
+            data = eval("(" + data + ")");
+            if (data.code == "200") {
+                console.log(data);
+                //location.href = "{$web_path}/enlist/success";
+
+                wx.config({
+                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId:     data.content.appId, // 必填，公众号的唯一标识
+                    timestamp: data.content.timestamp, // 必填，生成签名的时间戳
+                    nonceStr: data.content.nonceStr, // 必填，生成签名的随机串
+                    signature: data.content.signature,// 必填，签名，见附录1
+                    jsApiList: ['chooseWXPay'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
+                var title = "鼎吉驾校";
+                var link = "http:/ydxctrue.yidianxueche.cn/client/";
+                var imgUrl = "http:/ydxctrue.yidianxueche.cn/client/";
+                var desc = "鼎吉驾校";
+                var type = "";
+                var dataUrl = "";
+                wx.ready(function(){
+                    console.log(data);
+                    wx.chooseWXPay({
+                        appId : data.content.appId ,     //公众号名称，由商户传入
+                        timestamp :  data.content.timestamp,         //时间戳，自1970年以来的秒数
+                        nonceStr : data.content.nonceStr, //随机串
+                        package : data.content.package,
+                        signType : "MD5",         //微信签名方式：
+                        paySign : data.content.paySign, //微信签名
+                        success: function (res){
+                            //alert(res.msg);
+                            window.location.href = "{$web_path}/enlist/success";
+                        },
+                        cancel:function(res){　　　　　　　　　　　　　　// 支付取消回调函数
+                            window.location.href = "{$web_path}/enlist/fail";
+                        },
+                        fail: function(res){　　　　　　　　　　　　　　// 支付失败回调函数
+                            window.location.href = "{$web_path}/enlist/fail";
+                        }
+                    });
+                });
+
+                localStorage.hurl = "";
+
+
+
+            }else if(data.code=="2000"){
+                alert(data.msg);
+                location.href = "{$web_path}/enlist/sign_success";
+            }else if(data.code=="500"){
+                alert(data.msg);
+                location.reload();
+            } else {
+                alert(data.msg);
+                location.href = "{$web_path}/enlist/sign_fail";
+            }
+
+        });
+
+    }
+
+
+    /*
+    function visit_code() {
+        var phone = $("#phone").val();
+        var code = $("#code").val();
+        $.ajax({
+            type:"post",
+            url:"/index.php?do=enlist_details&action=visit",
+            async:true,
+            data:{phone:phone,code:code},
+            dataType:"json",
+            success:function(data) {
+                if(data.status==1) {
+                    window.location.href = "/index.php?do=enlist_order&id=14&coach=205";
+                }else{
+                    alert(data.code);
+                }
+            }
+        });
+    }
+    var InterValObj; //timer变量，控制时间
+    var count = 60; //间隔函数，1秒执行
+    var curCount;//当前剩余秒数
+
+    function sendMessage() {
+        var phone = $("#phone").val();
+        curCount = count;
+        //向后台发送处理数据
+        $.ajax({
+            type: "POST", //用POST方式传输
+            dataType: "json", //数据格式:JSON
+            url: "/index.php?do=enlist_details&action=send&phone="+phone, //目标地址
+            error: function (XMLHttpRequest, textStatus, errorThrown) { },
+            success: function (msg){
+                if(msg.status==5){
+                    alert(msg.code);
+                } else {
+                    //设置button效果，开始计时
+                    $("#btnSendCode").attr("disabled", "true");
+                    $("#btnSendCode").val(  curCount + "秒");
+                    InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+                }
+            }
+        });
+    }
+    //timer处理函数
+    function SetRemainTime() {
+        if (curCount == 0) {
+            window.clearInterval(InterValObj);//停止计时器
+            $("#btnSendCode").removeAttr("disabled");//启用按钮
+            $("#btnSendCode").val("重新发送验证码");
+        }
+        else {
+            curCount--;
+            $("#btnSendCode").val( curCount + "秒");
+        }
+    }
+*/
+</script>
+
+
+</body>
+</html>
