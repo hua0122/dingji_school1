@@ -38,11 +38,12 @@ function ajaxPost(_url, _data) {
 	});
 	return dataAjax;
 }
-function ajaxWX(_url) {
-	var dataAjax = "";
+function ajaxWX() {
+	
+		var dataAjax = "";
 	$.ajax({
-		type: "post",
-		url:  domainName + _url,
+		type: "get",
+		url: "http://ceshi.yidianxueche.cn/api/user/index",
 		success: function(data) {
 			dataAjax = data;
 		},

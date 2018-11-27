@@ -32,7 +32,17 @@ function feedback(content) {
 
 function study() {
 	let data = ajaxGet(user_study)
+	if(data.status=="000"){
+		$(".nodata").show();
+		$(".info").hide();
+	}
+	
+	if(data.status=="200"){
+		$(".nodata").hide();
+		$(".info").show();
 	console.log(data)
+	}
+	
 }
 function index(){
 	wxinfoindex();

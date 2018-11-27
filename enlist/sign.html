@@ -199,7 +199,6 @@
 
 				let grade_detail = JSON.parse(sessionStorage.getItem("grade_detail"));
 				subsign();
-				console.log(grade_detail.price)
 				$('input:radio').click(function() {
 
 					var domName = $(this).attr('name');
@@ -256,24 +255,45 @@
 
 
 				});
+						//活动选择
+							$('input:radio[name="activity_id"]').on("change",function() {
+								console.log(11)
+								var activity = this.value;
+								$.post( domainName+"/api/sign/activity_detail", {
+									activity_id: activity
+								}, function(data) {
+									if (data.status == "400") {
+										alert(data.msg);
+									} else {
+										var count = parseFloat(parseFloat(grade_detail.price) - data.data.amount).toFixed(2);
+										$(".total-count").html(count);
+									}
+								});
+				
+							});
 
 			});
 
 
 			//优惠券确认
 			$("#yhq").click(function() {
-				$(".jts").hide();
 				//do something
 				var code = $("#yhq_code").val();
 				if (code) {
-					$.post(domainName+"/api/enlist/yhq_code", {
+					$.post( domainName+"/api/sign/yhq_code", {
 						code: code
 					}, function(data) {
-						data = eval("(" + data + ")");
-						if (data.code == "400") {
+						console.log(data)
+						// data = eval("(" + data + ")");
+						if (data.status == "400") {
 							alert("优惠券不正确,请重新输入");
 							$("#yhq_code").val("");
+						}else if (data.status == "000") {
+							alert(data.msg);
+							$("#yhq_code").val("");
 						} else {
+							
+								$(".jts").hide();
 							$("#coupon").html('<input type="hidden" name="coupon_id" id="coupon_id" value="' + data.res.id + '"/>');
 							var count = parseFloat($(".total-count").html() - data.res.amount).toFixed(2);
 							$(".total-count").html(count);
@@ -290,15 +310,14 @@
 				$(".dialog_open").hide();
 				//do something 查询推荐码是否有效
 				var code = $("#code").val();
-				$.post("{$web_path}/enlist/referral", {
+				$.post(domainName+"/api/sign/referral", {
 					code: code
 				}, function(data) {
-					data = eval("(" + data + ")");
-					if (data.code == "400") {
+					if (data.status == "000") {
 						alert(data.msg);
 						$("#code").val("");
 					} else {
-						$("#referral").html('<input type="hidden" name="inviter" id="inviter" value="' + data.res.id + '"/>');
+						$("#referral").html('<input type="hidden" name="inviter" id="inviter" value="' + data.data.id + '"/>');
 
 					}
 				});
@@ -306,22 +325,7 @@
 
 			});
 
-			//活动选择
-			$('input:radio[name="activity_id"]').change(function() {
-				var activity = this.value;
-				$.post("{$web_path}/enlist/activity", {
-					activity_id: activity
-				}, function(data) {
-					data = eval("(" + data + ")");
-					if (data.code == "400") {
-						alert(data.msg);
-					} else {
-						var count = parseFloat(parseFloat(grade_detail.price) - data.res.amount).toFixed(2);
-						$(".total-count").html(count);
-					}
-				});
-
-			});
+	
 
 			function dr_submit() {
 				$(".dialog_open").show();
@@ -344,14 +348,11 @@
 				var phone = $("#phone").val();
 				var cno = $("#cno").val();
 
-				$.post("{$web_path}/enlist/agreement", {
-					name: name,
-					phone: phone,
-					cno: cno
-				}, function(data) {
-					if (data) {
-						location.href = "{$web_path}/enlist/agreement";
-					}
+				$.post("http://ceshi.yidianxueche.cn/api/user/agreement", function(data) {
+					console.log(data)
+// 					if (data) {
+// 						location.href = "{$web_path}/enlist/agreement";
+// 					}
 
 				});
 
@@ -440,7 +441,6 @@
 				}, function(data) {
 					data = eval("(" + data + ")");
 					if (data.code == "200") {
-						console.log(data);
 						//location.href = "{$web_path}/enlist/success";
 
 						wx.config({

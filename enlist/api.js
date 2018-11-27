@@ -6,7 +6,10 @@ let sign_get_area = "/api/sign/get_area";
 let sign_get_grade = "/api/sign/get_grade";
 // 班别详情
 let sign_grade_detail = "/api/sign/grade_detail";
+// 活动列表
 let sign_get_activity="/api/sign/get_activity";
+// 体检站列表
+let sign_get_station="/api/sign/get_station";
 // 报名api
 // banner
 function get_banner() {
@@ -40,7 +43,6 @@ function get_list(city) {
 		area_id: parseInt(city)
 	};
 	let data = ajaxPost(sign_get_grade, ajaxdata)
-	console.log(data)
 	let src = "";
 	if (data.data != null && data.data.length != 0) {
 
@@ -73,23 +75,47 @@ function grade_detail(){
 	$(".infonotice").text(data.data.notice);
 	 $(".enroll-btn").attr("href","../enlist/sign.html?id="+data.data.notice)
 }
+// 活动列表
 function get_activity(){
 	
 	let ajaxdata = {
 		school_id: school_id
 	};
 	let data = ajaxPost(sign_get_activity, ajaxdata)
+	console.log(data)
 	let src="";
 	for (var i = 0; i < data.data.length; i++) {
 		src+='<div class="modal-body">'+
-                '<input type="radio" value="'+data.data[i].id+'" name="activity_id" style="width: 25px;">'+
+                '<input type="radio" value="'+data.data[i].id+'" class="activity_id" name="activity_id" style="width: 25px;">'+
                 '<div><img src="" width="83" height="83"/> <br/>'+data.data[i].name+'</div>'+
                 '<div><span>'+data.data[i].description+'</span></div>'+
             '</div>';
 	}
 	$("#activity").html(src);
 }
+// 体检列表
+function get_station() {
 
+	let ajaxdata = {
+		school_id: school_id
+	}
+	let data = ajaxGet(sign_get_station, ajaxdata)
+	let src = "";
+	sessionStorage.setItem("get_station",JSON.stringify(data.data))
+	for (var i = 1; i < data.data.length; i++) {
+		src +=  '<li>'+
+                '<div  class="shenqing">'+
+                '<span class="left tit">'+
+                    '<span class="station">'+data.data[i].name+'</span>'+
+                   ' <span class="dizhi">地址:'+data.data[i].address+'</span>'+
+                '</span>'+
+                    '<span class="right address">距您3km <img src="../static/images/map1.png" width="30"/></span>'+
+                '</div>'+
+            '</li>';
+
+	}
+	$(".stationitem").html(src);
+}
 function index(){
 	get_banner();
 	get_area();
@@ -109,4 +135,7 @@ function subsign(){
 	$(".total-count").text(grade_detail.price)
 
 	get_activity();
+}
+function test(){
+	get_station()
 }
