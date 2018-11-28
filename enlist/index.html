@@ -370,29 +370,37 @@
 			wx.ready(function() {
 				wx.getLocation({
 					success: function(res) {
-						console.log(res.latitude); //纬度
-						console.log(res.longitude); //经度
 
 						var geocoder = new qq.maps.Geocoder({
 							complete: function(result) { //解析成功的回调函数
 								var address = result.detail.address; //获取详细地址信息
-									for (var i = 0; i < indexdata.le.ngth; i++) {
-										indexdata[i].
+								
+									for (var i = 0; i < indexdata.length; i++) {
+										if(address.indexOf(indexdata[i].name) != -1){
+												$("#city").val(indexdata[i].id);
+												get_list(indexdata[i].id);
+										}else{
+											
+												alert('请选择最近区域');
+										}
 									}
-								if (address.indexOf("沙坪坝") != -1) {
-									$("#city").val('1');
-									get_list(1);
-									$("#text").html(text);
-								} else if (address.indexOf("南岸") != -1) {
-									$("#city").val('2');
-									get_list(2);
-								} else if (address.indexOf("北碚") != -1) {
-									$("#city").val('3');
-									get_list(3);
-								} else {
-									alert('请选择最近区域');
-								}
+// 								if (address.indexOf("沙坪坝") != -1) {
+// 									$("#city").val('1');
+// 									get_list(1);
+// 									$("#text").html(text);
+// 								} else if (address.indexOf("南岸") != -1) {
+// 									$("#city").val('2');
+// 									get_list(2);
+// 								} else if (address.indexOf("北碚") != -1) {
+// 									$("#city").val('3');
+// 									get_list(3);
+// 								} else {
+// 									alert('请选择最近区域');
+// 								}
 								console.log(address);
+								
+									console.log(res.latitude); //纬度
+									console.log(res.longitude); //经度
 							}
 						});
 						geocoder.getAddress(new qq.maps.LatLng(res.latitude, res.longitude));
