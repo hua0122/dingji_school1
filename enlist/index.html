@@ -360,17 +360,13 @@
 			<p>我的</p>
 		</a>
 	</div>
-	<div id="container"></div> 
+	<div id="container"></div>
 	<script src="../static/js/apiRoot.js" type="text/javascript" charset="utf-8"></script>
 	<script src="api.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="../static/js/jquery.flexslider-min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			let indexdata = index();
-			console.log("场地：")
-			console.log(indexdata)
-
-
 
 			$("#select-city").click(function() {
 				$(".dialog_open").show();
@@ -394,59 +390,35 @@
 			});
 
 
-
-			wx.ready(function() {
-				wx.getLocation({
-					success: function(res) {
-
+						
 						var geocoder = new qq.maps.Geocoder({
 							complete: function(result) { //解析成功的回调函数
 								var address = result.detail.address; //获取详细地址信息
-								var map = new BMap.Map("container");  
-								var point1 = new BMap.Point(res.longitude, res.latitude);
+								var map = new BMap.Map("container");
+								var point1 = new BMap.Point(latlng.lng, latlng.lat);
+								var distance = [];
 								for (var i = 0; i < indexdata.length; i++) {
-									
 									var point2 = new BMap.Point(indexdata[i].lng, indexdata[i].lat);
-									var distance = map.getDistance(point1, point2);
-									console.log(distance)
-									if (address.indexOf(indexdata[i].name) != -1) {
-										$("#city").val(indexdata[i].id);
-										get_list(indexdata[i].id);
-										$("#text").html(indexdata[i].name);
-									} else {
-
-										alert('请选择最近区域');
-									}
+									distance.push(map.getDistance(point1, point2) / 1000);
 								}
 
-
-								console.log(res.latitude); //纬度
-								console.log(res.longitude); //经度
-								// 								if (address.indexOf("沙坪坝") != -1) {
-								// 									$("#city").val('1');
-								// 									get_list(1);
-								// 									$("#text").html(text);
-								// 								} else if (address.indexOf("南岸") != -1) {
-								// 									$("#city").val('2');
-								// 									get_list(2);
-								// 								} else if (address.indexOf("北碚") != -1) {
-								// 									$("#city").val('3');
-								// 									get_list(3);
-								// 								} else {
-								// 									alert('请选择最近区域');
-								// 								}
-								console.log(address);
+								let distanceMin = Math.min.apply(null, distance); //最小值
+								if (distanceMin <= 5) {
+									let dataindex = distance.indexOf(distanceMin)
+									$("#city").val(indexdata[dataindex].id);
+									get_list(indexdata[dataindex].id);
+									$("#text").html(indexdata[dataindex].name);
+								} else {
+									alert('请选择最近区域');
+								}
+								// console.log(res.latitude); //纬度
+								// console.log(res.longitude); //经度
+								// console.log(address);
 							}
 						});
-						geocoder.getAddress(new qq.maps.LatLng(res.latitude, res.longitude));
+						geocoder.getAddress(new qq.maps.LatLng(latlng.lat, latlng.lng));
 
-					},
-					fail: function(res) {
-						console.log(res.latitude);
-					},
-					cancel: function(res) {}
-				});
-			});
+					
 
 
 			$("#city").change(function() {
