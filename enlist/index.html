@@ -11,9 +11,6 @@
 		<meta name="description" content="Yan" />
 		<meta name="keywords" content="Yan" />
 		<meta name="author" content="Yan" />
-		<script src="../static/js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=DBd897f58d7a63e585485e3dea011253"></script>
-		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="../static/css/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="../static/css/default.css">
@@ -361,16 +358,16 @@
 	</div>
 	<div id="container"></div>
 	
+	<script src="../static/js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=DBd897f58d7a63e585485e3dea011253"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<script src="../static/js/custom1.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../static/js/apiRoot.js" type="text/javascript" charset="utf-8"></script>
 	<script src="api.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="../static/js/jquery.flexslider-min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			console.log(latlng);
-
 			let indexdata = index();
-
 			$("#select-city").click(function() {
 				$(".dialog_open").show();
 			});
@@ -391,15 +388,7 @@
 				$("#text").html(text);
 
 			});
-
-
-
 			geocoderfun(indexdata);
-			
-			
-
-
-
 			$("#city").change(function() {
 				var city = $(this).val();
 				get_list(city);
