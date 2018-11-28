@@ -406,7 +406,7 @@
 								for (var i = 0; i < indexdata.length; i++) {
 									
 									var point2 = new BMap.Point(indexdata[i].lng, indexdata[i].lat);
-									var distance = map.getDistance(point1, point2);
+									var distance = geocoder.getDistance(point1, point2);
 									console.log(distance)
 									if (address.indexOf(indexdata[i].name) != -1) {
 										$("#city").val(indexdata[i].id);
