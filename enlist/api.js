@@ -10,6 +10,7 @@ let sign_grade_detail = "/api/sign/grade_detail";
 let sign_get_activity = "/api/sign/get_activity";
 // 体检站列表
 let sign_get_station = "/api/sign/get_station";
+// let latlng=JSON.parse(sessionStorage.getItem("latlng"));
 // 报名api
 // banner
 function get_banner() {
@@ -147,7 +148,9 @@ function subsign() {
 function test() {
 	get_station()
 }
-function geocoderfun(){
+
+
+function geocoderfun(indexdata){
 			var distance = [];
 				var geocoder = new qq.maps.Geocoder({
 					complete: function(result) { //解析成功的回调函数
