@@ -360,6 +360,7 @@
 			<p>我的</p>
 		</a>
 	</div>
+	<div id="container"></div> 
 	<script src="../static/js/apiRoot.js" type="text/javascript" charset="utf-8"></script>
 	<script src="api.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="../static/js/jquery.flexslider-min.js"></script>
@@ -401,12 +402,12 @@
 						var geocoder = new qq.maps.Geocoder({
 							complete: function(result) { //解析成功的回调函数
 								var address = result.detail.address; //获取详细地址信息
-
+								var map = new BMap.Map("container");  
 								var point1 = new BMap.Point(res.longitude, res.latitude);
 								for (var i = 0; i < indexdata.length; i++) {
 									
 									var point2 = new BMap.Point(indexdata[i].lng, indexdata[i].lat);
-									var distance = geocoder.getDistance(point1, point2);
+									var distance = map.getDistance(point1, point2);
 									console.log(distance)
 									if (address.indexOf(indexdata[i].name) != -1) {
 										$("#city").val(indexdata[i].id);
