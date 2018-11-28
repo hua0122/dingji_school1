@@ -276,6 +276,8 @@
 
 			//优惠券确认
 			$("#yhq").click(function() {
+				
+					$(".jts").hide();
 				//do something
 				var code = $("#yhq_code").val();
 				if (code) {
@@ -291,7 +293,6 @@
 							$("#yhq_code").val("");
 						} else {
 							
-								$(".jts").hide();
 							$("#coupon").html('<input type="hidden" name="coupon_id" id="coupon_id" value="' + data.res.id + '"/>');
 							var count = parseFloat($(".total-count").html() - data.res.amount).toFixed(2);
 							$(".total-count").html(count);
