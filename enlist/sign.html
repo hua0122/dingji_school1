@@ -292,7 +292,6 @@
 							alert(data.msg);
 							$("#yhq_code").val("");
 						} else {
-							
 							$("#coupon").html('<input type="hidden" name="coupon_id" id="coupon_id" value="' + data.res.id + '"/>');
 							var count = parseFloat($(".total-count").html() - data.res.amount).toFixed(2);
 							$(".total-count").html(count);
