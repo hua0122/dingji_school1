@@ -36,6 +36,7 @@ function get_area() {
 		src += "<label><input type='radio' name='city' value=" + data.data[i].id + "/>" + data.data[i].name + "</label><br/>"
 	}
 	$("#area").html(src);
+	console.log(data.data)
 	return data.data
 }
 // 班别列表

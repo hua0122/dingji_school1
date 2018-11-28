@@ -376,7 +376,9 @@
 						var geocoder = new qq.maps.Geocoder({
 							complete: function(result) { //解析成功的回调函数
 								var address = result.detail.address; //获取详细地址信息
-
+									for (var i = 0; i < indexdata.le.ngth; i++) {
+										indexdata[i].
+									}
 								if (address.indexOf("沙坪坝") != -1) {
 									$("#city").val('1');
 									get_list(1);
@@ -461,6 +463,7 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			let indexdata=index();
+			console.log("场地：")
 			console.log(indexdata)
 			$('.flexslider').flexslider({
 				directionNav: true,
