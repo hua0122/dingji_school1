@@ -447,6 +447,8 @@
 							signature: data.data.signature, // 必填，签名，见附录1
 							jsApiList: ['chooseWXPay'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 						});
+						
+						wxconfig.config(data.data);
 						var title = "鼎吉驾校";
 						var link = "http:/ydxctrue.yidianxueche.cn/client/";
 						var imgUrl = "http:/ydxctrue.yidianxueche.cn/client/";
@@ -474,7 +476,7 @@
 								}
 							});
 						});
-
+						wxconfig.chooseWXPay(data.data);
 						localStorage.hurl = "";
 
 

@@ -96,6 +96,7 @@
 	</style>
 
 	<script type="text/javascript">
+		
 		//js无缝滚动代码
 		function marquee(i, direction) {
 			var obj = document.getElementById("marquee" + i);
@@ -183,7 +184,7 @@
 			</div>
 
 			<div class="row nav-bar">
-				<div class="col-xs-3 nav-bar-item">
+				<div class="col-xs-3 nav-bar-item getLocation">
 					<a><img src="../static/images/vrxc.png" /><i>最优质教练</i></a>
 				</div>
 				<div class="col-xs-3 nav-bar-item">
@@ -349,6 +350,20 @@
 		<script src="api.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			$(function() {
+				$(".getLocation").click(function(){
+					alert(11)
+					wx.getLocation({
+						type: 'wgs84',
+						success: function(res) {
+							console.log("lat:"+res.latitude); //纬度
+							console.log("lng:"+res.longitude); //经度
+						},
+						fail: function(res) {
+							console.log("获取经纬度失败");
+						},
+						cancel: function(res) {}
+					});
+				})
 				index();
 				var width = document.body.offsetWidth;
 				$('.img-one img').css('height', width / 3);
