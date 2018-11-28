@@ -380,6 +380,7 @@
 								if (address.indexOf("沙坪坝") != -1) {
 									$("#city").val('1');
 									get_list(1);
+									$("#text").html(text);
 								} else if (address.indexOf("南岸") != -1) {
 									$("#city").val('2');
 									get_list(2);
@@ -459,7 +460,8 @@
 	<script type="text/javascript" src="../static/js/jquery.flexslider-min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			index();
+			let indexdata=index();
+			console.log(indexdata)
 			$('.flexslider').flexslider({
 				directionNav: true,
 				pauseOnAction: false
