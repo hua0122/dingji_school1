@@ -341,9 +341,6 @@
             }
         });
     }*/
-
-
-		
 	</script>
 
 
@@ -368,115 +365,121 @@
 	<script type="text/javascript" src="../static/js/jquery.flexslider-min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			let indexdata=index();
+			let indexdata = index();
 			console.log("场地：")
 			console.log(indexdata)
-			
-			
-			
-						$("#select-city").click(function() {
-							$(".dialog_open").show();
-						});
-						$("#close").click(function() {
-							$(".dialog_open").hide();
-						});
-						$("#confirm").click(function() {
-							//获取选中的值
-							var city = $('input:radio[name="city"]:checked').val();
-							if (city == null) {
-								alert("请选择一个区域");
-								return false;
-							}
-							//alert(city);
-							get_list(city);
-							$(".dialog_open").hide();
-							var text = $('input:radio[name="city"]:checked')[0].nextSibling.nodeValue;
-							$("#text").html(text);
-			
-						});
-			
-			
-			
-						wx.ready(function() {
-							wx.getLocation({
-								success: function(res) {
-			
-									var geocoder = new qq.maps.Geocoder({
-										complete: function(result) { //解析成功的回调函数
-											var address = result.detail.address; //获取详细地址信息
-											
-												for (var i = 0; i < indexdata.length; i++) {
-													if(address.indexOf(indexdata[i].name) != -1){
-															$("#city").val(indexdata[i].id);
-															get_list(indexdata[i].id);
-															$("#text").html(indexdata[i].name);
-													}else{
-														
-															alert('请选择最近区域');
-													}
-												}
-			// 								if (address.indexOf("沙坪坝") != -1) {
-			// 									$("#city").val('1');
-			// 									get_list(1);
-			// 									$("#text").html(text);
-			// 								} else if (address.indexOf("南岸") != -1) {
-			// 									$("#city").val('2');
-			// 									get_list(2);
-			// 								} else if (address.indexOf("北碚") != -1) {
-			// 									$("#city").val('3');
-			// 									get_list(3);
-			// 								} else {
-			// 									alert('请选择最近区域');
-			// 								}
-											console.log(address);
-											
-												console.log(res.latitude); //纬度
-												console.log(res.longitude); //经度
-										}
-									});
-									geocoder.getAddress(new qq.maps.LatLng(res.latitude, res.longitude));
-			
-								},
-								fail: function(res) {
-									console.log(res.latitude);
-								},
-								cancel: function(res) {}
-							});
-						});
-			
-			
-						$("#city").change(function() {
-							var city = $(this).val();
-							get_list(city);
-						});
-			
-						function get_list(city) {
-							let ajaxdata = {
-								area_id: parseInt(city)
-							};
-							let data = ajaxPost(sign_get_grade, ajaxdata)
-							let src = "";
-							if (data.data != null && data.data.length != 0) {
-			
-								for (var i = 0; i < data.data.length; i++) {
-			
-									src += "<div class='col-xs-12'>" +
-										"<a href='../enlist/detail.html?id=" + data.data[i].id + "'>" + data.data[i].name + "C" + data.data[i].type +
-										"<span class='right'>" + data.data[i].price + "</span></a>" +
-										"</div>";
+
+
+
+			$("#select-city").click(function() {
+				$(".dialog_open").show();
+			});
+			$("#close").click(function() {
+				$(".dialog_open").hide();
+			});
+			$("#confirm").click(function() {
+				//获取选中的值
+				var city = $('input:radio[name="city"]:checked').val();
+				if (city == null) {
+					alert("请选择一个区域");
+					return false;
+				}
+				//alert(city);
+				get_list(city);
+				$(".dialog_open").hide();
+				var text = $('input:radio[name="city"]:checked')[0].nextSibling.nodeValue;
+				$("#text").html(text);
+
+			});
+
+
+
+			wx.ready(function() {
+				wx.getLocation({
+					success: function(res) {
+
+						var geocoder = new qq.maps.Geocoder({
+							complete: function(result) { //解析成功的回调函数
+								var address = result.detail.address; //获取详细地址信息
+
+								var point1 = new BMap.Point(res.longitude, res.latitude);
+								for (var i = 0; i < indexdata.length; i++) {
+									
+									var point2 = new BMap.Point(indexdata[i].lng, indexdata[i].lat);
+									var distance = map.getDistance(point1, point2);
+									console.log(distance)
+									if (address.indexOf(indexdata[i].name) != -1) {
+										$("#city").val(indexdata[i].id);
+										get_list(indexdata[i].id);
+										$("#text").html(indexdata[i].name);
+									} else {
+
+										alert('请选择最近区域');
+									}
 								}
-								$("#course_list").html(src);
-							} else {
-								$("#course_list").empty();
-								$("#course_list").append('<div class="col-xs-12">暂无数据</div>');
+
+
+								console.log(res.latitude); //纬度
+								console.log(res.longitude); //经度
+								// 								if (address.indexOf("沙坪坝") != -1) {
+								// 									$("#city").val('1');
+								// 									get_list(1);
+								// 									$("#text").html(text);
+								// 								} else if (address.indexOf("南岸") != -1) {
+								// 									$("#city").val('2');
+								// 									get_list(2);
+								// 								} else if (address.indexOf("北碚") != -1) {
+								// 									$("#city").val('3');
+								// 									get_list(3);
+								// 								} else {
+								// 									alert('请选择最近区域');
+								// 								}
+								console.log(address);
 							}
-						}
-			
-			
-			
-			
-			
-			
+						});
+						geocoder.getAddress(new qq.maps.LatLng(res.latitude, res.longitude));
+
+					},
+					fail: function(res) {
+						console.log(res.latitude);
+					},
+					cancel: function(res) {}
+				});
+			});
+
+
+			$("#city").change(function() {
+				var city = $(this).val();
+				get_list(city);
+			});
+
+			function get_list(city) {
+				let ajaxdata = {
+					area_id: parseInt(city)
+				};
+				let data = ajaxPost(sign_get_grade, ajaxdata)
+				let src = "";
+				if (data.data != null && data.data.length != 0) {
+
+					for (var i = 0; i < data.data.length; i++) {
+
+						src += "<div class='col-xs-12'>" +
+							"<a href='../enlist/detail.html?id=" + data.data[i].id + "'>" + data.data[i].name + "C" + data.data[i].type +
+							"<span class='right'>" + data.data[i].price + "</span></a>" +
+							"</div>";
+					}
+					$("#course_list").html(src);
+				} else {
+					$("#course_list").empty();
+					$("#course_list").append('<div class="col-xs-12">暂无数据</div>');
+				}
+			}
+
+
+
+
+
+
 			$('.flexslider').flexslider({
 				directionNav: true,
 				pauseOnAction: false
