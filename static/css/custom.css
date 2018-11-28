@@ -49,6 +49,15 @@ body {
 .nav-bar-item {
     text-align: center;
     margin-top: 20px;
+	display: flex;
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: -moz-flex;
+	justify-content: center;
+	-webkit-justify-content: center;
+	-ms-justify-content: center;
+	-moz-justify-content: center;
+	padding: 0;
 }
 
 .nav-bar-item img {
@@ -825,6 +834,7 @@ body {
 }
 
 .footer{
+	z-index: 999;
 	width: 100%;
 	position: fixed;
 	bottom: 0;

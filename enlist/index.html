@@ -367,7 +367,6 @@
 
 
 
-				console.log(11)
 			wx.ready(function() {
 				wx.getLocation({
 					success: function(res) {
@@ -414,7 +413,6 @@
 					area_id: parseInt(city)
 				};
 				let data = ajaxPost(sign_get_grade, ajaxdata)
-				console.log(data)
 				let src = "";
 				if (data.data != null && data.data.length != 0) {
 

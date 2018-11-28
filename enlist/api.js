@@ -82,7 +82,6 @@ function get_activity(){
 		school_id: school_id
 	};
 	let data = ajaxPost(sign_get_activity, ajaxdata)
-	console.log(data)
 	let src="";
 	for (var i = 0; i < data.data.length; i++) {
 		src+='<div class="modal-body">'+

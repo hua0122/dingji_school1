@@ -154,7 +154,6 @@
                     var type = "";
                     var dataUrl = "";
                     wx.ready(function(){
-                        console.log(data);
                         wx.chooseWXPay({
                             appId : data.content.appId ,     //公众号名称，由商户传入
                             timestamp :  data.content.timestamp,         //时间戳，自1970年以来的秒数

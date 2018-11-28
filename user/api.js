@@ -40,7 +40,6 @@ function study() {
 	if(data.status=="200"){
 		$(".nodata").hide();
 		$(".info").show();
-	console.log(data)
 	}
 	
 }

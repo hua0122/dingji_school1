@@ -130,14 +130,12 @@
 				alert("手机号码有误，请重填");
 				return false;
 			}
-console.log($("#tj_code_form").serialize())
 			$.ajax({
 				type: "POST",
 				url: "http://ceshi.yidianxueche.cn/api/sign/apply",
 				data: $("#tj_code_form").serialize(),
 				dataType: "json",
 				success: function(data) {
-					console.log(data)
 					if (1 == data.status) {
 						wx.config({
 							debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
@@ -148,7 +146,6 @@ console.log($("#tj_code_form").serialize())
 							jsApiList: ['chooseWXPay'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 						});
 						wx.ready(function() {
-							console.log(data);
 							wx.chooseWXPay({
 								appId: data.content.appId, //公众号名称，由商户传入
 								timestamp: data.content.timestamp, //时间戳，自1970年以来的秒数
