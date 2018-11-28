@@ -104,7 +104,7 @@
 	                <span class="title">鼎吉驾校</span>
 	                <span class="xtitle">全国唯一军旅特色</span>
 	                <span class="xtitle">用心只为您</span>
-	                <span class="xtitle">地址:{$info.address}</span>
+	                <span class="xtitle infoaddress">地址:{$info.address}</span>
 	                <input type="hidden" value="{$info.lng}" id="lng"/>
 	                <input type="hidden" value="{$info.lat}" id="lat"/>
 	                <span class="address" style="color: #0baae4;padding-right: 10px;"><img src="../static/images/map1.png" width="25" style="top: 0px;"/> > </span>
@@ -115,21 +115,21 @@
 	    <div class="row site">
 	        <h1 class="col-xs-12" style="color: #0baae4">班别信息</h1>
 	        <div class="col-xs-12" style="border-bottom: 1px solid #ccc">
-	            <p><b style="font-size: 16px; font-weight: 500">{$info.grade_name}</b><span class="span-right">{$info.price}元</span></p>
+	            <p><b style="font-size: 16px; font-weight: 500" class="infograde_name">{$info.grade_name}</b><span class="span-right infoprice">{$info.price}元</span></p>
 	        </div>
 	        <div class="col-xs-12">
-	            <p>
+	            <p class="infocontent">
 	             {$info.content}
 	            </p>
 	        </div>
 	        <div class="col-xs-12">
-	            <p class="b">班别原价<span class="span-right">{$info.price}元</span></p>
+	            <p class="b">班别原价<span class="span-right infoprice">{$info.price}元</span></p>
 	            <p class="b">报名减免<span class="span-right">-200元</span></p>
 	            <p class="b">五人团报<span class="span-right">-300元</span></p>
 	            <p class="b">加200元赠送888元跑步机<span class="span-right">+200元</span></p>
-	            <p class="b">应付款<span class="span-right">{$info.payable}元</span></p>
-	            <p class="b">实付款<span class="span-right">{$info.payment}元</span></p>
-	            <p class="b">未付款<span class="span-right">{$info.unpaid}元</span></p>
+	            <p class="b">应付款<span class="span-right infopayable">{$info.payable}元</span></p>
+	            <p class="b">实付款<span class="span-right infopayment">{$info.payment}元</span></p>
+	            <p class="b">未付款<span class="span-right infounpaid">{$info.unpaid}元</span></p>
 	        </div>
 	        <div class="col-xs-12" style="border-top: 1px solid #ccc">
 	            <p><b style="font-size: 16px; font-weight: 500">获赠</b><span class="span-right">价值888元跑步机</span></p>
@@ -140,9 +140,9 @@
 	    <div class="row assess">
 	        <h1 class="col-xs-12" style="color: #0baae4">订单信息</h1>
 	        <div class="col-xs-12 assess-nav">
-	                <p class="b">交易单号<span class="span-right1">{$info.sn}</span></p>
+	                <p class="b">交易单号<span class="span-right1 infosn">{$info.sn}</span></p>
 	                <p class="b">商户单号<span class="span-right1">1000000000</span></p>
-	                <p class="b">报名时间<span class="span-right1">{$info.sign_date|date="Y-m-d H:i:s",###}</span></p>
+	                <p class="b">报名时间<span class="span-right1 infosign_date">{$info.sign_date|date="Y-m-d H:i:s",###}</span></p>
 	        </div>
 	    </div>
 	
@@ -150,10 +150,10 @@
 	    <div class="row assess">
 	        <h1 class="col-xs-12" style="color: #0baae4">体检信息</h1>
 	        <div class="col-xs-12 assess-nav">
-	            <p class="b">体检源码<span class="span-right1">{$code.code}</span></p>
-	            <p class="b">体检新码<span class="span-right1">{$code.verify}</span></p>
-	            <p class="b">体检站位置<span class="span-right1">{$code.station_name}<span style="color: #0baae4;"><img src="../static/images/map1.png" width="20"/> > </span></span></p>
-	            <p class="b">体检码申请时间<span class="span-right1">{$code.create_time}</span></p>
+	            <p class="b">体检源码<span class="span-right1 codecode">{$code.code}</span></p>
+	            <p class="b">体检新码<span class="span-right1 codeverify">{$code.verify}</span></p>
+	            <p class="b">体检站位置<span class="span-right1 codestation_name">{$code.station_name}<span style="color: #0baae4;"><img src="../static/images/map1.png" width="20"/> > </span></span></p>
+	            <p class="b">体检码申请时间<span class="span-right1 codecreate_time">{$code.create_time}</span></p>
 	        </div>
 	    </div>
 </div>

@@ -436,9 +436,9 @@
 					pay_type: pay_type,
 					payment: payment
 				}, function(data) {
+					alert(data.msg)
 					if (data.status == "200") {
 						//location.href = "{$web_path}/enlist/success";
-
 						wx.config({
 							debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
 							appId: data.data.appId, // 必填，公众号的唯一标识
