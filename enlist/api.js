@@ -297,7 +297,10 @@ function geocoderfun(indexdata) {
 							var point2 = new BMap.Point(indexdata[i].lng, indexdata[i].lat);
 							let distancejl = map.getDistance(point1, point2) / 1000;
 							if (distancejl <= 5) {
-								distance.push({id:i,distance:map.getDistance(point1, point2) / 1000});
+								distance.push({
+									id: i,
+									distance: map.getDistance(point1, point2) / 1000
+								});
 							}
 						}
 						if (distance.length != 0) {
@@ -308,12 +311,12 @@ function geocoderfun(indexdata) {
 								get_list(indexdata[dataindex].id);
 								$("#text").html(indexdata[dataindex].name);
 							} else {
-								
-									$(".dialog_open").show();
+
+								$(".dialog_open").show();
 							}
 						} else {
-							
-								$(".dialog_open").show();
+
+							$(".dialog_open").show();
 						}
 						if (distance.length == indexdata.length) {
 							let distanceMin = Math.min.apply(null, distance); //最小值
@@ -368,8 +371,12 @@ function transform_order() {
 		alert("手机号码有误，请重填");
 		return false;
 	}
-	console.log(JSON.parse($("#tj_code_form").serialize()))
-	let data = ajaxPost(sign_apply, $("#tj_code_form").serialize())
+	let ajaxdata = {
+		name: $("#name").val(),
+		phone: $("#phone").val(),
+		station_id: $("#station_id").val()
+	}
+	let data = ajaxPost(sign_apply, ajaxdata)
 	if (data.status == "200") {
 		wx.ready(function() {
 			wx.chooseWXPay({
@@ -396,7 +403,7 @@ function transform_order() {
 		alert(data.msg);
 	} else {
 		localStorage.hurl = window.location.href;
-		window.location.href = "http://ceshi.yidianxueche.cn/api/user/getwxinfo";
+		window.location.href = domainName+"/api/user/getwxinfo";
 	}
 
 }
