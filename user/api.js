@@ -8,7 +8,7 @@ let user_study = "/api/user/study";
 function wxinfoindex() {
 	let ajaxdata={};
 	let id = parseInt(window.location.href.split("id=")[1]);
-	let data = ajaxWX(user_index,ajaxdata);
+	let data = ajaxPost(user_index,ajaxdata);
 	$("#my_model").attr("src", data.data.headimgurl)
 	$("#nickname").text(data.data.nickname)
 }
