@@ -12,6 +12,8 @@ let sign_get_activity = "/api/sign/get_activity";
 let sign_get_station = "/api/sign/get_station";
 // 报名
 let sign_submit_sign = "/api/sign/submit_sign";
+// 我的协议
+let user_agreement="/api/user/agreement";
 // let latlng=JSON.parse(sessionStorage.getItem("latlng"));
 // 报名api
 // banner
@@ -346,4 +348,15 @@ function zhifpaly(data){
 			}
 		});
 	});
+}
+
+function agreement(){
+	
+		let ajaxdata = {
+			school_id:school_id,
+		}
+	let data=ajaxGet(user_agreement,ajaxdata)
+	$(".yi-input").val(data.data.user.name);
+	$(".cno-input").val(data.data.user.card);
+	$(".content").html(data.data.content.content);
 }

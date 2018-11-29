@@ -44,16 +44,20 @@
 <div class="container">
     <div class="row agreement">
         <div><h1>学车协议</h1></div>
-        <div>
-            <span>甲方：<input type="text" name="jia" value="鼎吉驾校"><br/></span>
+        <div class="rowflex">
+            <span><label>甲方：</label><input type="text" name="jia" value="鼎吉驾校" class="borinput"><br/></span>
         </div>
-        <div>
-            <span class="yi">乙方：<input type="text" name="yi" class="yi-input" value="{$agreement['name']}"></span>
-            <span class="cno">居民身份证号码：<input type="text" name="cno" class="cno-input" value="{$agreement['cno']}"></span>
+        <div class="rowflex">
+            <span class="yi"><label>乙方：</label><input type="text" name="yi" class="yi-input borinput" value="{$agreement['name']}"></span>
         </div>
-        <div>
-            <span>报名班别：<input type="text" name="class"><br/></span>
-            <span>服务内容：<input type="text" name="content"></span>
+        <div class="rowflex">
+            <span class="cno"><label>身份证号码：</label><input type="text" name="cno" class="cno-input borinput" value="{$agreement['cno']}"></span>
+        </div>
+        <div class="rowflex">
+            <span ><label>报名班别：</label><input type="text" name="class" class="borinput"><br/></span>
+        </div>
+        <div class="rowflex">
+            <span style="display: flex;"><label>服务内容：</label><font class="content borinput"></font></span>
         </div>
     </div>
 
@@ -61,4 +65,12 @@
 </div>
 
 </body>
+
+<script src="../static/js/apiRoot.js" type="text/javascript" charset="utf-8"></script>
+<script src="api.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$(function(){
+		agreement();
+	})
+</script>
 </html>
