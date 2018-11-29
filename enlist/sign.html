@@ -107,7 +107,7 @@
 						<p>400-689-8909</p>
 					</div>
 				</a>
-				<a class="col-xs-8 enroll-btn" href="javascript:" onclick="sign()">我要报名</a>
+				<a class="col-xs-8 enroll-btn" href="javascript:" onclick="submit_sign()">我要报名</a>
 			</div>
 
 		</div>
@@ -455,7 +455,7 @@
 						var desc = "鼎吉驾校";
 						var type = "";
 						var dataUrl = "";
-						// wx.ready(function() {
+						wx.ready(function() {
 							wx.chooseWXPay({
 								appId: data.data.appId, //公众号名称，由商户传入
 								timestamp: data.data.timestamp, //时间戳，自1970年以来的秒数
@@ -474,7 +474,7 @@
 									window.location.href = "../enlist/fail.html";
 								}
 							});
-						// });
+						});
 						localStorage.hurl = "";
 
 

@@ -4,6 +4,8 @@ let user_index = "/api/user/index";
 let user_feedback = "/api/user/feedback";
 // 学习中心
 let user_study = "/api/user/study";
+// 我的协议
+let user_agreement="/api/user/agreement";
 // 内容详情
 function wxinfoindex() {
 	let id = parseInt(window.location.href.split("id=")[1]);
@@ -30,7 +32,8 @@ function feedback(content) {
 
 
 function study() {
-	let data = ajaxGet(user_study)
+	let ajaxdata = {};
+	let data = ajaxGet(user_study,ajaxdata)
 	if (data.status == "000") {
 		$(".nodata").show();
 		$(".info").hide();
@@ -57,6 +60,14 @@ function study() {
 	}
 
 }
+function agreement(){
+	
+		let ajaxdata = {
+			school_id:school_id,
+		}
+	let data=ajaxGet(user_agreement,ajaxdata)
+}
 function index() {
 	wxinfoindex();
+agreement();
 }

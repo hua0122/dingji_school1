@@ -62,22 +62,22 @@
         $("iframe").css('height','188px');
 
 
-        document.getElementById('Jvideo').play();
+        // document.getElementById('Jvideo').play();
 
-        wx.ready(function () {
-            document.getElementById('Jvideo').play();
-            function videoAutoPlay(id){
-                var video = document.getElementById(id);
-                video.play();
-                document.addEventListener("WeixinJSBridgeReady", function () {
-                    video.play();
-                }, false);
-                document.addEventListener('YixinJSBridgeReady', function() {
-                    video.play();
-                }, false);
-            }
-            videoAutoPlay('Jvideo');
-        });
+//         wx.ready(function () {
+//             document.getElementById('Jvideo').play();
+//             function videoAutoPlay(id){
+//                 var video = document.getElementById(id);
+//                 video.play();
+//                 document.addEventListener("WeixinJSBridgeReady", function () {
+//                     video.play();
+//                 }, false);
+//                 document.addEventListener('YixinJSBridgeReady', function() {
+//                     video.play();
+//                 }, false);
+//             }
+//             videoAutoPlay('Jvideo');
+//         });
 
 
 

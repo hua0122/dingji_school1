@@ -8,8 +8,8 @@ let latlng = JSON.parse(sessionStorage.getItem("latlng"));
 
 // ajax-get调用
 function ajaxGet(_url, _data) {
-	let openid=sessionStorage.getItem("openid");
-	_data["openid"]=openid
+	let openid = sessionStorage.getItem("openid");
+	_data["openid"] = openid
 	var dataAjax = "";
 	$.ajax({
 		type: "get",
@@ -28,9 +28,9 @@ function ajaxGet(_url, _data) {
 }
 // ajax-post调用
 function ajaxPost(_url, _data) {
-	
-		let openid=sessionStorage.getItem("openid");
-		_data["openid"]=openid
+
+	let openid = sessionStorage.getItem("openid");
+	_data["openid"] = openid
 	var dataAjax = "";
 	$.ajax({
 		type: "post",
