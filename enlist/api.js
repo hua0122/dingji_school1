@@ -295,10 +295,25 @@ function geocoderfun(indexdata) {
 						var point1 = new BMap.Point(longitude, latitude);
 						for (var i = 0; i < indexdata.length; i++) {
 							var point2 = new BMap.Point(indexdata[i].lng, indexdata[i].lat);
-							distance.push(map.getDistance(point1, point2) / 1000);
-						alert(indexdata[i].name);
-						alert(map.getDistance(point1, point2) / 1000)
-						alert(indexdata[i].lng+","+indexdata[i].lat)
+							let distancejl = map.getDistance(point1, point2) / 1000;
+							if (distancejl <= 5) {
+								distance.push({id:i,distance:map.getDistance(point1, point2) / 1000});
+							}
+						}
+						if (distance.length != 0) {
+							let distanceMin = Math.min.apply(null, distance); //最小值
+							if (distance.length == 1) {
+								let dataindex = distance[0].id;
+								$("#city").val(indexdata[dataindex].id);
+								get_list(indexdata[dataindex].id);
+								$("#text").html(indexdata[dataindex].name);
+							} else {
+								alert('请选择最近区域');
+								$("#text").html('请选择最近区域');
+							}
+						} else {
+							alert('请选择最近区域');
+							$("#text").html('请选择最近区域');
 						}
 						if (distance.length == indexdata.length) {
 							let distanceMin = Math.min.apply(null, distance); //最小值
