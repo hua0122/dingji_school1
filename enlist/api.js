@@ -312,10 +312,6 @@ function geocoderfun(indexdata) {
 								alert('请选择最近区域');
 							}
 						}
-
-						// console.log(res.latitude); //纬度
-						// console.log(res.longitude); //经度
-						// console.log(address);
 					}
 				});
 				geocoder.getAddress(new qq.maps.LatLng(latitude, longitude));
