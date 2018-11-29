@@ -62,6 +62,7 @@ function get_about() {
 
 // 发现最美鼎吉
 function get_beautiful() {
+	alert(11)
 	let ajaxdata = {
 		school_id: school_id
 	}
