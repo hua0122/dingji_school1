@@ -308,12 +308,12 @@ function geocoderfun(indexdata) {
 								get_list(indexdata[dataindex].id);
 								$("#text").html(indexdata[dataindex].name);
 							} else {
-								alert('请选择最近区域');
-								$("#text").html('请选择最近区域');
+								
+									$(".dialog_open").show();
 							}
 						} else {
-							alert('请选择最近区域');
-							$("#text").html('请选择最近区域');
+							
+								$(".dialog_open").show();
 						}
 						if (distance.length == indexdata.length) {
 							let distanceMin = Math.min.apply(null, distance); //最小值
