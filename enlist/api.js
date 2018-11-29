@@ -296,6 +296,9 @@ function geocoderfun(indexdata) {
 						for (var i = 0; i < indexdata.length; i++) {
 							var point2 = new BMap.Point(indexdata[i].lng, indexdata[i].lat);
 							distance.push(map.getDistance(point1, point2) / 1000);
+						alert(indexdata[i].name);
+						alert(map.getDistance(point1, point2) / 1000)
+						alert(indexdata[i].lng+","+indexdata[i].lat)
 						}
 						if (distance.length == indexdata.length) {
 							let distanceMin = Math.min.apply(null, distance); //最小值
