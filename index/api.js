@@ -75,8 +75,10 @@ function get_beautiful() {
 	}
 	$("#marquee1_1").html(src);
 	// 开启无缝滚动
-	marqueeStart(1, "left");
-
+	// marqueeStart(1, "left");
+$("#marquee2").kxbdMarquee({
+					isEqual: false
+				});
 }
 
 // 教练风采
