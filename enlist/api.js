@@ -208,8 +208,10 @@ function submit_sign() {
 	};
 	let data = ajaxPost(sign_submit_sign, ajaxdata);
 	console.log(data);
-	alert(data.msg)
+	// alert(data.msg)
+	
 	if (data.status == "200") {
+		zhifpaly(data);
 		var title = "鼎吉驾校";
 		var link = "http:/ydxctrue.yidianxueche.cn/client/";
 		var imgUrl = "http:/ydxctrue.yidianxueche.cn/client/";
@@ -317,17 +319,17 @@ function geocoderfun(indexdata) {
 	});
 }
 
-function zhifpaly(){
-	let data=JSON.parse(sessionStorage.getItem("wxdata"));
+function zhifpaly(data){
+	// let data=JSON.parse(sessionStorage.getItem("wxdata"));
 	console.log(data);
 	wx.ready(function() {
 		wx.chooseWXPay({
-			// appId: data.content.appId, //公众号名称，由商户传入
-			timestamp: data.content.timestamp, //时间戳，自1970年以来的秒数
-			nonceStr: data.content.nonceStr, //随机串
-			package: data.content.package,
+			appId: data.data.appId, //公众号名称，由商户传入
+			timestamp: data.data.timestamp, //时间戳，自1970年以来的秒数
+			nonceStr: data.data.nonceStr, //随机串
+			package: data.data.package,
 			signType: "MD5", //微信签名方式：
-			paySign: data.content.paySign, //微信签名
+			paySign: data.data.paySign, //微信签名
 			success: function(res) {
 				alert(res.msg);
 				console.log(res)
@@ -336,7 +338,6 @@ function zhifpaly(){
 			cancel: function(res) { // 支付取消回调函数
 				// window.location.href = "../enlist/fail.html";
 				console.log(res)
-
 			},
 			fail: function(res) { // 支付失败回调函数
 				// window.location.href = "../enlist/fail.html";
