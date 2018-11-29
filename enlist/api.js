@@ -13,9 +13,10 @@ let sign_get_station = "/api/sign/get_station";
 // 报名
 let sign_submit_sign = "/api/sign/submit_sign";
 // 我的协议
-let user_agreement="/api/user/agreement";
-
-let sign_apply="/api/sign/apply";
+let user_agreement = "/api/user/agreement";
+// 活动选择
+let sign_activity_detail = "/api/sign/activity_detail";
+let sign_apply = "/api/sign/apply";
 // let latlng=JSON.parse(sessionStorage.getItem("latlng"));
 // 报名api
 // banner
@@ -43,7 +44,8 @@ function get_area() {
 		src += "<label><input type='radio' name='city' value=" + data.data[i].id + "/>" + data.data[i].name + "</label><br/>"
 	}
 	$("#area").html(src);
-	return data.data
+	geocoderfun(data.data);
+	// return data.data
 }
 // 班别列表
 function get_list(city) {
@@ -115,8 +117,8 @@ function get_station() {
 
 		var point2 = new BMap.Point(data.data[i].lng, data.data[i].lat);
 		let distancetext = Math.round(map.getDistance(point1, point2) / 1000);
-		src += '<li>' +
-			'<div  class="shenqing">' +
+		src += '<li class="shenqing">' +
+			'<div  >' +
 			'<span class="left tit">' +
 			'<span class="station">' + data.data[i].name + '</span>' +
 			' <span class="dizhi">地址:' + data.data[i].address + '</span>' +
@@ -213,7 +215,7 @@ function submit_sign() {
 	let data = ajaxPost(sign_submit_sign, ajaxdata);
 	console.log(data);
 	// alert(data.msg)
-	
+
 	if (data.status == "200") {
 		zhifpaly(data);
 		var title = "鼎吉驾校";
@@ -231,7 +233,6 @@ function submit_sign() {
 				signType: "MD5", //微信签名方式：
 				paySign: data.data.paySign, //微信签名
 				success: function(res) {
-					alert(res.msg);
 					window.location.href = "../enlist/success.html";
 				},
 				cancel: function(res) { // 支付取消回调函数
@@ -323,8 +324,8 @@ function geocoderfun(indexdata) {
 	});
 }
 
-function zhifpaly(){
-	let data=JSON.parse(sessionStorage.getItem("wxdata"));
+function zhifpaly() {
+	let data = JSON.parse(sessionStorage.getItem("wxdata"));
 	console.log(data);
 	wx.ready(function() {
 		wx.chooseWXPay({
@@ -351,14 +352,71 @@ function zhifpaly(){
 		});
 	});
 }
+// 我的协议
+function agreement() {
 
-function agreement(){
-	
-		let ajaxdata = {
-			school_id:school_id,
-		}
-	let data=ajaxGet(user_agreement,ajaxdata)
+	let ajaxdata = {
+		school_id: school_id,
+	}
+	let data = ajaxGet(user_agreement, ajaxdata)
 	$(".yi-input").val(data.data.user.name);
 	$(".cno-input").val(data.data.user.card);
 	$(".content").html(data.data.content.content);
+}
+// 申请体检
+function transform_order() {
+	var name = $("#name").val().trim();
+	var phone = $("#phone").val().trim();
+	var station_id = $("#station_id").val();
+
+	if ("" == name || "" == phone || "" == station_id) {
+		alert("请填写完整");
+		return false;
+	}
+
+	if (!(/^[\u4e00-\u9fa5]{2,4}$/).test(name)) {
+		alert("真实姓名填写有误");
+		return false;
+	}
+
+
+	if (!(/^1[34578]\d{9}$/.test(phone))) {
+		alert("手机号码有误，请重填");
+		return false;
+	}
+console.log(JSON.parse($("#tj_code_form").serialize()))
+	let data = ajaxPost(sign_apply, $("#tj_code_form").serialize())
+	if (data.status == "200") {
+		wx.ready(function() {
+			wx.chooseWXPay({
+				appId: data.data.appId, //公众号名称，由商户传入
+				timestamp: data.data.timestamp, //时间戳，自1970年以来的秒数
+				nonceStr: data.data.nonceStr, //随机串
+				package: data.data.package,
+				signType: "MD5", //微信签名方式：
+				paySign: data.data.paySign, //微信签名
+				success: function(res) {
+					//alert(res.msg);
+					window.location.href = "../enlist/pay_success.html";
+				},
+				cancel: function(res) { // 支付取消回调函数
+					window.location.href = "../enlist/pay_fail.html";
+				},
+				fail: function(res) { // 支付失败回调函数
+					window.location.href = "../enlist/pay_fail.html";
+				}
+			});
+		});
+		localStorage.hurl = "";
+	} else if (data.status == "500") {
+		alert(data.msg);
+	} else {
+		localStorage.hurl = window.location.href;
+		window.location.href = "http://ceshi.yidianxueche.cn/api/user/getwxinfo";
+	}
+
+}
+
+function activity_detail() {
+
 }
