@@ -285,39 +285,53 @@ function test() {
 
 
 function geocoderfun(indexdata) {
+
+	console.log("start")
 	var distance = [];
-	wx.ready(function() {
-		wx.getLocation({
-			type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
-			success: function(res) {
-				var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
-				var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
-				var geocoder = new qq.maps.Geocoder({
-					complete: function(result) { //解析成功的回调函数
-						var address = result.detail.address; //获取详细地址信息
-						var map = new BMap.Map("container");
-						var point1 = new BMap.Point(longitude, latitude);
-						for (var i = 0; i < indexdata.length; i++) {
-							var point2 = new BMap.Point(indexdata[i].lng, indexdata[i].lat);
-							distance.push(map.getDistance(point1, point2) / 1000);
-						}
-						if (distance.length == indexdata.length) {
-							let distanceMin = Math.min.apply(null, distance); //最小值
-							if (distanceMin <= 5) {
-								let dataindex = distance.indexOf(distanceMin)
-								$("#city").val(indexdata[dataindex].id);
-								get_list(indexdata[dataindex].id);
-								$("#text").html(indexdata[dataindex].name);
-							} else {
-								alert('请选择最近区域');
-							}
+	var map = new BMap.Map("container");
+	var geolocation = new BMap.Geolocation();
+	geolocation.getCurrentPosition(function(r) {
+		if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+			var mk = new BMap.Marker(r.point);
+			map.addOverlay(mk);
+			map.panTo(r.point);
+			// alert('您的位置：' + r.point.lng + ',' + r.point.lat);
+			var latitude = r.point.lat; // 纬度，浮点数，范围为90 ~ -90
+			var longitude = r.point.lng; // 经度，浮点数，范围为180 ~ -180。
+			var geocoder = new qq.maps.Geocoder({
+				complete: function(result) { //解析成功的回调函数
+					var address = result.detail.address; //获取详细地址信息
+					console.log(11)
+					var point1 = new BMap.Point(longitude, latitude);
+					console.log(22)
+					for (var i = 0; i < indexdata.length; i++) {
+
+						var point2 = new BMap.Point(indexdata[i].lng, indexdata[i].lat);
+						distance.push(map.getDistance(point1, point2) / 1000);
+						console.log("for")
+
+					}
+					console.log("forend")
+					if (distance.length == indexdata.length) {
+						let distanceMin = Math.min.apply(null, distance); //最小值
+						if (distanceMin <= 5) {
+							let dataindex = distance.indexOf(distanceMin)
+							$("#city").val(indexdata[dataindex].id);
+							get_list(indexdata[dataindex].id);
+							$("#text").html(indexdata[dataindex].name);
+							console.log("end")
+						} else {
+							alert('请选择最近区域');
 						}
 					}
-				});
-				geocoder.getAddress(new qq.maps.LatLng(latitude, longitude));
-			}
-		});
+				}
+			});
+			geocoder.getAddress(new qq.maps.LatLng(latitude, longitude));
+		} else {
+			alert('failed' + this.getStatus());
+		}
 	});
+	
 }
 
 function zhifpaly() {
@@ -380,7 +394,7 @@ function transform_order() {
 		alert("手机号码有误，请重填");
 		return false;
 	}
-console.log(JSON.parse($("#tj_code_form").serialize()))
+	console.log(JSON.parse($("#tj_code_form").serialize()))
 	let data = ajaxPost(sign_apply, $("#tj_code_form").serialize())
 	if (data.status == "200") {
 		wx.ready(function() {

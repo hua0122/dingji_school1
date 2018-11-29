@@ -5,7 +5,8 @@ let school_id = 1;
 // 获取保存的经纬度
 let latlng = JSON.parse(sessionStorage.getItem("latlng"));
 
-
+// 微信配置pai
+let s_user_getwxpz="s_user/tp.php?method=getwxpz";
 // ajax-get调用
 function ajaxGet(_url, _data) {
 	let openid = sessionStorage.getItem("openid");
@@ -49,20 +50,9 @@ function ajaxPost(_url, _data) {
 }
 
 function ajaxWX() {
-
-	var dataAjax = "";
-	$.ajax({
-		type: "get",
-		url: "http://ceshi.yidianxueche.cn/api/user/index",
-		success: function(data) {
-			dataAjax = data;
-		},
-		error: function() {
-			dataAjax = "请求出错";
-		},
-		async: false
-	});
-	return dataAjax;
+	let ajaxdata={};
+	let data=ajaxGet(s_user_getwxpz,ajaxdata);
+	
 }
 
 //转换百度坐标
