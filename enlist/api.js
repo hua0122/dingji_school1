@@ -322,14 +322,14 @@ function zhifpaly(){
 	console.log(data);
 	wx.ready(function() {
 		wx.chooseWXPay({
-			appId: data.content.appId, //公众号名称，由商户传入
+			// appId: data.content.appId, //公众号名称，由商户传入
 			timestamp: data.content.timestamp, //时间戳，自1970年以来的秒数
 			nonceStr: data.content.nonceStr, //随机串
 			package: data.content.package,
 			signType: "MD5", //微信签名方式：
 			paySign: data.content.paySign, //微信签名
 			success: function(res) {
-				// alert(res.msg);
+				alert(res.msg);
 				console.log(res)
 				// window.location.href = "../enlist/success.html";
 			},
