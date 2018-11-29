@@ -91,7 +91,7 @@
 						<label for="color-input-red"></label>
 
 						<span class="text">我已阅读并同意</span>
-						<span class="color"><a href="javascript:" onclick="xieyi()">《鼎吉驾校学车协议》</a> </span>
+						<span class="color"><a href="../enlist/agreement.html">《鼎吉驾校学车协议》</a> </span>
 					</span>
 					<span class="right" id="other" onclick="javascript:other()">其他</span></div>
 			</div>
@@ -337,24 +337,6 @@
 			function other() {
 				$(".other").show();
 			}
-
-
-
-
-			function xieyi() {
-				var name = $("#name").val();
-				var phone = $("#phone").val();
-				var cno = $("#cno").val();
-
-				$.post(domainName+"/api/user/agreement", function(data) {
-// 					if (data) {
-// 						location.href = "{$web_path}/enlist/agreement";
-// 					}
-
-				});
-
-			}
-
 			function sign() {
 				var name = $("#name").val(); //姓名
 				var phone = $("#phone").val(); //电话

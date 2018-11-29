@@ -14,6 +14,8 @@ let sign_get_station = "/api/sign/get_station";
 let sign_submit_sign = "/api/sign/submit_sign";
 // 我的协议
 let user_agreement="/api/user/agreement";
+
+let sign_apply="/api/sign/apply";
 // let latlng=JSON.parse(sessionStorage.getItem("latlng"));
 // 报名api
 // banner
@@ -321,17 +323,17 @@ function geocoderfun(indexdata) {
 	});
 }
 
-function zhifpaly(data){
-	// let data=JSON.parse(sessionStorage.getItem("wxdata"));
+function zhifpaly(){
+	let data=JSON.parse(sessionStorage.getItem("wxdata"));
 	console.log(data);
 	wx.ready(function() {
 		wx.chooseWXPay({
-			appId: data.data.appId, //公众号名称，由商户传入
-			timestamp: data.data.timestamp, //时间戳，自1970年以来的秒数
-			nonceStr: data.data.nonceStr, //随机串
-			package: data.data.package,
+			appId: data.content.appId, //公众号名称，由商户传入
+			timestamp: data.content.timestamp, //时间戳，自1970年以来的秒数
+			nonceStr: data.content.nonceStr, //随机串
+			package: data.content.package,
 			signType: "MD5", //微信签名方式：
-			paySign: data.data.paySign, //微信签名
+			paySign: data.content.paySign, //微信签名
 			success: function(res) {
 				alert(res.msg);
 				console.log(res)
