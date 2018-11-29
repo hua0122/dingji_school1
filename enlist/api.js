@@ -306,6 +306,7 @@ function geocoderfun(indexdata) {
 								$("#text").html(indexdata[dataindex].name);
 							} else {
 								alert('请选择最近区域');
+								$("#text").html('请选择最近区域');
 							}
 						}
 					}
