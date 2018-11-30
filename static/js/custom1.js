@@ -37,12 +37,12 @@ $(function() {
 		// 			location.href = "/";
 		// 
 		// 		}else{
-		let urlfrom=location.href.indexOf("index/index.html");
-		if(urlfrom!=-1){
-			WeixinJSBridge.call('closeWindow');
-		}else{
+// 		let urlfrom=location.href.indexOf("index/index.html");
+// 		if(urlfrom!=-1){
+// 			WeixinJSBridge.call('closeWindow');
+// 		}else{
 		// location.href = document.referrer;
-		}
+		// }
 		// }
 
 	}, false);
