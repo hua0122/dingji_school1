@@ -120,12 +120,15 @@ function grade_detail() {
 		id: id
 	};
 	let data = ajaxPost(sign_grade_detail, ajaxdata)
-	sessionStorage.setItem("grade_detail", JSON.stringify(data.data))
-	$(".img-left img").attr("src", domainName + data.data.picurl);
-	$(".address_name").text(data.data.address);
-	$(".infocontent").html(data.data.content);
-	$(".infonotice").html(data.data.notice);
-	$(".enroll-btn").attr("href", "../enlist/sign.html?id=" + data.data.notice)
+
+	if (data.status == "200") {
+		sessionStorage.setItem("grade_detail", JSON.stringify(data.data))
+		$(".img-left img").attr("src", domainName + data.data.picurl);
+		$(".address_name").text(data.data.address);
+		$(".infocontent").html(data.data.content);
+		$(".infonotice").html(data.data.notice);
+		$(".enroll-btn").attr("href", "../enlist/sign.html?id=" + data.data.notice)
+	}
 }
 // 活动列表
 function get_activity() {
@@ -135,13 +138,16 @@ function get_activity() {
 	};
 	let data = ajaxPost(sign_get_activity, ajaxdata)
 	let src = "";
-	for (var i = 0; i < data.data.length; i++) {
-		src += '<div class="modal-body">' +
-			'<input type="radio" value="' + data.data[i].id + '" class="activity_id" name="activity_id" style="width: 25px;">' +
-			'<div><img src="" width="83" height="83"/> <br/>' + data.data[i].name + '</div>' +
-			'<div><span>' + data.data[i].description + '</span></div>' +
-			'</div>';
+	if (data.status == "200") {
+		for (var i = 0; i < data.data.length; i++) {
+			src += '<div class="modal-body">' +
+				'<input type="radio" value="' + data.data[i].id + '" class="activity_id" name="activity_id" style="width: 25px;">' +
+				'<div><img src="" width="83" height="83"/> <br/>' + data.data[i].name + '</div>' +
+				'<div><span>' + data.data[i].description + '</span></div>' +
+				'</div>';
+		}
 	}
+
 	$("#activity").html(src);
 }
 // 体检列表
@@ -321,6 +327,7 @@ function subsign() {
 function test() {
 	get_station()
 }
+
 function geocoderfun(indexdata) {
 	for (var i = 0; i < indexdata.length; i++) {
 		let distance = [];
