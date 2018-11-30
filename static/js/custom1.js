@@ -27,27 +27,22 @@ if (/Android/gi.test(navigator.userAgent)) {
 document.write('<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>');
 
 $(function() {
-
-	//  var swiper = new Swiper('.js-swiper-container-index', {
-	//      pagination: '.js-swiper-pagination-index',
-	//      autoplay: 3000,
-	//      autoplayDisableOnInteraction: false,
-	//      height: window.innerHeight,
-	//      direction: 'vertical'
-	//  });
 	getydxc();
-
 });
 $(function() {
 	pushHistory();
 	window.addEventListener("popstate", function(e) {
-// 		if (typeof document.referrer === '') {
-// 			// 没有来源页面信息的时候，改成首页URL地址
-// 			location.href = "/";
-// 
-// 		}else{
-			
+		// 		if (typeof document.referrer === '') {
+		// 			// 没有来源页面信息的时候，改成首页URL地址
+		// 			location.href = "/";
+		// 
+		// 		}else{
+		let urlfrom=location.href.indexOf("index/index.html");
+		if(urlfrom!=-1){
+		window.close();
+		}else{
 		location.href = document.referrer;
+		}
 		// }
 
 	}, false);
@@ -169,4 +164,11 @@ function getydxc() {
 			//layer.msg('删除失败!',{icon:1,time:1000});;
 		},
 	});
+}
+// 获取url有效信息
+function getQueryString(name) {
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+	var r = window.location.search.substr(1).match(reg);
+	if (r != null) return unescape(r[2]);
+	return null;
 }

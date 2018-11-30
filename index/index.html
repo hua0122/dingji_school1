@@ -323,12 +323,6 @@
 		<script src="api.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			$(function() {
-				function getQueryString(name) {
-					var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-					var r = window.location.search.substr(1).match(reg);
-					if (r != null) return unescape(r[2]);
-					return null;
-				}
 				if (sessionStorage.getItem("openid") != null && sessionStorage.getItem("openid") != undefined && sessionStorage.getItem(
 						"openid") != "null" && sessionStorage.getItem("openid") != "") {
 
