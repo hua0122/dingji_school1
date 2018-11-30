@@ -46,11 +46,11 @@
 
 		/* marqueeleft */
 		.marqueeleft {
-			height: 15rem;
+			/*height: 15rem; 
 			width: 100%;
 			overflow: hidden;
 			margin: 0px auto;
-			margin-top: 20px;
+			margin-top: 20px; */
 		}
 
 		.marqueeleft ul {
@@ -92,11 +92,18 @@
 		}
 
 		
+		
+		#marquee2 {
+			/* width: 300px; */
+			height: 15rem;
+			overflow-x: scroll;
+			background: #EFEFEF;
+			margin: 20px auto 0;
+		}
 		#marquee2::-webkit-scrollbar{
 			background: transparent;
 			height: 0;
 		}
-
 		#marquee2 ul li {
 			float: left;
 			padding: 0 10px;
@@ -194,8 +201,9 @@
 
 				</div>
 			</a>
-			<!-- <a href="../page/index.html?id=2"> -->
-			<a>
+			
+					
+			<a href="../page/index.html?id=2">
 				<div class="row news" style="background-color: #fff;margin-top: 20px;" id="zmdj">
 					<div id="marquee2" class="marqueeleft">
 						<ul id="marquee1_1">
@@ -206,10 +214,7 @@
 								{/volist} -->
 						</ul>
 					</div>
-					<!--marqueeleft end-->
-					<script type="text/javascript">
-
-					</script>
+					
 
 				</div>
 
