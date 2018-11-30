@@ -41,7 +41,6 @@ $(function() {
 $(function() {
 	pushHistory();
 	window.addEventListener("popstate", function(e) {
-		alert(document.referrer); //根据自己的需求实现自己的功能  
 		location.href = document.referrer;
 	}, false);
 
