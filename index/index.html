@@ -330,22 +330,17 @@
 		</div>
 		<script src="../static/js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../static/js/jquery.kxbdMarquee.js" type="text/javascript" charset="utf-8"></script>
-		<!-- <script src="../static/js/custom1.js" type="text/javascript" charset="utf-8"></script> -->
+		<script src="../static/js/custom1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
 		<script src="../static/js/apiRoot.js" type="text/javascript" charset="utf-8"></script>
 		<script src="api.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			$(function() {
-				
-				var historyObj = window.history;
-				console.log(window.history)
-
 				function getQueryString(name) {
 					var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
 					var r = window.location.search.substr(1).match(reg);
 					if (r != null) return unescape(r[2]);
 					return null;
-
 				}
 				if (sessionStorage.getItem("openid") != null && sessionStorage.getItem("openid") != undefined && sessionStorage.getItem(
 						"openid") != "null" && sessionStorage.getItem("openid") != "") {
@@ -353,7 +348,6 @@
 				} else {
 					var openid = getQueryString("openid");
 					sessionStorage.setItem("openid", openid)
-					console.log(openid);
 				}
 				index();
 				var width = document.body.offsetWidth;
@@ -372,14 +366,7 @@
 				$('.marqueeleft li .pic').css('width', width_pic);
 				$('.marqueeleft li .pic img').css('width', width_pic);
 				$('.marqueeleft li .pic img').css('height', height_pic);
-
-
-
 			})
 		</script>
-
-
-
 	</body>
-
 </html>
