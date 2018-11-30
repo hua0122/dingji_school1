@@ -7,6 +7,23 @@ if (/Android/gi.test(navigator.userAgent)) {
 		}
 	});
 }
+
+//微信浏览器中，aler弹框不显示域名
+(function() {
+	//先判断是否为微信浏览器
+	var ua = window.navigator.userAgent.toLowerCase();
+	if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+		//重写alert方法，alert()方法重写，不能传多余参数
+		window.alert = function(name) {
+			var iframe = document.createElement("IFRAME");
+			iframe.style.display = "none";
+			iframe.setAttribute("src", 'data:text/plain');
+			document.documentElement.appendChild(iframe);
+			window.frames[0].window.alert(name);
+			iframe.parentNode.removeChild(iframe);
+		}
+	}
+})();
 document.write('<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>');
 
 $(function() {
@@ -21,21 +38,22 @@ $(function() {
 	getydxc();
 
 });
-$(function(){  
-    pushHistory();  
-    window.addEventListener("popstate", function(e) {  
-        alert("我监听到了浏览器的返回按钮事件啦");//根据自己的需求实现自己的功能  
-location.href=document.referrer;
-}, false);  
-    function pushHistory() {  
-        var state = {  
-            title: "title",  
-            url: "#"  
-        };  
-        window.history.pushState(state, "title", "#");  
-    }  
-      
-}); 
+$(function() {
+	pushHistory();
+	window.addEventListener("popstate", function(e) {
+		alert("我监听到了浏览器的返回按钮事件啦"); //根据自己的需求实现自己的功能  
+		location.href = document.referrer;
+	}, false);
+
+	function pushHistory() {
+		var state = {
+			title: "title",
+			url: "#"
+		};
+		window.history.pushState(state, "title", "#");
+	}
+
+});
 //微信配置
 function getydxc() {
 	$.ajax({
@@ -43,7 +61,7 @@ function getydxc() {
 		url: 'http://ceshi.yidianxueche.cn/s_user/tp.php?method=getwxpz',
 		dataType: 'json',
 		success: function(data) {
-			sessionStorage.setItem("wxdata",JSON.stringify(data));
+			sessionStorage.setItem("wxdata", JSON.stringify(data));
 			if (1 == data.code) {
 				wx.config({
 					debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
@@ -52,7 +70,7 @@ function getydxc() {
 					nonceStr: data.content.nonceStr, // 必填，生成签名的随机串
 					signature: data.content.signature, // 必填，签名，见附录1
 					jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo',
-						'onMenuShareQZone', 'getLocation','chooseWXPay'
+						'onMenuShareQZone', 'getLocation', 'chooseWXPay'
 					] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 				});
 
@@ -68,7 +86,10 @@ function getydxc() {
 						success: function(res) {
 							var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
 							var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
-							sessionStorage.setItem("latlng",JSON.stringify({lat:latitude,lng:longitude}))
+							sessionStorage.setItem("latlng", JSON.stringify({
+								lat: latitude,
+								lng: longitude
+							}))
 						}
 					});
 					wx.onMenuShareTimeline({
@@ -142,5 +163,3 @@ function getydxc() {
 		},
 	});
 }
-
-
