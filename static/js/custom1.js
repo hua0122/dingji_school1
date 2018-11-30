@@ -41,7 +41,7 @@ $(function() {
 		if(urlfrom!=-1){
 			WeixinJSBridge.call('closeWindow');
 		}else{
-		location.href = document.referrer;
+		// location.href = document.referrer;
 		}
 		// }
 
