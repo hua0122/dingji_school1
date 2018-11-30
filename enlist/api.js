@@ -82,7 +82,7 @@ function area(longitude, latitude) {
 	let uniqsortdata = uniq(sortdata);
 	for (var i = 0; i < uniqsortdata.length; i++) {
 		src += "<label><font><input type='radio' name='city' value=" + uniqsortdata[i].id + "/>" + uniqsortdata[i].name +
-			"</font><font>距您" + Math.round(uniqsortdata[i].Distance) + "km</font></label><br/>"
+			"</font><font style='font-size:12px;'>距您" + Math.round(uniqsortdata[i].Distance) + "km</font></label><br/>"
 	}
 	$("#area").html(src);
 	geocoderfun(uniqsortdata);
