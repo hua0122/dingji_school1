@@ -92,6 +92,10 @@
 		}
 
 		
+		#marquee2::-webkit-scrollbar{
+			background: transparent;
+			height: 0;
+		}
 
 		#marquee2 ul li {
 			float: left;
@@ -190,27 +194,9 @@
 
 				</div>
 			</a>
-			<a href="../page/index.html?id=2">
+			<!-- <a href="../page/index.html?id=2"> -->
+			<a>
 				<div class="row news" style="background-color: #fff;margin-top: 20px;" id="zmdj">
-					<!-- <div id="marquee2">
-
-						<ul>
-
-							<li><a href="#">新闻公告一</a></li>
-
-							<li><a href="#">新闻公告二新闻公告二新闻公告二新闻公告二</a></li>
-
-							<li><a href="#">新闻公告三新闻公告三</a></li>
-
-							<li><a href="#">新闻公告四新闻公告四新闻公告四</a></li>
-
-							<li><a href="#">新闻公告五新闻公告五新闻公告五</a></li>
-
-							<li><a href="#">新闻公告六新闻公告六新闻公告六</a></li>
-
-						</ul>
-
-					</div> -->
 					<div id="marquee2" class="marqueeleft">
 						<ul id="marquee1_1">
 							<!-- {volist name="beautiful" id="item"}
@@ -330,13 +316,13 @@
 		</div>
 		<script src="../static/js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../static/js/jquery.kxbdMarquee.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../static/js/marquee.touch.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../static/js/custom1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
 		<script src="../static/js/apiRoot.js" type="text/javascript" charset="utf-8"></script>
 		<script src="api.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			$(function() {
-				alert(11)
 				function getQueryString(name) {
 					var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
 					var r = window.location.search.substr(1).match(reg);
