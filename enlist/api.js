@@ -284,6 +284,7 @@ function test() {
 
 
 function geocoderfun(indexdata) {
+	alert(JSON.stringify(latlng))
 	var distance = [];
 	wx.ready(function() {
 		wx.getLocation({
