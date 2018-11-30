@@ -44,6 +44,7 @@ function get_area() {
 		src += "<label><input type='radio' name='city' value=" + data.data[i].id + "/>" + data.data[i].name + "</label><br/>"
 	}
 	$("#area").html(src);
+	alert("场地")
 	geocoderfun(data.data);
 }
 // 班别列表
@@ -67,6 +68,7 @@ function get_list(city) {
 		$("#course_list").empty();
 		$("#course_list").append('<div class="col-xs-12">暂无数据</div>');
 	}
+	alert("班别")
 }
 
 
@@ -286,6 +288,7 @@ function geocoderfun(indexdata) {
 		wx.getLocation({
 			type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
 			success: function(res) {
+				alert("经纬度")
 				var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
 				var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
 				var geocoder = new qq.maps.Geocoder({
@@ -296,10 +299,11 @@ function geocoderfun(indexdata) {
 						for (var i = 0; i < indexdata.length; i++) {
 							var point2 = new BMap.Point(indexdata[i].lng, indexdata[i].lat);
 							let distancejl = map.getDistance(point1, point2) / 1000;
+							alert("距离："+distancejl)
 							if (distancejl <= 5) {
 								distance.push({
 									id: i,
-									distance: map.getDistance(point1, point2) / 1000
+									distance: distancejl
 								});
 							}
 						}
