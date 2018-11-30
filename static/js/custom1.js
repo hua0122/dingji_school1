@@ -29,33 +29,33 @@ document.write('<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></sc
 $(function() {
 	getydxc();
 });
-$(function() {
-	pushHistory();
-	window.addEventListener("popstate", function(e) {
-		// 		if (typeof document.referrer === '') {
-		// 			// 没有来源页面信息的时候，改成首页URL地址
-		// 			location.href = "/";
-		// 
-		// 		}else{
+// $(function() {
+// 	pushHistory();
+// 	window.addEventListener("popstate", function(e) {
+// 		// 		if (typeof document.referrer === '') {
+// 		// 			// 没有来源页面信息的时候，改成首页URL地址
+// 		// 			location.href = "/";
+// 		// 
+// 		// 		}else{
 // 		let urlfrom=location.href.indexOf("index/index.html");
 // 		if(urlfrom!=-1){
 // 			WeixinJSBridge.call('closeWindow');
 // 		}else{
-		// location.href = document.referrer;
-		// }
-		// }
-
-	}, false);
-
-	function pushHistory() {
-		var state = {
-			title: "title",
-			url: "#"
-		};
-		window.history.pushState(state, "title", "#");
-	}
-
-});
+// 		location.href = document.referrer;
+// 		}
+// 		// }
+// 
+// 	}, false);
+// 
+// 	function pushHistory() {
+// 		var state = {
+// 			title: "title",
+// 			url: "#"
+// 		};
+// 		window.history.pushState(state, "title", "#");
+// 	}
+// 
+// });
 //微信配置
 function getydxc() {
 	$.ajax({
