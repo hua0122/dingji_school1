@@ -44,6 +44,7 @@ function get_area() {
 		src += "<label><input type='radio' name='city' value=" + data.data[i].id + "/>" + data.data[i].name + "</label><br/>"
 	}
 	$("#area").html(src);
+	alert("场地")
 	geocoderfun(data.data);
 }
 // 班别列表
@@ -53,6 +54,8 @@ function get_list(city) {
 	};
 	let data = ajaxPost(sign_get_grade, ajaxdata)
 	let src = "";
+	alert("班别")
+
 	if (data.data != null && data.data.length != 0) {
 
 		for (var i = 0; i < data.data.length; i++) {
