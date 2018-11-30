@@ -35,17 +35,57 @@ function get_banner() {
 }
 // 场地列表
 function get_area() {
+	if (latlng != null && latlng != undefined && latlng != "" && latlng != "null" && latlng != "undefined") {
+		area(latlng.lng, latlng.lat);
+	} else {
+		wx.ready(function() {
+			wx.getLocation({
+				type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+				success: function(res) {
+					area(res.longitude, res.latitude);
+				}
+			});
+		});
+	}
+
+}
+
+function area(longitude, latitude) {
 	let ajaxdata = {
 		school_id: school_id
 	}
 	let data = ajaxGet(sign_get_area, ajaxdata)
 	let src = "";
+	var map = new BMap.Map("container");
+	var point1 = new BMap.Point(longitude, latitude);
+
+	let DistanceSORT = [];
 	for (var i = 0; i < data.data.length; i++) {
-		src += "<label><input type='radio' name='city' value=" + data.data[i].id + "/>" + data.data[i].name + "</label><br/>"
+		var point2 = new BMap.Point(data.data[i].lng, data.data[i].lat);
+		let Distance = map.getDistance(point1, point2) / 1000;
+		data.data[i]["Distance"] = Distance;
+		DistanceSORT.push(Distance);
+	}
+	// 排序
+	DistanceSORT.sort(function(x, y) {
+		return x - y;
+	});
+	let sortdata = [];
+	for (var i = 0; i < DistanceSORT.length; i++) {
+		for (let j = 0; j < data.data.length; j++) {
+			if (data.data[j].Distance == DistanceSORT[i]) {
+				sortdata.push(data.data[j]);
+
+			}
+		}
+	}
+	let uniqsortdata = uniq(sortdata);
+	for (var i = 0; i < uniqsortdata.length; i++) {
+		src += "<label><font><input type='radio' name='city' value=" + uniqsortdata[i].id + "/>" + uniqsortdata[i].name +
+			"</font><span>" + Math.round(uniqsortdata[i].Distance) + "m</span></label><br/>"
 	}
 	$("#area").html(src);
-	alert("场地")
-	geocoderfun(data.data);
+	geocoderfun(uniqsortdata);
 }
 // 班别列表
 function get_list(city) {
@@ -83,8 +123,8 @@ function grade_detail() {
 	sessionStorage.setItem("grade_detail", JSON.stringify(data.data))
 	$(".img-left img").attr("src", domainName + data.data.picurl);
 	$(".address_name").text(data.data.address);
-	$(".infocontent").text(data.data.content);
-	$(".infonotice").text(data.data.notice);
+	$(".infocontent").html(data.data.content);
+	$(".infonotice").html(data.data.notice);
 	$(".enroll-btn").attr("href", "../enlist/sign.html?id=" + data.data.notice)
 }
 // 活动列表
@@ -281,66 +321,31 @@ function subsign() {
 function test() {
 	get_station()
 }
-
-
 function geocoderfun(indexdata) {
-	if (latlng != null && latlng != undefined && latlng != "" && latlng != "null" && latlng != "undefined") {
-		alert("本地")
-getlocal(latlng.lng, latlng.lat,indexdata);
-	}
-	else{
-		alert("获取")
-		var latitude, longitude; // 经度，浮点数，范围为180 ~ -180。
-		wx.ready(function() {
-			wx.getLocation({
-				type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
-				success: function(res) {
-					latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
-					longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
-					getlocal(longitude, latitude,indexdata);
-				}
+	for (var i = 0; i < indexdata.length; i++) {
+		let distance = [];
+		if (indexdata[i].Distance <= 5) {
+			distance.push({
+				id: i,
+				distance: indexdata[i].Distance
 			});
-		});
-	}
-
-}
-
-function getlocal(longitude, latitude,indexdata) {
-
-	var distance = [];
-	var geocoder = new qq.maps.Geocoder({
-		complete: function(result) { //解析成功的回调函数
-			var address = result.detail.address; //获取详细地址信息
-			var map = new BMap.Map("container");
-			var point1 = new BMap.Point(longitude, latitude);
-			for (var i = 0; i < indexdata.length; i++) {
-				var point2 = new BMap.Point(indexdata[i].lng, indexdata[i].lat);
-				let distancejl = map.getDistance(point1, point2) / 1000;
-				if (distancejl <= 5) {
-					distance.push({
-						id: i,
-						distance: distancejl
-					});
-				}
-			}
-			if (distance.length != 0) {
-				let distanceMin = Math.min.apply(null, distance); //最小值
-				if (distance.length == 1) {
-					let dataindex = distance[0].id;
-					$("#city").val(indexdata[dataindex].id);
-					get_list(indexdata[dataindex].id);
-					$("#text").html(indexdata[dataindex].name);
-				} else {
-
-					$(".dialog_open").show();
-				}
+		}
+		if (distance.length != 0) {
+			let distanceMin = Math.min.apply(null, distance); //最小值
+			if (distance.length == 1) {
+				let dataindex = distance[0].id;
+				$("#city").val(indexdata[dataindex].id);
+				get_list(indexdata[dataindex].id);
+				$("#text").html(indexdata[dataindex].name);
 			} else {
 
 				$(".dialog_open").show();
 			}
+		} else {
+
+			$(".dialog_open").show();
 		}
-	});
-	geocoder.getAddress(new qq.maps.LatLng(latitude, longitude));
+	}
 }
 
 // 我的协议

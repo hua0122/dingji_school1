@@ -144,3 +144,13 @@ function getQueryString(name) {
 	if (r != null) return unescape(r[2]);
 	return null;
 }
+// 数组去重
+function uniq(array){
+    var temp = []; //一个新的临时数组
+    for(var i = 0; i < array.length; i++){
+        if(temp.indexOf(array[i]) == -1){
+            temp.push(array[i]);
+        }
+    }
+    return temp;
+}

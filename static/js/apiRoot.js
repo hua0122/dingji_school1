@@ -6,7 +6,7 @@ let school_id = 1;
 let latlng = JSON.parse(sessionStorage.getItem("latlng"));
 
 // 微信配置pai
-let s_user_getwxpz="s_user/tp.php?method=getwxpz";
+let s_user_getwxpz = "s_user/tp.php?method=getwxpz";
 // ajax-get调用
 function ajaxGet(_url, _data) {
 	let openid = sessionStorage.getItem("openid");
@@ -50,9 +50,9 @@ function ajaxPost(_url, _data) {
 }
 
 function ajaxWX() {
-	let ajaxdata={};
-	let data=ajaxGet(s_user_getwxpz,ajaxdata);
-	
+	let ajaxdata = {};
+	let data = ajaxGet(s_user_getwxpz, ajaxdata);
+
 }
 
 //转换百度坐标

@@ -129,7 +129,7 @@
 		.mold>div>div a {
 			display: block;
 			height: 40px;
-			line-height: 40px;
+			/* line-height: 40px; */
 		}
 
 		.c_alert_dialog {
@@ -163,6 +163,8 @@
 		}
 
 		.c_alert_width.c_alert_wrap {
+			padding:10px 0 0 0;
+			box-sizing: border-box;
 			width: 80%;
 			z-index: 1200;
 			max-width: 400px;
@@ -233,7 +235,7 @@
 			font-size: 15px;
 			line-height: 1.4;
 			color: #444;
-			padding: 12px 14px;
+			padding: 12px 10px;
 		}
 
 		.mold input {
@@ -242,7 +244,8 @@
 
 		.mold label {
 			margin-right: 10px;
-			display: block;
+			display: flex;
+			justify-content: space-between;
 		}
 
 		.col-xs-3 {
@@ -301,7 +304,6 @@
 						</div>
 						<div class="c_alert_btn">
 							<a href="javascript:;" id="confirm" data-name="确定">确定</a>
-							<a href="javascript:;" id="close" data-name="关闭">关闭</a>
 						</div>
 					</div>
 				</div>
