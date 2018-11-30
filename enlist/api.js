@@ -284,55 +284,64 @@ function test() {
 
 
 function geocoderfun(indexdata) {
-	alert(JSON.stringify(latlng))
-	var distance = [];
-	wx.ready(function() {
-		wx.getLocation({
-			type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
-			success: function(res) {
-				alert("经纬度")
-
-				var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
-				var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
-				var geocoder = new qq.maps.Geocoder({
-					complete: function(result) { //解析成功的回调函数
-						var address = result.detail.address; //获取详细地址信息
-						var map = new BMap.Map("container");
-						var point1 = new BMap.Point(longitude, latitude);
-						for (var i = 0; i < indexdata.length; i++) {
-							var point2 = new BMap.Point(indexdata[i].lng, indexdata[i].lat);
-							let distancejl = map.getDistance(point1, point2) / 1000;
-							alert("距离："+distancejl)
-							if (distancejl <= 5) {
-								distance.push({
-									id: i,
-									distance: distancejl
-								});
-							}
-						}
-						if (distance.length != 0) {
-							let distanceMin = Math.min.apply(null, distance); //最小值
-							if (distance.length == 1) {
-								let dataindex = distance[0].id;
-								$("#city").val(indexdata[dataindex].id);
-								get_list(indexdata[dataindex].id);
-								$("#text").html(indexdata[dataindex].name);
-							} else {
-
-								$(".dialog_open").show();
-							}
-						} else {
-
-							$(".dialog_open").show();
-						}
-					}
-				});
-				geocoder.getAddress(new qq.maps.LatLng(latitude, longitude));
-			}
+	if (latlng != null && latlng != undefined && latlng != "" && latlng != "null" && latlng != "undefined") {
+		alert("本地")
+getlocal(latlng.lng, latlng.lat,indexdata);
+	}
+	else{
+		alert("获取")
+		var latitude, longitude; // 经度，浮点数，范围为180 ~ -180。
+		wx.ready(function() {
+			wx.getLocation({
+				type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+				success: function(res) {
+					latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+					longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+					getlocal(longitude, latitude,indexdata);
+				}
+			});
 		});
-	});
+	}
+
 }
 
+function getlocal(longitude, latitude,indexdata) {
+
+	var distance = [];
+	var geocoder = new qq.maps.Geocoder({
+		complete: function(result) { //解析成功的回调函数
+			var address = result.detail.address; //获取详细地址信息
+			var map = new BMap.Map("container");
+			var point1 = new BMap.Point(longitude, latitude);
+			for (var i = 0; i < indexdata.length; i++) {
+				var point2 = new BMap.Point(indexdata[i].lng, indexdata[i].lat);
+				let distancejl = map.getDistance(point1, point2) / 1000;
+				if (distancejl <= 5) {
+					distance.push({
+						id: i,
+						distance: distancejl
+					});
+				}
+			}
+			if (distance.length != 0) {
+				let distanceMin = Math.min.apply(null, distance); //最小值
+				if (distance.length == 1) {
+					let dataindex = distance[0].id;
+					$("#city").val(indexdata[dataindex].id);
+					get_list(indexdata[dataindex].id);
+					$("#text").html(indexdata[dataindex].name);
+				} else {
+
+					$(".dialog_open").show();
+				}
+			} else {
+
+				$(".dialog_open").show();
+			}
+		}
+	});
+	geocoder.getAddress(new qq.maps.LatLng(latitude, longitude));
+}
 
 // 我的协议
 function agreement() {
@@ -398,7 +407,7 @@ function transform_order() {
 		alert(data.msg);
 	} else {
 		localStorage.hurl = window.location.href;
-		window.location.href = domainName+"/api/user/getwxinfo";
+		window.location.href = domainName + "/api/user/getwxinfo";
 	}
 
 }
