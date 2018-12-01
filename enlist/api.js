@@ -8,6 +8,10 @@ let sign_get_grade = "/api/sign/get_grade";
 let sign_grade_detail = "/api/sign/grade_detail";
 // 活动列表
 let sign_get_activity = "/api/sign/get_activity";
+// 优惠券选择
+let sign_yhq_code="/api/sign/yhq_code";
+// 推荐码确认
+let sign_referral="/api/sign/referral";
 // 体检站列表
 let sign_get_station = "/api/sign/get_station";
 // 报名
@@ -142,7 +146,7 @@ function get_activity() {
 		for (var i = 0; i < data.data.length; i++) {
 			src += '<div class="modal-body">' +
 				'<input type="radio" value="' + data.data[i].id + '" class="activity_id" name="activity_id" style="width: 25px;">' +
-				'<div><img src="" width="83" height="83"/> <br/>' + data.data[i].name + '</div>' +
+				'<div><img src="'+domainName+data.data[i].picurl+'" width="83" height="83"/> <br/>' + data.data[i].name + '</div>' +
 				'<div><span>' + data.data[i].description + '</span></div>' +
 				'</div>';
 		}
@@ -150,6 +154,44 @@ function get_activity() {
 
 	$("#activity").html(src);
 }
+// 优惠券选择
+function yhq_code(code){
+	
+	let ajaxdata = {
+		code: code
+	};
+	let data = ajaxPost(sign_yhq_code, ajaxdata)
+	if (data.status == "400") {
+		alert("优惠券不正确,请重新输入");
+		$("#yhq_code").val("");
+	}else if (data.status == "000") {
+		alert(data.msg);
+		$("#yhq_code").val("");
+	} else {
+		$("#coupon").html('<input type="hidden" name="coupon_id" id="coupon_id" value="' + data.res.id + '"/>');
+		var count = parseFloat($(".total-count").html() - data.res.amount).toFixed(2);
+		$(".total-count").html(count);
+		sessionStorage.setItem("total_count",count);
+		$("#yhq").attr('disabled', true);
+	}
+}
+// 推荐码确认
+function referral(code){
+	
+	let ajaxdata = {
+		code: code
+	};
+	let data = ajaxPost(sign_referral, ajaxdata)
+		if (data.status == "000") {
+							alert(data.msg);
+							$("#code").val("");
+						} else {
+							$("#referral").html('<input type="hidden" name="inviter" id="inviter" value="' + data.data.id + '"/>');
+	
+						}
+}
+// 活动选择
+
 // 体检列表
 function get_station() {
 
@@ -365,6 +407,9 @@ function agreement() {
 	$(".yi-input").val(data.data.user.name);
 	$(".cno-input").val(data.data.user.card);
 	$(".content").html(data.data.content.content);
+	$(".class").val(data.data.grade.name+"c"+data.data.grade.type);
+	
+	
 }
 // 申请体检
 function transform_order() {

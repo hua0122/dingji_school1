@@ -32,6 +32,7 @@ function feedback(content) {
 function study() {
 	let ajaxdata = {};
 	let data = ajaxGet(user_study,ajaxdata)
+	console.log(data)
 	if (data.status == "000") {
 		$(".nodata").show();
 		$(".info").hide();
@@ -40,6 +41,7 @@ function study() {
 	if (data.status == "200") {
 		$(".nodata").hide();
 		$(".info").show();
+		$(".picurl").attr("src",domainName+data.data.study.picurl)
 		$(".infoaddress").text(data.data.study.address);
 		$("#lng").val(data.data.study.lng);
 		$("#lat").val(data.data.study.lat);
@@ -51,6 +53,16 @@ function study() {
 		$(".infosn").text(data.data.study.sn);
 		$(".infosign_date").text(data.data.study.sign_date);
 		$(".infocontent").text(data.data.study.content);
+		$(".activity_name").html(data.data.study.activity_name);
+		if(data.data.study.activity_type!=null&&data.data.study.activity_type!="null"&&data.data.study.activity_type!=undefined&&data.data.study.activity_type!="undefined"){
+			if(data.data.study.activity_type==3||data.data.study.activity_type=="3"){
+			$(".activity_amount").html("+"+data.data.study.activity_amount);
+			}else{
+				$(".activity_amount").html("-"+data.data.study.activity_amount);
+			}
+		}
+		if(data.data.study.activity_gift!=null)
+		$(".site").append('<div class="col-xs-12 activity_gift" style="border-top: 1px solid #ccc"><p><b style="font-size: 16px; font-weight: 500">获赠</b><span class="span-right">'+data.data.study.activity_gift+'</span></p></div>')
 		$(".codecode").text(data.data.code.code);
 		$(".codeverify").text(data.data.code.verify);
 		$(".codestation_name").text(data.data.code.station_name);

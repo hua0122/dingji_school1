@@ -59,7 +59,7 @@
     }
     .title-right{
         float: right;
-        width:32%;
+        width:35%;
         margin-top: 10px;
     }
     .title-right .title{
@@ -86,7 +86,9 @@
         position: relative;
         top: -15px;
     }
-
+.info div{
+	margin: 0;
+	}
 </style>
 	<body>
 		<!--[if lt IE 9]>对不起，浏览器版本太低~！<![endif]-->
@@ -97,7 +99,7 @@
 				<div class="row video">
 					<a id="address" href="/">
 						<div class="img-left">
-							<img src="{:get_cover($info['thumb'],'path')}" />
+							<img src="" class="picurl" />
 						</div>
 
 						<div class="title-right">
@@ -125,16 +127,12 @@
 					</div>
 					<div class="col-xs-12">
 						<p class="b">班别原价<span class="span-right infoprice">{$info.price}元</span></p>
-						<p class="b">报名减免<span class="span-right">-200元</span></p>
-						<p class="b">五人团报<span class="span-right">-300元</span></p>
-						<p class="b">加200元赠送888元跑步机<span class="span-right">+200元</span></p>
+						<p class="b"><font class="activity_name"></font><span class="span-right"><font class="activity_amount"></font></span></p>
 						<p class="b">应付款<span class="span-right infopayable">{$info.payable}元</span></p>
 						<p class="b">实付款<span class="span-right infopayment">{$info.payment}元</span></p>
 						<p class="b">未付款<span class="span-right infounpaid">{$info.unpaid}元</span></p>
 					</div>
-					<div class="col-xs-12" style="border-top: 1px solid #ccc">
-						<p><b style="font-size: 16px; font-weight: 500">获赠</b><span class="span-right">价值888元跑步机</span></p>
-					</div>
+					
 
 				</div>
 
@@ -187,6 +185,6 @@
 <script>
 	$(function() {
 		study();
-		getBaiduLocation(latlng.lng, latlng.lat); //转换为百度坐标
+		// getBaiduLocation(latlng.lng, latlng.lat); //转换为百度坐标
 	})
 </script>

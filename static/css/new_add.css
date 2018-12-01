@@ -444,17 +444,19 @@ input[type=checkbox] {
 }
 
 .feedback .row .textarea {
-	width: 100%;
+	    border: none;
+	width: 95%;
 	height: 200px;
 	padding: 10px;
-	background-color: #C9C5C5;
+				background: rgb(232, 232, 232);
 	border-radius: 10px;
 	font-size: 14px;
+	margin: 10px 0;
 }
 
 .feedback .row .btn {
-	width: 98%;
-	background-color: #0b43c6;
+	width: 95%;
+	background-color: #22A7F0;
 	color: #fff;
 	height: 40px;
 	margin: 0px auto;
