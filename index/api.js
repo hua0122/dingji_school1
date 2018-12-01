@@ -14,22 +14,31 @@ let index_get_student = "/api/index/get_student";
 let index_get_activity = "/api/index/get_activity";
 // 首页api
 function get_banner() {
+	let data;
+	let get_banner_data = JSON.parse(sessionStorage.getItem("get_banner_data"));
+	if (get_banner_data != null && get_banner_data != undefined && get_banner_data != "null" && get_banner_data != "") {
+		data = get_banner_data
+	} else {
 
-	let ajaxdata = {
-		school_id: school_id
+		let ajaxdata = {
+			school_id: school_id
+		}
+		data = ajaxGet(index_get_banner, ajaxdata);
+		sessionStorage.setItem("get_banner_data", JSON.stringify(data))
 	}
-	let data = ajaxGet(index_get_banner, ajaxdata)
 	let src = "";
 	for (var i = 1; i < data.data.length; i++) {
 		src +=
 			"<li data-delay='5' style='height: 100%;' data-src='5' data-trans3d='tr6,tr17,tr22,tr23,tr26,tr27,tr29,tr32,tr34,tr35,tr53,tr54,tr62,tr63,tr4,tr13' data-trans2d='tr3,tr8,tr12,tr19,tr22,tr25,tr27,tr29,tr31,tr34,tr35,tr38,tr39,tr41'>" +
-			"<img style='height: 100%;' src='../static/images/blank.png' data-src='" + domainName + data.data[i].picurl + "' data-thumb='" +
+			"<img style='height: 100%;' src='../static/images/blank.png' data-src='" + domainName + data.data[i].picurl +
+			"' data-thumb='" +
 			domainName + data.data[i].picurl + "'/>" +
 			"</li>";
 	}
 	let bannersrc =
 		"<li data-delay='5' style='height: 100%;' data-src='5' data-trans3d='tr6,tr17,tr22,tr23,tr29,tr27,tr32,tr34,tr35,tr53,tr54,tr62,tr63,tr4,tr13,tr45' data-trans2d='tr3,tr8,tr12,tr19,tr22,tr25,tr27,tr29,tr31,tr34,tr35,tr38,tr39,tr41'>" +
-		"<img style='height: 100%;' src='" + domainName + data.data[0].picurl + "'  data-thumb='" + domainName + data.data[0].picurl + "'/>" +
+		"<img style='height: 100%;' src='" + domainName + data.data[0].picurl + "'  data-thumb='" + domainName + data.data[0]
+		.picurl + "'/>" +
 		" </li>" + src;
 	$("#volistbanner1").html(bannersrc);
 	var cuteslider3 = new Cute.Slider();
@@ -39,7 +48,7 @@ function get_banner() {
 	cuteslider3.api.addEventListener(Cute.SliderEvent.WATING, function(event) {});
 	cuteslider3.api.addEventListener(Cute.SliderEvent.CHANGE_NEXT_SLIDE, function(event) {});
 	cuteslider3.api.addEventListener(Cute.SliderEvent.WATING_FOR_NEXT, function(event) {});
-	
+
 	// document.querySelector("#cuteslider_3").style.height="100%";
 }
 
@@ -78,9 +87,9 @@ function get_beautiful() {
 	$("#marquee1_1").html(src);
 	// 开启无缝滚动
 	// marqueeStart(1, "left");
-$("#marquee2").kxbdMarquee({
-					isEqual: false
-				});
+	$("#marquee2").kxbdMarquee({
+		isEqual: false
+	});
 }
 
 // 教练风采
