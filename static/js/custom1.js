@@ -154,3 +154,14 @@ function uniq(array){
     }
     return temp;
 }
+var response = function() {
+					var w = document.documentElement.clientWidth;
+					document.documentElement.style.fontSize = w / 30 + 'px'
+				};
+
+				window.onresize = function() {
+					response();
+					clearTimeout(this.responseTimer);
+					this.responseTimer = setTimeout(response, 300);
+				};
+				response();
