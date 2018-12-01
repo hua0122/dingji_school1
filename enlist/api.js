@@ -32,7 +32,7 @@ function get_banner() {
 	let data = ajaxGet(sign_get_banner, ajaxdata)
 	let src = "";
 	for (var i = 1; i < data.data.length; i++) {
-		src += "<li style='background:url(" + domainName + data.data[i].picurl + ") 50% 50% no-repeat;'></li>";
+		src += "<li style='background:url(" + domainName + data.data[i].picurl + ") 50% 50% no-repeat;background-size: 100%;'></li>";
 
 	}
 	$(".slides").html(src);
