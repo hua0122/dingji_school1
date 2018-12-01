@@ -58,7 +58,7 @@
 				<span>场地:<span><input type="hidden" name="class" id="area_id" value="">
 						<font class="gradearea_name"></font>
 					</span></span>
-				<span class="map right"><a href="javascript:" onclick="show_map()"><img src="../static/images/map1.png" width="20" />
+				<span class="map right"><a href="javascript:" id="address"><img src="../static/images/map1.png" width="20" />
 						> </a></span>
 			</div>
 
@@ -327,6 +327,8 @@
 			function other() {
 				$(".other").show();
 			}
+			
+					getBaiduLocation(latlng.lng, latlng.lat); //转换为百度坐标
 		</script>
 
 
