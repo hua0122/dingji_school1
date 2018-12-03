@@ -229,7 +229,7 @@ function submit_sign() {
 	var name = $("#name").val(); //姓名
 	var phone = $("#phone").val(); //电话
 	var card = $("#cno").val(); //身份证号
-
+console.log(name)
 	if (!name) {
 		alert('姓名不能为空');
 		return false;
@@ -329,7 +329,7 @@ function submit_sign() {
 					window.location.href = "../enlist/fail.html";
 				},
 				fail: function(res) { // 支付失败回调函数
-					window.location.href = "../enlist/fail.html";
+					// window.location.href = "../enlist/fail.html";
 				}
 			});
 		});
@@ -342,7 +342,7 @@ function submit_sign() {
 		location.reload();
 	} else {
 		alert(data.msg);
-		location.href = "../enlist/sign_fail.html";
+		// location.href = "../enlist/sign_fail.html";
 	}
 
 }
