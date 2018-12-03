@@ -213,6 +213,7 @@ $('input').on('focus',function( ){
 	$(".activity").html($('body').scrollTop())
 });
 $('input').on('blur',function( ){
+	$('body').scrollTop(0)
 	$(".enroll-btn").html($('body').scrollTop())
 	$("body").css({
 		    "position": "absolute",
