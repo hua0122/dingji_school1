@@ -1,6 +1,6 @@
 .img-one-two-box{
 	width: 100%;
-	height: 24.75rem;
+	height: 24.9rem;
 	display: flex;
 	flex-wrap: wrap;
 	align-content: space-between;
@@ -17,19 +17,19 @@
 	justify-content: space-between;
 }
 .img-one-two-box .img-two img{
-	width: 12rem;
-	height: 12rem;
+	width: 12.3rem;
+	height: 12.3rem;
 }
 .img-one-two-box div::after,.img-one-two-box div::before{
 	display: none;
 }
 .img-one-two-box .img-one img:first-child{
-	width: 24.75rem;
-	height: 12rem;
+	width: 24.9rem;
+	height: 12.3rem;
 }
 .img-one-two-box .img-one img:last-child{
-	width: 12rem;
-	height: 12rem;
+	width: 12.3rem;
+	height: 12.3rem;
 }
 .nav-bar-item img {
 	height: 60px;
