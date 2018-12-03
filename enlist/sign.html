@@ -209,20 +209,6 @@
 			//点击选中 再次点击取消
 			$(function() {
 
-$('input').on('focus',function( ){
-	
-	$(".activity").html($('body').scrollTop())
-	$(".enroll-btn").html($('body').scrollTop())
-});
-$('input').on('blur',function( ){
-	$('body').scrollTop(0)
-	$(".enroll-btn").html($('body').scrollTop())
-	$("body").css({
-		    "position": "absolute",
-    "top": "0",
-    "bottom": "0"
-	})
-});
 
 				let grade_detail = JSON.parse(sessionStorage.getItem("grade_detail"));
 				getBaiduLocation(latlng.lng, latlng.lat, grade_detail.lng, grade_detail.lat); //转换为百度坐标
@@ -284,6 +270,14 @@ $('input').on('blur',function( ){
 						$(".sign .total").css('height', '45');
 					}
 
+$('input').on('focus',function( ){
+	
+	$(".activity").html("1:"+$('body').scrollTop())
+	$(".enroll-btn").html("1:"+$('body').scrollTop())
+});
+$('input').on('blur',function( ){
+	$('body').scrollTop(0)
+});
 				});
 				//活动选择
 				$('input:radio[name="activity_id"]').on("click", function() {
@@ -355,6 +349,15 @@ $('input').on('blur',function( ){
 			function other() {
 				$(".other").show();
 			}
+			
+			$('input').on('focus',function( ){
+				
+				$(".activity").html($('body').scrollTop())
+				$(".enroll-btn").html($('body').scrollTop())
+			});
+			$('input').on('blur',function( ){
+				$('body').scrollTop(0)
+			});
 		</script>
 
 
