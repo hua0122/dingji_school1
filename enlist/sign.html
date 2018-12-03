@@ -91,11 +91,10 @@
 			<div class="row notice">
 				<h1 class="col-xs-12">填写信息</h1>
 				<div class="col-xs-12">
-					<input type="text" name="name" id="name" placeholder="请输入您的姓名" />
+					<input type="text" name="name" id="name" placeholder="请输入您的姓名" jump=true />
 					
-			<input type="text" class="form-control" placeholder="twitterhandle">
-					<input type="text" name="phone" id="phone" placeholder="请输入您的电话" />
-					<input type="text" name="cno" id="cno" placeholder="请输入您的身份证号码" />
+					<input type="text" name="phone" id="phone" placeholder="请输入您的电话" jump=true />
+					<input type="text" name="cno" id="cno" placeholder="请输入您的身份证号码" jump=true />
 				</div>
 				<div class="xieyi">
 					<span>
@@ -202,11 +201,37 @@
 			</div>
 		</div>
 
+
+
 		<script src="../static/js/apiRoot.js" type="text/javascript" charset="utf-8"></script>
 		<script src="api.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			//点击选中 再次点击取消
 			$(function() {
+
+function jump_top(){ 
+	var u = navigator.userAgent;
+	var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+	var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+	if(isAndroid){
+		$("body").css("height","0px");
+		$("body").css("height",document.body.scrollHeight);
+		$('[jump=true]').bind("focus",function(event){
+			if($(event.target).attr("type")=="button")return;
+			$("body").css("margin-bottom","500px");
+			$(window).scrollTop($(event.target).offset().top-100);
+			event.preventDefault();
+		});
+		$("body").bind("click",function(event){
+			if($(event.target).attr("type")=="button")return;
+			$("body").css("height","0px");
+			$("body").css("height",document.body.scrollHeight);
+			$("body").css("margin-bottom","0px");
+			event.preventDefault();
+		}); 
+	};
+}
+jump_top();
 
 				let grade_detail = JSON.parse(sessionStorage.getItem("grade_detail"));
 				getBaiduLocation(latlng.lng, latlng.lat, grade_detail.lng, grade_detail.lat); //转换为百度坐标
