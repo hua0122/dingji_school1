@@ -376,7 +376,7 @@ body {
 
 .enroll{
 	margin-top: 10px;
-	position: fixed;
+	/* position: absolute; */
 	bottom: 0;
 	width: 100%;
 }

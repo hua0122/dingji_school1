@@ -210,10 +210,12 @@
 			$(function() {
 
 $('input').on('click',function( ){
+	console.log($('#bottom'))
     $('#bottom').css({'position':'static'})
 });
 $('input').on('blur',function( ){
-    $('#bottom').css({'position':'fixed'})
+	console.log($('#bottom'))
+		$('#bottom').css({'position':'fixed'})
 });
 
 				let grade_detail = JSON.parse(sessionStorage.getItem("grade_detail"));
