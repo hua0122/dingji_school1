@@ -54,12 +54,17 @@
 				</span>
 			</div>
 
-			<div class="row address">
-				<span>场地:<span><input type="hidden" name="class" id="area_id" value="">
+			<div  class="row address">
+				<a id="address" style="display: flex;justify-content: space-between;">
+					
+				<span><span>场地:<span><input type="hidden" name="class" id="area_id" value="">
 						<font class="gradearea_name"></font>
-					</span></span>
-				<span class="map right"><a href="javascript:" id="address"><img src="../static/images/map1.png" width="20" />
-						> </a></span>
+					</span></span></span>
+				<span class="map right">
+					<img src="../static/images/map1.png" width="20" />
+						> 
+						</span>
+				</a>
 			</div>
 
 			<div class="row address" onclick="javascript:jts()">
@@ -198,8 +203,8 @@
 			$(function() {
 
 				let grade_detail = JSON.parse(sessionStorage.getItem("grade_detail"));
-						
-				sessionStorage.setItem("total_count",grade_detail.price);
+				getBaiduLocation(latlng.lng, latlng.lat, grade_detail.lng, grade_detail.lat); //转换为百度坐标
+				sessionStorage.setItem("total_count", grade_detail.price);
 				subsign();
 				$('input:radio').click(function() {
 
@@ -230,9 +235,10 @@
 					$(".other").hide();
 
 					var check_val = $('input:radio[name="other"]:checked').val();
-					let total_count=sessionStorage.getItem("total_count");
+					let total_count = sessionStorage.getItem("total_count");
 					//全款支付
-					if (check_val == undefined||check_val == null||check_val == "undefined"||check_val == "null"||check_val == "") {
+					if (check_val == undefined || check_val == null || check_val == "undefined" || check_val == "null" ||
+						check_val == "") {
 						var tem = '<span>费用合计</span>' +
 							'<span class="count right"> <span class="total-count">' + parseFloat(total_count) + '</span>元</span>';
 						$("#total").html(tem);
@@ -258,30 +264,30 @@
 
 				});
 				//活动选择
-				$('input:radio[name="activity_id"]').on("click",function(){
-						
-						let total_count=sessionStorage.getItem("total_count");
-					if($(this).context.checked){
-					var activity = this.value;
-					let ajaxdata = {
-						activity_id: activity
-					};
-					let data = ajaxPost(sign_activity_detail, ajaxdata);
-					if (data.status == "400") {
-						alert(data.msg);
+				$('input:radio[name="activity_id"]').on("click", function() {
+
+					let total_count = sessionStorage.getItem("total_count");
+					if ($(this).context.checked) {
+						var activity = this.value;
+						let ajaxdata = {
+							activity_id: activity
+						};
+						let data = ajaxPost(sign_activity_detail, ajaxdata);
+						if (data.status == "400") {
+							alert(data.msg);
+						} else {
+							if (data.data.type == 1 || data.data.type == "1" || data.data.type == 2 || data.data.type == "2") {
+								var count = parseFloat(parseFloat(grade_detail.price) - data.data.amount).toFixed(2);
+							}
+							if (data.data.type == 3 || data.data.type == "3") {
+								var count = parseFloat(parseFloat(grade_detail.price) + data.data.amount).toFixed(2);
+							}
+							$(".total-count").html(count);
+							sessionStorage.setItem("total_count", count);
+						}
 					} else {
-						if(data.data.type==1||data.data.type=="1"||data.data.type==2||data.data.type=="2"){
-						var count = parseFloat(parseFloat(grade_detail.price) - data.data.amount).toFixed(2);
-						}
-						if(data.data.type==3||data.data.type=="3"){
-						var count = parseFloat(parseFloat(grade_detail.price) + data.data.amount).toFixed(2);
-						}
-						$(".total-count").html(count);
-						sessionStorage.setItem("total_count",count);
-					}
-					}else{
 						$(".total-count").html(parseFloat(grade_detail.price).toFixed(2));
-						sessionStorage.setItem("total_count",parseFloat(grade_detail.price).toFixed(2));						
+						sessionStorage.setItem("total_count", parseFloat(grade_detail.price).toFixed(2));
 					}
 				})
 
@@ -327,8 +333,6 @@
 			function other() {
 				$(".other").show();
 			}
-			
-					getBaiduLocation(latlng.lng, latlng.lat); //转换为百度坐标
 		</script>
 
 

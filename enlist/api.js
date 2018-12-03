@@ -9,9 +9,9 @@ let sign_grade_detail = "/api/sign/grade_detail";
 // 活动列表
 let sign_get_activity = "/api/sign/get_activity";
 // 优惠券选择
-let sign_yhq_code="/api/sign/yhq_code";
+let sign_yhq_code = "/api/sign/yhq_code";
 // 推荐码确认
-let sign_referral="/api/sign/referral";
+let sign_referral = "/api/sign/referral";
 // 体检站列表
 let sign_get_station = "/api/sign/get_station";
 // 报名
@@ -25,14 +25,14 @@ let sign_apply = "/api/sign/apply";
 // 报名api
 // banner
 function get_banner() {
-
 	let ajaxdata = {
 		school_id: school_id
 	}
 	let data = ajaxGet(sign_get_banner, ajaxdata)
 	let src = "";
-	for (var i = 1; i < data.data.length; i++) {
-		src += "<li style='background:url(" + domainName + data.data[i].picurl + ") 50% 50% no-repeat;background-size: 100%;'></li>";
+	for (var i = 0; i < data.data.length; i++) {
+		src += "<li style='background:url(" + domainName + data.data[i].picurl +
+			") 50% 50% no-repeat;background-size: 100%;'></li>";
 
 	}
 	$(".slides").html(src);
@@ -119,7 +119,7 @@ function get_list(city) {
 
 // 班别详情
 function grade_detail() {
-	let id = parseInt(window.location.href.split("id=")[1]);
+	let id = parseInt(window.location.href.split("detail.html?id=")[1]);
 	let ajaxdata = {
 		id: id
 	};
@@ -132,6 +132,8 @@ function grade_detail() {
 		$(".infocontent").html(data.data.content);
 		$(".infonotice").html(data.data.notice);
 		$(".enroll-btn").attr("href", "../enlist/sign.html?id=" + data.data.notice)
+		getBaiduLocation(latlng.lng, latlng.lat, data.data.lng, data.data.lat); //转换为百度坐标
+
 	}
 }
 // 活动列表
@@ -146,7 +148,8 @@ function get_activity() {
 		for (var i = 0; i < data.data.length; i++) {
 			src += '<div class="modal-body">' +
 				'<input type="radio" value="' + data.data[i].id + '" class="activity_id" name="activity_id" style="width: 25px;">' +
-				'<div><img src="'+domainName+data.data[i].picurl+'" width="83" height="83"/> <br/>' + data.data[i].name + '</div>' +
+				'<div><img src="' + domainName + data.data[i].picurl + '" width="83" height="83"/> <br/>' + data.data[i].name +
+				'</div>' +
 				'<div><span>' + data.data[i].description + '</span></div>' +
 				'</div>';
 		}
@@ -155,8 +158,8 @@ function get_activity() {
 	$("#activity").html(src);
 }
 // 优惠券选择
-function yhq_code(code){
-	
+function yhq_code(code) {
+
 	let ajaxdata = {
 		code: code
 	};
@@ -164,31 +167,31 @@ function yhq_code(code){
 	if (data.status == "400") {
 		alert("优惠券不正确,请重新输入");
 		$("#yhq_code").val("");
-	}else if (data.status == "000") {
+	} else if (data.status == "000") {
 		alert(data.msg);
 		$("#yhq_code").val("");
 	} else {
 		$("#coupon").html('<input type="hidden" name="coupon_id" id="coupon_id" value="' + data.res.id + '"/>');
 		var count = parseFloat($(".total-count").html() - data.res.amount).toFixed(2);
 		$(".total-count").html(count);
-		sessionStorage.setItem("total_count",count);
+		sessionStorage.setItem("total_count", count);
 		$("#yhq").attr('disabled', true);
 	}
 }
 // 推荐码确认
-function referral(code){
-	
+function referral(code) {
+
 	let ajaxdata = {
 		code: code
 	};
 	let data = ajaxPost(sign_referral, ajaxdata)
-		if (data.status == "000") {
-							alert(data.msg);
-							$("#code").val("");
-						} else {
-							$("#referral").html('<input type="hidden" name="inviter" id="inviter" value="' + data.data.id + '"/>');
-	
-						}
+	if (data.status == "000") {
+		alert(data.msg);
+		$("#code").val("");
+	} else {
+		$("#referral").html('<input type="hidden" name="inviter" id="inviter" value="' + data.data.id + '"/>');
+
+	}
 }
 // 活动选择
 
@@ -346,7 +349,8 @@ function submit_sign() {
 
 function index() {
 	get_banner();
-	return get_area();
+	get_area();
+
 }
 
 function detail() {
@@ -407,9 +411,9 @@ function agreement() {
 	$(".yi-input").val(data.data.user.name);
 	$(".cno-input").val(data.data.user.card);
 	$(".content").html(data.data.content.content);
-	$(".class").val(data.data.grade.name+"c"+data.data.grade.type);
-	
-	
+	$(".class").val(data.data.grade.name + "c" + data.data.grade.type);
+
+
 }
 // 申请体检
 function transform_order() {

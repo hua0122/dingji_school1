@@ -67,6 +67,8 @@ function study() {
 		$(".codeverify").text(data.data.code.verify);
 		$(".codestation_name").text(data.data.code.station_name);
 		$(".codecreate_time").text(data.data.code.create_time);
+		
+		getBaiduLocation(latlng.lng, latlng.lat, data.data.study.lng, data.data.study.lat); //转换为百度坐标
 	}
 
 }

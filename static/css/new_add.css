@@ -17,6 +17,7 @@
 }
 
 .sign .address {
+	display: block;
 	background-color: #fff;
 	padding: 0px 16px 15px 16px;
 	font-size: 16px;

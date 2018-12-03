@@ -56,7 +56,8 @@ function ajaxWX() {
 }
 
 //转换百度坐标
-var getBaiduLocation = function(longitude, latitude) {
+var getBaiduLocation = function(longitude, latitude,lng1,lat1) {
+	console.log(longitude+", "+latitude+","+lng1+","+lat1)
 	$.ajax({
 		type: "GET",
 		url: 'http://api.map.baidu.com/geoconv/v1/?coords=' + longitude + ',' + latitude +
@@ -71,7 +72,7 @@ var getBaiduLocation = function(longitude, latitude) {
 
 				//location.href="http://api.map.baidu.com/direction?origin="+lat+","+lng+"&destination=29.614186,106.335563&mode=driving&region=重庆&output=html";
 				var href = "http://api.map.baidu.com/direction?origin=" + lat + "," + lng +
-					"&destination=29.537472,99.999999&mode=driving&region=重庆&output=html";
+					"&destination="+lat1+","+lng1+"&mode=driving&region=重庆&output=html";
 
 				$("#address").attr('href', href);
 			} catch (e) {
