@@ -20,6 +20,9 @@
 	width: 12rem;
 	height: 12rem;
 }
+.img-one-two-box div::after,.img-one-two-box div::before{
+	display: none;
+}
 .img-one-two-box .img-one img:first-child{
 	width: 24.75rem;
 	height: 12rem;
