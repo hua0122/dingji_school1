@@ -52,7 +52,7 @@ function study() {
 		$(".infounpaid").text(data.data.study.unpaid);
 		$(".infosn").text(data.data.study.sn);
 		$(".infosign_date").text(data.data.study.sign_date);
-		$(".infocontent").text(data.data.study.content);
+		$(".infocontent").html(data.data.study.content);
 		$(".activity_name").html(data.data.study.activity_name);
 		if(data.data.study.activity_type!=null&&data.data.study.activity_type!="null"&&data.data.study.activity_type!=undefined&&data.data.study.activity_type!="undefined"){
 			if(data.data.study.activity_type==3||data.data.study.activity_type=="3"){
