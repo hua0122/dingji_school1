@@ -81,3 +81,4 @@ var getBaiduLocation = function(longitude, latitude,lng1,lat1) {
 		}
 	});
 };
+

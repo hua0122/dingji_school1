@@ -145,23 +145,37 @@ function getQueryString(name) {
 	return null;
 }
 // 数组去重
-function uniq(array){
-    var temp = []; //一个新的临时数组
-    for(var i = 0; i < array.length; i++){
-        if(temp.indexOf(array[i]) == -1){
-            temp.push(array[i]);
-        }
-    }
-    return temp;
+function uniq(array) {
+	var temp = []; //一个新的临时数组
+	for (var i = 0; i < array.length; i++) {
+		if (temp.indexOf(array[i]) == -1) {
+			temp.push(array[i]);
+		}
+	}
+	return temp;
 }
 var response = function() {
-					var w = document.documentElement.clientWidth;
-					document.documentElement.style.fontSize = w / 37.5 + 'px'
-				};
+	var w = document.documentElement.clientWidth;
+	document.documentElement.style.fontSize = w / 37.5 + 'px'
+};
 
-				window.onresize = function() {
-					response();
-					clearTimeout(this.responseTimer);
-					this.responseTimer = setTimeout(response, 300);
-				};
-				response();
+window.onresize = function() {
+	response();
+	clearTimeout(this.responseTimer);
+	this.responseTimer = setTimeout(response, 300);
+};
+response();
+
+function login() {
+
+	if (sessionStorage.getItem("openid") != null && sessionStorage.getItem("openid") != undefined && sessionStorage.getItem(
+			"openid") != "null" && sessionStorage.getItem("openid") != "") {} else {
+		var openid = getQueryString("openid");
+		if (openid == null || openid == 'null' || openid == undefined || openid == "undefined" || openid == "") {
+			window.location = "http://bmqdtest.yidianxueche.cn/index.html";
+		} else {
+			sessionStorage.setItem("openid", openid)
+		}
+	}
+}
+// login();
