@@ -210,10 +210,10 @@
 			$(function() {
 
 $('input').on('focus',function( ){
-	$(".activity").html("聚焦")
+	$(".activity").html($('body').scrollTop())
 });
 $('input').on('blur',function( ){
-	$(".enroll-btn").html("失去焦点")
+	$(".enroll-btn").html($('body').scrollTop())
 	$("body").css({
 		    "position": "absolute",
     "top": "0",
