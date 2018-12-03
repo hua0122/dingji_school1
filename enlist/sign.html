@@ -210,6 +210,8 @@
 			$(function() {
 
 $('input').on('focus',function( ){
+	
+	$(".activity").html($('body').scrollTop())
 	$(".enroll-btn").html($('body').scrollTop())
 });
 $('input').on('blur',function( ){
