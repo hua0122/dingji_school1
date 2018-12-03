@@ -156,7 +156,7 @@ function uniq(array){
 }
 var response = function() {
 					var w = document.documentElement.clientWidth;
-					document.documentElement.style.fontSize = w / 36 + 'px'
+					document.documentElement.style.fontSize = w / 37.5 + 'px'
 				};
 
 				window.onresize = function() {

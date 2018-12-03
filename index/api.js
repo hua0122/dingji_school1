@@ -58,11 +58,11 @@ function get_name(get_name, index_get_name) {
 		school_id: school_id
 	}
 	let data = ajaxGet(index_get_name, ajaxdata)
-	let srcone = "<img src='" + domainName + data.data[0].picurl + "' style='width:66%;height: 105px;' />" +
-		"<img src='" + domainName + data.data[1].picurl + "' style='width:33%;height: 105px;float: right;' />";
-	let srctwo = "<img src='" + domainName + data.data[2].picurl + "' style='width:31.9%;height: 105px;' />" +
-		"<img src='" + domainName + data.data[3].picurl + "' style='width:33%;height: 105px;' />" +
-		"<img src='" + domainName + data.data[4].picurl + "' style='width:33%;height: 105px;float: right;' />";
+	let srcone = "<img src='" + domainName + data.data[0].picurl + "'  />" +
+		"<img src='" + domainName + data.data[1].picurl + "' />";
+	let srctwo = "<img src='" + domainName + data.data[2].picurl + "' />" +
+		"<img src='" + domainName + data.data[3].picurl + "' />" +
+		"<img src='" + domainName + data.data[4].picurl + "'  />";
 	$(get_name).find(".img-one").html(srcone);
 	$(get_name).find(".img-two").html(srctwo);
 }
