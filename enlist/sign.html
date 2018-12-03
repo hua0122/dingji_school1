@@ -210,12 +210,10 @@
 			$(function() {
 
 $('input').on('click',function( ){
-	console.log($('#bottom'))
-    $('#bottom').css({'position':'static'})
+	alert("聚焦")
 });
 $('input').on('blur',function( ){
-	console.log($('#bottom'))
-		$('#bottom').css({'position':'fixed'})
+	alert("失去焦点")
 });
 
 				let grade_detail = JSON.parse(sessionStorage.getItem("grade_detail"));
