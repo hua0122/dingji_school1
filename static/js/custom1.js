@@ -28,11 +28,12 @@ function inputblur(){
 	
 	$('input').on('focus',function( ){
 		
-		$(".total-count").text("聚焦");
+		$(".enroll-btn").text("聚焦");
 		this.scrollIntoView();
 	});
 	$('input').on('blur',function( ){
 		$('body').scrollTop(0)
+		$(".enroll-btn").text("失去聚焦");
 	});
 }
 document.write('<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>');
