@@ -26,6 +26,9 @@ if (/Android/gi.test(navigator.userAgent)) {
 })();
 document.write('<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>');
 $(function() {
+	
+	settitle();
+	wxlogin();
 	getydxc();
 });
 //微信配置
@@ -166,16 +169,20 @@ window.onresize = function() {
 };
 response();
 
-function login() {
+function settitle() {
+	document.title = "鼎吉驾校";
 
-	if (sessionStorage.getItem("openid") != null && sessionStorage.getItem("openid") != undefined && sessionStorage.getItem(
-			"openid") != "null" && sessionStorage.getItem("openid") != "") {} else {
-		var openid = getQueryString("openid");
-		if (openid == null || openid == 'null' || openid == undefined || openid == "undefined" || openid == "") {
-			window.location = "http://bmqdtest.yidianxueche.cn/index.html";
-		} else {
-			sessionStorage.setItem("openid", openid)
-		}
-	}
 }
-// login();
+function wxlogin(){
+		if (sessionStorage.getItem("openid") != null && sessionStorage.getItem("openid") != undefined && sessionStorage.getItem(
+				"openid") != "null" && sessionStorage.getItem("openid") != "") {
+	
+		} else {
+			if(window.location.href.indexOf("index/index.html")==-1){
+				window.location.href="http://bmqdtest.yidianxueche.cn";
+			}else{
+			var openid = getQueryString("openid");
+			sessionStorage.setItem("openid", openid)
+			}
+		}
+}
