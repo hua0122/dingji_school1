@@ -132,7 +132,7 @@ function grade_detail() {
 		$(".infocontent").html(data.data.content);
 		$(".infonotice").html(data.data.notice);
 		$(".enroll-btn").attr("href", "../enlist/sign.html?id=" + data.data.notice)
-		getBaiduLocation(latlng.lng, latlng.lat, data.data.lng, data.data.lat); //转换为百度坐标
+		getBaiduLocation("#address",latlng.lng, latlng.lat, data.data.lng, data.data.lat); //转换为百度坐标
 
 	}
 }
@@ -216,10 +216,11 @@ function get_station() {
 			'<span class="station">' + data.data[i].name + '</span>' +
 			' <span class="dizhi">地址:' + data.data[i].address + '</span>' +
 			'</span>' +
-			'<span class="right address">距您' + distancetext + 'km <img src="../static/images/map1.png" width="30"/></span>' +
+			'<a class="address" class="right address">距您' + distancetext + 'km <img src="../static/images/map1.png" width="30"/></a>' +
 			'</div>' +
 			'</li>';
 
+		getBaiduLocation(".address",latlng.lng, latlng.lat, data.data[i].lng, data.data[i].lat); //转换为百度坐标
 	}
 	$(".stationitem").html(src);
 }

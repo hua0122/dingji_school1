@@ -211,7 +211,7 @@
 
 
 				let grade_detail = JSON.parse(sessionStorage.getItem("grade_detail"));
-				getBaiduLocation(latlng.lng, latlng.lat, grade_detail.lng, grade_detail.lat); //转换为百度坐标
+				getBaiduLocation("#address",latlng.lng, latlng.lat, grade_detail.lng, grade_detail.lat); //转换为百度坐标
 				sessionStorage.setItem("total_count", grade_detail.price);
 				subsign();
 				$('input:radio').click(function() {

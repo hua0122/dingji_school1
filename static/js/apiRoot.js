@@ -56,7 +56,7 @@ function ajaxWX() {
 }
 
 //转换百度坐标
-var getBaiduLocation = function(longitude, latitude,lng1,lat1) {
+var getBaiduLocation = function(address,longitude, latitude,lng1,lat1) {
 	console.log(longitude+", "+latitude+","+lng1+","+lat1)
 	$.ajax({
 		type: "GET",
@@ -74,7 +74,7 @@ var getBaiduLocation = function(longitude, latitude,lng1,lat1) {
 				var href = "http://api.map.baidu.com/direction?origin=" + lat + "," + lng +
 					"&destination="+lat1+","+lng1+"&mode=driving&region=重庆&output=html";
 
-				$("#address").attr('href', href);
+				$(address).attr('href', href);
 			} catch (e) {
 				$.fn.alert(e.message);
 			}

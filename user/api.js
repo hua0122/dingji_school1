@@ -84,7 +84,7 @@ function study() {
 			$(".codeboxshow").hide();
 		}
 
-		getBaiduLocation(latlng.lng, latlng.lat, data.data.study.lng, data.data.study.lat); //转换为百度坐标
+		getBaiduLocation("#address",latlng.lng, latlng.lat, data.data.study.lng, data.data.study.lat); //转换为百度坐标
 	}
 
 }
