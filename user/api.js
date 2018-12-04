@@ -47,6 +47,7 @@ function study() {
 		$("#lat").val(data.data.study.lat);
 		$(".infograde_name").text(data.data.study.grade_name);
 		$(".infoprice").text(data.data.study.price);
+		$(".infoprice").eq(0).text(data.data.study.price+"元");
 		$(".infopayable").text(data.data.study.payable);
 		$(".infopayment").text(data.data.study.payment);
 		$(".infounpaid").text(data.data.study.unpaid);
