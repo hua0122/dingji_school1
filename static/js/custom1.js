@@ -27,7 +27,6 @@ if (/Android/gi.test(navigator.userAgent)) {
 function inputblur(){
 	$('input').on('focus',function( ){
 		this.scrollIntoView();
-		alert($(this).scrollTop())
 	});
 	$('input').on('blur',function( ){
 		$('body').scrollTop(0);
