@@ -375,10 +375,11 @@ body {
 }
 
 .enroll{
-	margin-top: 10px;
+	width: 100%;
 	position: fixed;
 	bottom: 0;
-	width: 100%;
+	left: 0;
+	right: 0;
 }
 .enroll-call{
 	padding: 11px 8px;
