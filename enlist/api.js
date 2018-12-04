@@ -329,7 +329,7 @@ console.log(name)
 					window.location.href = "../enlist/fail.html";
 				},
 				fail: function(res) { // 支付失败回调函数
-					// window.location.href = "../enlist/fail.html";
+					window.location.href = "../enlist/fail.html";
 				}
 			});
 		});
@@ -342,7 +342,7 @@ console.log(name)
 		location.reload();
 	} else {
 		alert(data.msg);
-		// location.href = "../enlist/sign_fail.html";
+		location.href = "../enlist/sign_fail.html";
 	}
 
 }
