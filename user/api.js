@@ -62,14 +62,22 @@ function study() {
 				'<div class="col-xs-12 activity_gift" style="border-top: 1px solid #ccc"><p><b style="font-size: 16px; font-weight: 500">获赠</b><span class="span-right">' +
 				data.data.study.activity_gift + '</span></p></div>')
 		}
-		if(data.data.code.code_id!= null && data.data.code.code_id!= undefined && data.data.code.code_id!= "null" && data.data.code.code_id!= ""){
+		if(data.data.code!= null && data.data.code!= undefined && data.data.code!= "null" && data.data.code!= ""){
 			
 				$(".codebox").hide();
 				$(".codeboxshow").show();
-			$(".codecode").text(data.data.code.code);
-			$(".codeverify").text(data.data.code.verify);
-			$(".codestation_name").text(data.data.code.station_name);
-			$(".codecreate_time").text(data.data.code.create_time);
+				let src="";
+				for (var i = 0; i < data.data.code.length; i++) {
+					src+='<div class="item">'+
+							'<p class="b">体检源码<span class="span-right1 codecode">'+data.data.code[i].code+'</span></p>'+
+							'<p class="b">体检新码<span class="span-right1 codeverify">'+data.data.code[i].verify+'</span></p>'+
+							'<p class="b">体检站位置<a class="span-right1 codestation_name address">'+data.data.code[i].station_name+'<span style="color: #0baae4;"><img src="../static/images/map1.png" width="20" /> > </span></a></p>'+
+							'<p class="b">体检码申请时间<span class="span-right1 codecreate_time">'+data.data.code[i].create_time+'</span></p>'+
+						'</div>';
+							getBaiduLocation(".address",latlng.lng, latlng.lat, data.data.code[i].lng, data.data.code[i].lat); //转换为百度坐标
+						
+				}
+				$(".codeboxshow").html(src)
 		}
 		else{
 			$(".codebox").show();

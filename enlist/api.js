@@ -239,7 +239,6 @@ function submit_sign() {
 	var name = $("#name").val(); //姓名
 	var phone = $("#phone").val(); //电话
 	var card = $("#cno").val(); //身份证号
-console.log(name)
 	if (!name) {
 		alert('姓名不能为空');
 		return false;
