@@ -39,35 +39,44 @@
 		<link rel="stylesheet" type="text/css" href="../static/css/iconfont.css">
 		<link rel="stylesheet" type="text/css" href="../static/css/new_add.css" />
 		<style type="text/css">
-			.shenqing div{
+			.shenqing div {
 				display: flex;
 				align-items: center;
 			}
-			.shenqing div .left{
+
+			.shenqing div .left {
 				border-right: 1px solid #ccc;
 			}
-			.success .code .address{
+
+			.success .code .address {
 				border: 0;
 			}
-			.popo{
+
+			.popo {
 				position: fixed;
 				top: 0;
 				left: 0;
 				right: 0;
 				bottom: 0;
-				background: rgba(0,0,0,0.4);
+				background: rgba(0, 0, 0, 0.4);
 				display: none;
 			}
-			.kong{
+
+			.kong {
 				height: auto;
 			}
-			.data input{
+
+			.data input {
 				width: 100%;
 				padding: 1rem 0;
 			}
-			.data a{
+
+			.data a {
 				display: block;
 				padding: 1rem 0;
+			}
+			.application-btn{
+				display: block;
 			}
 		</style>
 	</head>
@@ -103,7 +112,7 @@
 					<div class="col-xs-12">
 						<div>
 							<label for="">
-								<input type="text" name="name" id="name" value="" placeholder="请输入姓名" />
+								<input  type="text" name="name" id="name" value="" placeholder="请输入姓名" />
 							</label>
 						</div>
 						<div>
@@ -120,7 +129,6 @@
 						</div>
 					</div>
 				</div>
-				<div class="kong row"></div>
 				<a href="javascript:transform_order();" class="row application-btn" style="color: #FFFFFF;">申请体检</a>
 			</form>
 		</div>
@@ -132,6 +140,7 @@
 	<script>
 		$(function() {
 			test();
+			
 			$(".shenqing .left").on("click", function() {
 				let get_station = JSON.parse(sessionStorage.getItem("get_station"));
 				let i = $(this).parent().index();
@@ -141,10 +150,10 @@
 				$("#address").html('(' + get_station[i].name + ')' + get_station[i].address);
 				$("#station_id").val(get_station[i].id);
 			})
-			$(".popo").click(function(){
-				
-								$("#tj_code_form").hide();
-								$(".popo").hide();
+			$(".popo").click(function() {
+
+				$("#tj_code_form").hide();
+				$(".popo").hide();
 			})
 		})
 	</script>

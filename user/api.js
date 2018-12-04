@@ -1,17 +1,9 @@
-// 内容详情
-let user_index = "/api/user/index";
+
 // 建议投诉
 let user_feedback = "/api/user/feedback";
 // 学习中心
 let user_study = "/api/user/study";
 // 内容详情
-function wxinfoindex() {
-	let ajaxdata = {};
-	let id = parseInt(window.location.href.split("id=")[1]);
-	let data = ajaxPost(user_index, ajaxdata);
-	$("#my_model").attr("src", data.data.headimgurl)
-	$("#nickname").text(data.data.nickname)
-}
 
 function feedback(content) {
 

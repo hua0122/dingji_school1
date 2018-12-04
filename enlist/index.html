@@ -372,6 +372,18 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			index();
+			
+			let garetextid=JSON.parse(sessionStorage.getItem("garetext"))
+			if (garetextid!= null && garetextid!= "null" && garetextid !=undefined && garetextid!= "" && garetextid != "undefined")
+			{
+				get_list(garetextid.garetextid);
+				$("#text").html(garetextid.garetextname);
+				area()
+			}
+			else{
+				
+				get_area();
+			}
 			$("#select-city").click(function() {
 				$(".dialog_open").show();
 			});
@@ -381,19 +393,19 @@
 			$("#confirm").click(function() {
 				//获取选中的值
 				var city = $('input:radio[name="city"]:checked').val();
-				if (city == null) {
-					alert("请选择一个区域");
-					return false;
-				}
-				//alert(city);
+// 				if (city == null) {
+// 					alert("请选择一个区域");
+// 					return false;
+// 				}
 				get_list(city);
 				$(".dialog_open").hide();
 				var text = $('input:radio[name="city"]:checked')[0].nextSibling.nodeValue;
 				$("#text").html(text);
 
+				sessionStorage.setItem("garetext",JSON.stringify({"garetextid":city,"garetextname":text}))
 			});
-			
 			$("#city").change(function() {
+				
 				var city = $(this).val();
 				get_list(city);
 			});

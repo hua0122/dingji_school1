@@ -55,11 +55,17 @@ function get_area() {
 }
 
 function area(longitude, latitude) {
+	let uniqsortdata=JSON.parse(sessionStorage.getItem("uniqsortdata"));
+	let src = "";
+	if (uniqsortdata!= null && uniqsortdata!= "null" && uniqsortdata !=undefined && uniqsortdata!= "" && uniqsortdata != "undefined")
+	{
+		
+	}else{
+		
 	let ajaxdata = {
 		school_id: school_id
 	}
 	let data = ajaxGet(sign_get_area, ajaxdata)
-	let src = "";
 	var map = new BMap.Map("container");
 	var point1 = new BMap.Point(longitude, latitude);
 
@@ -83,13 +89,16 @@ function area(longitude, latitude) {
 			}
 		}
 	}
-	let uniqsortdata = uniq(sortdata);
+	 uniqsortdata = uniq(sortdata);
+	sessionStorage.setItem("uniqsortdata",JSON.stringify(uniqsortdata))
+	
+	geocoderfun(uniqsortdata);
+	}
 	for (var i = 0; i < uniqsortdata.length; i++) {
 		src += "<label><font><input type='radio' name='city' value=" + uniqsortdata[i].id + "/>" + uniqsortdata[i].name +
 			"</font><font style='font-size:12px;'>" + Math.round(uniqsortdata[i].Distance) + "km</font></label><br/>"
 	}
 	$("#area").html(src);
-	geocoderfun(uniqsortdata);
 }
 // 班别列表
 function get_list(city) {
@@ -350,7 +359,6 @@ console.log(name)
 
 function index() {
 	get_banner();
-	get_area();
 
 }
 
@@ -372,7 +380,18 @@ function subsign() {
 }
 
 function test() {
-	get_station()
+	get_station();
+	let wxinfoindex=JSON.parse(sessionStorage.getItem("wxinfoindex"));
+	if (wxinfoindex!= null && wxinfoindex!= "null" && wxinfoindex !=undefined && wxinfoindex!= "" && wxinfoindex != "undefined")
+	{
+		if(wxinfoindex.data.name!= null && wxinfoindex.data.name!= "null" && wxinfoindex.data.name !=undefined && wxinfoindex.data.name!= "" && wxinfoindex.data.name != "undefined")
+		{
+			$("#name").val(wxinfoindex.data.name);
+			 $("#phone").val(wxinfoindex.data.phone)
+			 $("#name").attr("disabled",true)
+			 $("#phone").attr("disabled",true)
+		}
+	}
 }
 
 function geocoderfun(indexdata) {

@@ -7,6 +7,8 @@ let latlng = JSON.parse(sessionStorage.getItem("latlng"));
 
 // 微信配置pai
 let s_user_getwxpz = "s_user/tp.php?method=getwxpz";
+// 个人信息详情
+let user_index = "/api/user/index";
 // ajax-get调用
 function ajaxGet(_url, _data) {
 	let openid = sessionStorage.getItem("openid");
@@ -82,3 +84,12 @@ var getBaiduLocation = function(address,longitude, latitude,lng1,lat1) {
 	});
 };
 
+// 获取个人信息
+function wxinfoindex() {
+	let ajaxdata = {};
+	let data = ajaxPost(user_index, ajaxdata);
+	sessionStorage.setItem("wxinfoindex",JSON.stringify(data))
+	$("#my_model").attr("src", data.data.headimgurl)
+	$("#nickname").text(data.data.nickname)
+}
+wxinfoindex();
