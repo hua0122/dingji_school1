@@ -26,7 +26,7 @@ if (/Android/gi.test(navigator.userAgent)) {
 })();
 document.write('<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>');
 $(function() {
-	
+	response();
 	settitle();
 	wxlogin();
 	getydxc();
@@ -157,6 +157,7 @@ function uniq(array) {
 	}
 	return temp;
 }
+// 设置网页像素rem
 var response = function() {
 	var w = document.documentElement.clientWidth;
 	document.documentElement.style.fontSize = w / 37.5 + 'px'
@@ -167,12 +168,12 @@ window.onresize = function() {
 	clearTimeout(this.responseTimer);
 	this.responseTimer = setTimeout(response, 300);
 };
-response();
-
+// 设置网页title
 function settitle() {
 	document.title = "鼎吉驾校";
 
 }
+// 微信登录
 function wxlogin(){
 		if (sessionStorage.getItem("openid") != null && sessionStorage.getItem("openid") != undefined && sessionStorage.getItem(
 				"openid") != "null" && sessionStorage.getItem("openid") != "") {
@@ -186,4 +187,3 @@ function wxlogin(){
 			}
 		}
 }
-settitle();
