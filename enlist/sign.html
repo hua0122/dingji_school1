@@ -270,11 +270,7 @@
 						$(".sign .total").css('height', '45');
 					}
 
-$('input').on('focus',function( ){
-	
-	$(".activity").html("1:"+$('body').scrollTop())
-	$(".enroll-btn").html("1:"+$('body').scrollTop())
-});
+
 $('input').on('blur',function( ){
 	$('body').scrollTop(0)
 });
@@ -350,11 +346,7 @@ $('input').on('blur',function( ){
 				$(".other").show();
 			}
 			
-			$('input').on('focus',function( ){
-				
-				$(".activity").html($('body').scrollTop())
-				$(".enroll-btn").html($('body').scrollTop())
-			});
+		
 			$('input').on('blur',function( ){
 				$('body').scrollTop(0)
 			});
