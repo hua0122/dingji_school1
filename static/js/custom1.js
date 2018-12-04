@@ -29,7 +29,7 @@ function inputblur(){
 	$('input').on('focus',function( ){
 		
 		$(this).scrollIntoView();
-		$(".infograde_name").text("聚焦")
+		$("total-count").text("聚焦")
 	});
 	$('input').on('blur',function( ){
 		$('body').scrollTop(0)
