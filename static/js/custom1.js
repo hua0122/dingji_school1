@@ -28,8 +28,8 @@ function inputblur(){
 	
 	$('input').on('focus',function( ){
 		
-		$(this).scrollIntoView();
-		$("total-count").text("聚焦")
+		$(".total-count").text("聚焦");
+		this.scrollIntoView();
 	});
 	$('input').on('blur',function( ){
 		$('body').scrollTop(0)
