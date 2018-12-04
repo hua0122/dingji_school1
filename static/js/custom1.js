@@ -27,9 +27,10 @@ if (/Android/gi.test(navigator.userAgent)) {
 function inputblur(){
 	$('input').on('focus',function( ){
 		this.scrollIntoView();
+		alert($(this).scrollTop())
 	});
 	$('input').on('blur',function( ){
-		$('body').scrollTop(0)
+		$('body').scrollTop(0);
 	});
 }
 document.write('<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>');
