@@ -54,6 +54,7 @@ function study() {
 		$(".infosn").text(data.data.study.sn);
 		$(".infosign_date").text(data.data.study.sign_date);
 		$(".infocontent").html(data.data.study.content);
+		$(".infonotice").html(data.data.study.notice);
 		$(".activity_name").html(data.data.study.activity_name);
 		if (data.data.study.activity_type != null && data.data.study.activity_type != "null" && data.data.study.activity_type !=
 			undefined && data.data.study.activity_type != "undefined") {
@@ -69,10 +70,19 @@ function study() {
 				'<div class="col-xs-12 activity_gift" style="border-top: 1px solid #ccc"><p><b style="font-size: 16px; font-weight: 500">获赠</b><span class="span-right">' +
 				data.data.study.activity_gift + '</span></p></div>')
 		}
-		$(".codecode").text(data.data.code.code);
-		$(".codeverify").text(data.data.code.verify);
-		$(".codestation_name").text(data.data.code.station_name);
-		$(".codecreate_time").text(data.data.code.create_time);
+		if(data.data.code.code_id!= null && data.data.code.code_id!= undefined && data.data.code.code_id!= "null" && data.data.code.code_id!= ""){
+			
+				$(".codebox").hide();
+				$(".codeboxshow").show();
+			$(".codecode").text(data.data.code.code);
+			$(".codeverify").text(data.data.code.verify);
+			$(".codestation_name").text(data.data.code.station_name);
+			$(".codecreate_time").text(data.data.code.create_time);
+		}
+		else{
+			$(".codebox").show();
+			$(".codeboxshow").hide();
+		}
 
 		getBaiduLocation(latlng.lng, latlng.lat, data.data.study.lng, data.data.study.lat); //转换为百度坐标
 	}

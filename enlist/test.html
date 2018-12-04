@@ -38,6 +38,38 @@
 		<link rel="stylesheet" type="text/css" href="../static/css/custom.css">
 		<link rel="stylesheet" type="text/css" href="../static/css/iconfont.css">
 		<link rel="stylesheet" type="text/css" href="../static/css/new_add.css" />
+		<style type="text/css">
+			.shenqing div{
+				display: flex;
+				align-items: center;
+			}
+			.shenqing div .left{
+				border-right: 1px solid #ccc;
+			}
+			.success .code .address{
+				border: 0;
+			}
+			.popo{
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: rgba(0,0,0,0.4);
+				display: none;
+			}
+			.kong{
+				height: auto;
+			}
+			.data input{
+				width: 100%;
+				padding: 1rem 0;
+			}
+			.data a{
+				display: block;
+				padding: 1rem 0;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -64,7 +96,7 @@
 			<div class="row explain">
 				<p class="col-xs-12">*说明：申请后您会收到体检码，请携带体检码和身份证到所选择的体检站进行体检</p>
 			</div>
-
+			<div class="popo"></div>
 			<form method="post" name="tj_code_form" id="tj_code_form" style="display:none;position: fixed;
     bottom: 0;width:100%;">
 				<div class="row data">
@@ -105,8 +137,14 @@
 				let i = $(this).parent().index();
 
 				$("#tj_code_form").show();
+				$(".popo").show();
 				$("#address").html('(' + get_station[i].name + ')' + get_station[i].address);
 				$("#station_id").val(get_station[i].id);
+			})
+			$(".popo").click(function(){
+				
+								$("#tj_code_form").hide();
+								$(".popo").hide();
 			})
 		})
 	</script>

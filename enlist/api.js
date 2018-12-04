@@ -342,7 +342,7 @@ console.log(name)
 		location.reload();
 	} else {
 		alert(data.msg);
-		location.href = "../enlist/sign_fail.html";
+		// location.href = "../enlist/sign_fail.html";
 	}
 
 }

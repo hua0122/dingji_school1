@@ -42,9 +42,7 @@
 
 	<style>
 
-		.video{
-        background-color: #fff;
-    }
+	
 	div:after,div:before{
 		display: none;
 	}
@@ -64,7 +62,7 @@
         float: right;
         width:35%;
         margin-top: 10px;
-		padding:20px 0 !important;
+		padding:1rem  !important;
 		box-sizing: border-box;
     }
     .title-right .title{
@@ -72,19 +70,19 @@
         font-weight: 800;
         width:100%;
         display: block;
+		padding-bottom: .2rem;
+		box-sizing: border-box;
     }
     .title-right .xtitle{
         font-size: 12px;
         width:100%;
         display: block;
-        margin-top: 8px;
-        height: 15px;
+		line-height: 1.6rem;
     }
     .title-right .address{
         font-size: 12px;
         width:100%;
         display: block;
-        margin-top: 8px;
         text-align: right;
     }
     .title-right .address img{
@@ -110,6 +108,13 @@
 		padding: 0;
 		line-height: 2.5rem;
 		}
+			.video{
+				padding: 0 !important;
+		}
+		.video .img-left{
+			padding: 0;
+			box-sizing: border-box;
+		}
 </style>
 	<body>
 		<!--[if lt IE 9]>对不起，浏览器版本太低~！<![endif]-->
@@ -117,8 +122,7 @@
 			<!-- {if $info} -->
 			<div class="info">
 
-				<div class="row site">
-					<h1 class="col-xs-12" style="color: #0baae4">场地位置</h1>
+				<div class="row site video">
 					<a id="address" href="">
 						<div class="img-left">
 
@@ -139,7 +143,7 @@
 
 				<div class="row site siteinfo">
 					<h1 class="col-xs-12" style="color: #0baae4">班别信息</h1>
-					<div class="col-xs-12" style="border-bottom: 1px solid #ccc">
+					<div class="col-xs-12" style="border-bottom: 1px solid #ccc;padding: .5rem 1.2rem;">
 						<p><b style="font-size: 16px; font-weight: 500" class="infograde_name">{$info.grade_name}</b><span class="span-right infoprice">{$info.price}元</span></p>
 					</div>
 					<div class="col-xs-12">
@@ -163,6 +167,11 @@
 				</div>
 
 				<div class="row assess">
+					<h1 class="col-xs-12" style="color: #0baae4">学车须知</h1>
+					<div class="col-xs-12 assess-nav infonotice">
+					</div>
+				</div>
+				<div class="row assess">
 					<h1 class="col-xs-12" style="color: #0baae4">订单信息</h1>
 					<div class="col-xs-12 assess-nav">
 						<p class="b">交易单号<span class="span-right1 infosn">{$info.sn}</span></p>
@@ -174,12 +183,15 @@
 
 				<div class="row assess">
 					<h1 class="col-xs-12" style="color: #0baae4">体检信息</h1>
-					<div class="col-xs-12 assess-nav">
-						<p class="b">体检源码<span class="span-right1 codecode">{$code.code}</span></p>
-						<p class="b">体检新码<span class="span-right1 codeverify">{$code.verify}</span></p>
-						<p class="b">体检站位置<span class="span-right1 codestation_name">{$code.station_name}<span style="color: #0baae4;"><img
+					<div class="col-xs-12 assess-nav codeboxshow">
+						<p class="b">体检源码<span class="span-right1 codecode"></span></p>
+						<p class="b">体检新码<span class="span-right1 codeverify"></span></p>
+						<p class="b">体检站位置<span class="span-right1 codestation_name"><span style="color: #0baae4;"><img
 									 src="../static/images/map1.png" width="20" /> > </span></span></p>
-						<p class="b">体检码申请时间<span class="span-right1 codecreate_time">{$code.create_time}</span></p>
+						<p class="b">体检码申请时间<span class="span-right1 codecreate_time"></span></p>
+					</div>
+					<div class="codebox">
+						暂无体检信息
 					</div>
 				</div>
 			</div>
