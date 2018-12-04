@@ -17,9 +17,9 @@
 		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&amp;ak=DBd897f58d7a63e585485e3dea011253"></script>
 		<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&amp;ak=DBd897f58d7a63e585485e3dea011253&amp;services=&amp;t=20181029172410"></script>
 
-	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
-	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 		<link rel="stylesheet" type="text/css" href="../static/css/normalize.css">
@@ -59,16 +59,16 @@
 				</span>
 			</div>
 
-			<div  class="row address">
+			<div class="row address">
 				<a id="address" style="display: flex;justify-content: space-between;">
-					
-				<span><span>场地:<span><input type="hidden" name="class" id="area_id" value="">
-						<font class="gradearea_name"></font>
-					</span></span></span>
-				<span class="map right">
-					<img src="../static/images/map1.png" width="20" />
-						> 
-						</span>
+
+					<span><span>场地:<span><input type="hidden" name="class" id="area_id" value="">
+								<font class="gradearea_name"></font>
+							</span></span></span>
+					<span class="map right">
+						<img src="../static/images/map1.png" width="20" />
+						>
+					</span>
 				</a>
 			</div>
 
@@ -91,8 +91,8 @@
 			<div class="row notice">
 				<h1 class="col-xs-12">填写信息</h1>
 				<div class="col-xs-12">
-					<input type="text" name="name" id="name" placeholder="请输入您的姓名"  />
-					
+					<input type="text" name="name" id="name" placeholder="请输入您的姓名" />
+
 					<input type="text" name="phone" id="phone" placeholder="请输入您的电话" />
 					<input type="text" name="cno" id="cno" placeholder="请输入您的身份证号码" />
 				</div>
@@ -110,18 +110,18 @@
 
 
 
-			
+
 
 		</div>
-<div class=" enroll">
-				<a href="tel:400-689-8909">
-					<div class="col-xs-4 enroll-call">
-						<p>咨询热线</p>
-						<p>400-689-8909</p>
-					</div>
-				</a>
-				<a class="col-xs-8 enroll-btn" href="javascript:" onclick="submit_sign()">我要报名</a>
-			</div>
+		<div class=" enroll">
+			<a href="tel:400-689-8909">
+				<div class="col-xs-4 enroll-call">
+					<p>咨询热线</p>
+					<p>400-689-8909</p>
+				</div>
+			</a>
+			<a class="col-xs-8 enroll-btn" href="javascript:" onclick="submit_sign()">我要报名</a>
+		</div>
 		<div class="c_alert_dialog dialog_open" style="display: none">
 			<div class="c_alert_mask" ontouchmove="return false"></div>
 			<div class="c_alert_wrap c_alert_width">
@@ -210,7 +210,7 @@
 
 
 				let grade_detail = JSON.parse(sessionStorage.getItem("grade_detail"));
-				getBaiduLocation("#address",latlng.lng, latlng.lat, grade_detail.lng, grade_detail.lat); //转换为百度坐标
+				getBaiduLocation("#address", latlng.lng, latlng.lat, grade_detail.lng, grade_detail.lat); //转换为百度坐标
 				sessionStorage.setItem("total_count", grade_detail.price);
 				subsign();
 				$('input:radio').click(function() {
@@ -299,6 +299,8 @@
 						sessionStorage.setItem("total_count", parseFloat(grade_detail.price).toFixed(2));
 					}
 				})
+				
+							inputblur();
 
 			});
 
@@ -342,9 +344,8 @@
 			function other() {
 				$(".other").show();
 			}
-			
-		
-			inputblur();
+
+
 		</script>
 
 
