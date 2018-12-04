@@ -65,7 +65,7 @@ function study() {
 		}
 		if (data.data.study.activity_gift != null && data.data.study.activity_gift != "null" && data.data.study.activity_gift !=
 			undefined && data.data.study.activity_gift != "" && data.data.study.activity_gift != "undefined") {
-			$(".site").append(
+			$(".siteinfo").append(
 				'<div class="col-xs-12 activity_gift" style="border-top: 1px solid #ccc"><p><b style="font-size: 16px; font-weight: 500">获赠</b><span class="span-right">' +
 				data.data.study.activity_gift + '</span></p></div>')
 		}
