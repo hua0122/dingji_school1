@@ -25,7 +25,7 @@ if (/Android/gi.test(navigator.userAgent)) {
 	}
 })();
 function inputblur(){
-	$('input').on('focus',function( ){
+	$('input').on('focus',function(e){
 		this.scrollIntoView();
 	});
 	$('input').on('blur',function( ){
