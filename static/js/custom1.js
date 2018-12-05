@@ -56,7 +56,7 @@ function getydxc() {
 					timestamp: data.content.timestamp, // 必填，生成签名的时间戳
 					nonceStr: data.content.nonceStr, // 必填，生成签名的随机串
 					signature: data.content.signature, // 必填，签名，见附录1
-					jsApiList: ['getLocation', 'chooseWXPay'
+					jsApiList: ['onMenuShareQZone', 'getLocation', 'chooseWXPay'
 					] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 				});
 
@@ -76,6 +76,18 @@ function getydxc() {
 								lat: latitude,
 								lng: longitude
 							}))
+						}
+					});
+					wx.onMenuShareQZone({
+						title: title, // 分享标题
+						desc: desc, // 分享描述
+						link: link, // 分享链接
+						imgUrl: imgUrl, // 分享图标
+						success: function() {
+							// 用户确认分享后执行的回调函数
+						},
+						cancel: function() {
+							// 用户取消分享后执行的回调函数
 						}
 					});
 				});
