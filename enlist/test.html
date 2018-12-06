@@ -10,12 +10,7 @@
 		<meta name="description" content="Yan">
 		<meta name="keywords" content="Yan">
 		<meta name="author" content="Yan">
-		<script src="../static/js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../static/js/custom1.js" type="text/javascript" charset="utf-8"></script>
-		<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
-		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&amp;ak=DBd897f58d7a63e585485e3dea011253"></script>
-		<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&amp;ak=DBd897f58d7a63e585485e3dea011253&amp;services=&amp;t=20181029172410"></script>
-
+		
 		<link rel="stylesheet" type="text/css" href="../static/css/normalize.css">
 		<link rel="stylesheet" type="text/css" href="../static/css/default.css">
 		<link rel="stylesheet" href="../static/css/main.css">
@@ -134,6 +129,11 @@
 		</div>
 
 	</body>
+<script src="../static/js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../static/js/custom1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&amp;ak=DBd897f58d7a63e585485e3dea011253"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&amp;ak=DBd897f58d7a63e585485e3dea011253&amp;services=&amp;t=20181029172410"></script>
 
 	<script src="../static/js/apiRoot.js" type="text/javascript" charset="utf-8"></script>
 	<script src="api.js" type="text/javascript" charset="utf-8"></script>
@@ -147,8 +147,8 @@
 
 				$("#tj_code_form").show();
 				$(".popo").show();
-				$("#address").html('(' + get_station[i].name + ')' + get_station[i].address);
-				$("#station_id").val(get_station[i].id);
+				$("#address").html('(' + $(this).find(".station").text() + ')' + $(this).find(".dizhi").text() );
+				$("#station_id").val($(this).find(".station_id").val());
 			})
 			$(".popo").click(function() {
 

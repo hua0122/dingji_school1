@@ -224,6 +224,7 @@ function get_station() {
 			'<span class="left tit">' +
 			'<span class="station">' + data.data[i].name + '</span>' +
 			' <span class="dizhi">地址:' + data.data[i].address + '</span>' +
+			'<input type="hidden" class="station_id" value="'+data.data[i].id+'" />'+
 			'</span>' +
 			'<a class="address" class="right address">距您' + distancetext + 'km <img src="../static/images/map1.png" width="30"/></a>' +
 			'</div>' +

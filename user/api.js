@@ -44,6 +44,7 @@ function study() {
 		$(".infopayment").text(data.data.study.payment);
 		$(".infounpaid").text(data.data.study.unpaid);
 		$(".infosn").text(data.data.study.sn);
+		$(".wechat").text(data.data.study.wechat);
 		$(".infosign_date").text(data.data.study.sign_date);
 		$(".infocontent").html(data.data.study.content);
 		$(".infonotice").html(data.data.study.notice);
