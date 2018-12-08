@@ -851,8 +851,8 @@ body {
 .footer a{
 	color: #777 !important;
 }
-.footer .active{
-	color: #22A7F0;
+.footer a.active{
+	color: #22A7F0 !important;
 }
 
 .order{
