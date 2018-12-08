@@ -379,6 +379,8 @@
 				get_list(garetextid.garetextid);
 				$("#text").html(garetextid.garetextname);
 				area();
+				console.log($('input:radio[name="city"]').val())
+				console.log(garetextid.garetextid)
 				 if($('input:radio[name="city"]').val()==garetextid.garetextid){
 					 $('input:radio[name="city"]').attr("checked",true);
 				 }
