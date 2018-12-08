@@ -430,7 +430,7 @@ body {
 	border-bottom: 1px solid #D9D9D9;
 }
 .mold>div{
-	padding: 0 0 0 16px;
+	padding: 0 16px;
 }
 .mold>div>div{
 	padding: 20px 16px 20px 0;
