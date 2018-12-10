@@ -73,6 +73,37 @@
 			.application-btn{
 				display: block;
 			}
+			
+			.confirm{
+				width: 80%;
+				background: #fff;
+				z-index: 1;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				border-radius: .8rem;
+				overflow: hidden;
+				display: none;
+			}
+			.confirm .text{
+				padding: 1rem 1.5rem;
+				box-sizing: border-box;
+				border-bottom: 1px solid #ddd;
+				color: #333;
+			}
+			.confirm .btn{
+				display: flex;
+			}
+			.confirm .btn .item{
+				flex: 1;
+				text-align: center;
+				color: #333;
+			}
+			.confirm .btn .item:first-child{
+				border-right:  1px solid #ddd;
+				color: #22A7F0;
+			}
 		</style>
 	</head>
 
@@ -128,6 +159,15 @@
 			</form>
 		</div>
 
+			<div class="confirm">
+				<div class="text">
+					体检码申请成功,您可以到学习中心最底部查看,也可以在微信公众号对话窗口的通知消息中进行查看
+				</div>
+				<div class="btn">
+					<a href="../user/study.html" class="item">去查看</a>
+					<a href="../index/index.html" class="item">返回首页</a>
+				</div>
+			</div>
 	</body>
 <script src="../static/js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../static/js/custom1.js" type="text/javascript" charset="utf-8"></script>

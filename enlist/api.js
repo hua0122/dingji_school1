@@ -55,44 +55,44 @@ function get_area() {
 }
 
 function area(longitude, latitude) {
-	let uniqsortdata=JSON.parse(sessionStorage.getItem("uniqsortdata"));
+	let uniqsortdata = JSON.parse(sessionStorage.getItem("uniqsortdata"));
 	let src = "";
-	if (uniqsortdata!= null && uniqsortdata!= "null" && uniqsortdata !=undefined && uniqsortdata!= "" && uniqsortdata != "undefined")
-	{
-		
-	}else{
-		
-	let ajaxdata = {
-		school_id: school_id
-	}
-	let data = ajaxGet(sign_get_area, ajaxdata)
-	var map = new BMap.Map("container");
-	var point1 = new BMap.Point(longitude, latitude);
+	if (uniqsortdata != null && uniqsortdata != "null" && uniqsortdata != undefined && uniqsortdata != "" && uniqsortdata !=
+		"undefined") {
 
-	let DistanceSORT = [];
-	for (var i = 0; i < data.data.length; i++) {
-		var point2 = new BMap.Point(data.data[i].lng, data.data[i].lat);
-		let Distance = map.getDistance(point1, point2) / 1000;
-		data.data[i]["Distance"] = Distance;
-		DistanceSORT.push(Distance);
-	}
-	// 排序
-	DistanceSORT.sort(function(x, y) {
-		return x - y;
-	});
-	let sortdata = [];
-	for (var i = 0; i < DistanceSORT.length; i++) {
-		for (let j = 0; j < data.data.length; j++) {
-			if (data.data[j].Distance == DistanceSORT[i]) {
-				sortdata.push(data.data[j]);
+	} else {
 
+		let ajaxdata = {
+			school_id: school_id
+		}
+		let data = ajaxGet(sign_get_area, ajaxdata)
+		var map = new BMap.Map("container");
+		var point1 = new BMap.Point(longitude, latitude);
+
+		let DistanceSORT = [];
+		for (var i = 0; i < data.data.length; i++) {
+			var point2 = new BMap.Point(data.data[i].lng, data.data[i].lat);
+			let Distance = map.getDistance(point1, point2) / 1000;
+			data.data[i]["Distance"] = Distance;
+			DistanceSORT.push(Distance);
+		}
+		// 排序
+		DistanceSORT.sort(function(x, y) {
+			return x - y;
+		});
+		let sortdata = [];
+		for (var i = 0; i < DistanceSORT.length; i++) {
+			for (let j = 0; j < data.data.length; j++) {
+				if (data.data[j].Distance == DistanceSORT[i]) {
+					sortdata.push(data.data[j]);
+
+				}
 			}
 		}
-	}
-	 uniqsortdata = uniq(sortdata);
-	sessionStorage.setItem("uniqsortdata",JSON.stringify(uniqsortdata))
-	
-	geocoderfun(uniqsortdata);
+		uniqsortdata = uniq(sortdata);
+		sessionStorage.setItem("uniqsortdata", JSON.stringify(uniqsortdata))
+
+		geocoderfun(uniqsortdata);
 	}
 	for (var i = 0; i < uniqsortdata.length; i++) {
 		src += "<label><font><input type='radio' name='city' value=" + uniqsortdata[i].id + "/>" + uniqsortdata[i].name +
@@ -141,7 +141,7 @@ function grade_detail() {
 		$(".infocontent").html(data.data.content);
 		$(".infonotice").html(data.data.notice);
 		$(".enroll-btn").attr("href", "../enlist/sign.html?id=" + data.data.notice)
-		getBaiduLocation("#address",latlng.lng, latlng.lat, data.data.lng, data.data.lat); //转换为百度坐标
+		getBaiduLocation("#address", latlng.lng, latlng.lat, data.data.lng, data.data.lat); //转换为百度坐标
 
 	}
 }
@@ -224,13 +224,14 @@ function get_station() {
 			'<span class="left tit">' +
 			'<span class="station">' + data.data[i].name + '</span>' +
 			' <span class="dizhi">地址:' + data.data[i].address + '</span>' +
-			'<input type="hidden" class="station_id" value="'+data.data[i].id+'" />'+
+			'<input type="hidden" class="station_id" value="' + data.data[i].id + '" />' +
 			'</span>' +
-			'<a class="address" class="right address">距您' + distancetext + 'km <img src="../static/images/map1.png" width="30"/></a>' +
+			'<a class="address" class="right address">距您' + distancetext +
+			'km <img src="../static/images/map1.png" width="30"/></a>' +
 			'</div>' +
 			'</li>';
 
-		getBaiduLocation(".address",latlng.lng, latlng.lat, data.data[i].lng, data.data[i].lat); //转换为百度坐标
+		getBaiduLocation(".address", latlng.lng, latlng.lat, data.data[i].lng, data.data[i].lat); //转换为百度坐标
 	}
 	$(".stationitem").html(src);
 }
@@ -381,15 +382,15 @@ function subsign() {
 
 function test() {
 	get_station();
-	let wxinfoindex=JSON.parse(sessionStorage.getItem("wxinfoindex"));
-	if (wxinfoindex!= null && wxinfoindex!= "null" && wxinfoindex !=undefined && wxinfoindex!= "" && wxinfoindex != "undefined")
-	{
-		if(wxinfoindex.data.name!= null && wxinfoindex.data.name!= "null" && wxinfoindex.data.name !=undefined && wxinfoindex.data.name!= "" && wxinfoindex.data.name != "undefined")
-		{
+	let wxinfoindex = JSON.parse(sessionStorage.getItem("wxinfoindex"));
+	if (wxinfoindex != null && wxinfoindex != "null" && wxinfoindex != undefined && wxinfoindex != "" && wxinfoindex !=
+		"undefined") {
+		if (wxinfoindex.data.name != null && wxinfoindex.data.name != "null" && wxinfoindex.data.name != undefined &&
+			wxinfoindex.data.name != "" && wxinfoindex.data.name != "undefined") {
 			$("#name").val(wxinfoindex.data.name);
-			 $("#phone").val(wxinfoindex.data.phone)
-			 $("#name").attr("disabled",true)
-			 $("#phone").attr("disabled",true)
+			$("#phone").val(wxinfoindex.data.phone)
+			$("#name").attr("disabled", true)
+			$("#phone").attr("disabled", true)
 		}
 	}
 }
@@ -463,27 +464,32 @@ function transform_order() {
 	}
 	let data = ajaxPost(sign_apply, ajaxdata)
 	if (data.status == "200") {
-		wx.ready(function() {
-			wx.chooseWXPay({
-				appId: data.data.appId, //公众号名称，由商户传入
-				timestamp: data.data.timestamp, //时间戳，自1970年以来的秒数
-				nonceStr: data.data.nonceStr, //随机串
-				package: data.data.package,
-				signType: "MD5", //微信签名方式：
-				paySign: data.data.paySign, //微信签名
-				success: function(res) {
-					//alert(res.msg);
-					window.location.href = "../enlist/pay_success.html";
-				},
-				cancel: function(res) { // 支付取消回调函数
-					window.location.href = "../enlist/pay_fail.html";
-				},
-				fail: function(res) { // 支付失败回调函数
-					window.location.href = "../enlist/pay_fail.html";
-				}
+		if (data.data == null || data.data == "null" || data.data == "") {
+			$(".confirm").show();
+		} else {
+			wx.ready(function() {
+				wx.chooseWXPay({
+					appId: data.data.appId, //公众号名称，由商户传入
+					timestamp: data.data.timestamp, //时间戳，自1970年以来的秒数
+					nonceStr: data.data.nonceStr, //随机串
+					package: data.data.package,
+					signType: "MD5", //微信签名方式：
+					paySign: data.data.paySign, //微信签名
+					success: function(res) {
+						//alert(res.msg);
+						window.location.href = "../enlist/pay_success.html";
+					},
+					cancel: function(res) { // 支付取消回调函数
+						window.location.href = "../enlist/pay_fail.html";
+					},
+					fail: function(res) { // 支付失败回调函数
+						window.location.href = "../enlist/pay_fail.html";
+					}
+				});
 			});
-		});
-		localStorage.hurl = "";
+			localStorage.hurl = "";
+		}
+
 	} else if (data.status == "500") {
 		alert(data.msg);
 	} else {
