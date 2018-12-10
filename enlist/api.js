@@ -21,6 +21,8 @@ let user_agreement = "/api/user/agreement";
 // 活动选择
 let sign_activity_detail = "/api/sign/activity_detail";
 let sign_apply = "/api/sign/apply";
+// 体检页面默认数据
+let sign_get_sign ="/api/sign/get_sign";
 // let latlng=JSON.parse(sessionStorage.getItem("latlng"));
 // 报名api
 // banner
@@ -382,17 +384,15 @@ function subsign() {
 
 function test() {
 	get_station();
-	let wxinfoindex = JSON.parse(sessionStorage.getItem("wxinfoindex"));
-	if (wxinfoindex != null && wxinfoindex != "null" && wxinfoindex != undefined && wxinfoindex != "" && wxinfoindex !=
-		"undefined") {
-		if (wxinfoindex.data.name != null && wxinfoindex.data.name != "null" && wxinfoindex.data.name != undefined &&
-			wxinfoindex.data.name != "" && wxinfoindex.data.name != "undefined") {
-			$("#name").val(wxinfoindex.data.name);
-			$("#phone").val(wxinfoindex.data.phone)
-			$("#name").attr("disabled", true)
-			$("#phone").attr("disabled", true)
-		}
+	let ajaxdata={};
+	let data = ajaxPost(sign_get_sign,ajaxdata);
+	if(data.status=="200"){
+		$("#name").val(data.data.name);
+		$("#phone").val(data.data.phone)
+		$("#name").attr("disabled", true)
+		$("#phone").attr("disabled", true)
 	}
+
 }
 
 function geocoderfun(indexdata) {
