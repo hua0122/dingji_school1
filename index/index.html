@@ -353,6 +353,10 @@
 		<script src="api.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			$(function() {
+				
+				$("body").scroll(function() {
+					console.log(window.document.body.scrollTop)
+				});
 				if (sessionStorage.getItem("openid") != null && sessionStorage.getItem("openid") != undefined && sessionStorage.getItem(
 						"openid") != "null" && sessionStorage.getItem("openid") != "") {
 
