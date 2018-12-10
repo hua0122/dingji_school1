@@ -81,11 +81,14 @@ function get_beautiful() {
 	}
 	let data = ajaxGet(index_get_beautiful, ajaxdata)
 	let src = "";
-	for (var i = 1; i < data.data.length; i++) {
-
-		src += "<li>" +
-			"<span class='pic'><img src='" + domainName + data.data[i].picurl + "'></span>" +
-			"</li>";
+	if(data.status=="200"){
+		
+			for (var i = 1; i < data.data.length; i++) {
+		
+				src += "<li>" +
+					"<span class='pic'><img src='" + domainName + data.data[i].picurl + "'></span>" +
+					"</li>";
+			}
 	}
 	$("#marquee1_1").html(src);
 	// 开启无缝滚动
