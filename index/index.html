@@ -352,10 +352,11 @@
 		<script src="../static/js/apiRoot.js" type="text/javascript" charset="utf-8"></script>
 		<script src="api.js" type="text/javascript" charset="utf-8"></script>
 		<script>
-			$(function() {
-				document.body.addEventListener("touchmove ",function(e){
+			
+				window.addEventListener("scroll",function(e){
 					e.preventDefault();
 				})
+			$(function() {
 				if (sessionStorage.getItem("openid") != null && sessionStorage.getItem("openid") != undefined && sessionStorage.getItem(
 						"openid") != "null" && sessionStorage.getItem("openid") != "") {
 
