@@ -353,10 +353,10 @@
 		<script src="api.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			$(function() {
-				
-				$("body").scroll(function() {
-					console.log(window.document.body.scrollTop)
-				});
+				alert("1")
+				document.body.addEventListener("touchmove ",function(e){
+					e.preventDefault();
+				})
 				if (sessionStorage.getItem("openid") != null && sessionStorage.getItem("openid") != undefined && sessionStorage.getItem(
 						"openid") != "null" && sessionStorage.getItem("openid") != "") {
 

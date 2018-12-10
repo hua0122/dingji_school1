@@ -7,23 +7,7 @@ if (/Android/gi.test(navigator.userAgent)) {
 		}
 	});
 }
-//判断手机类型
-window.onload = function () {
- //alert($(window).height());
- var u = navigator.userAgent;
- if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {//安卓手机
- } else if (u.indexOf('iPhone') > -1) {//苹果手机
- //屏蔽ios下上下弹性
- $(window).on('scroll.elasticity', function (e) {
-  e.preventDefault();
- }).on('touchmove.elasticity', function (e) {
-  e.preventDefault();
- });
- } else if (u.indexOf('Windows Phone') > -1) {//winphone手机
- }
- //预加载
- loading();
-}
+
 //微信浏览器中，aler弹框不显示域名
 (function() {
 	//先判断是否为微信浏览器
