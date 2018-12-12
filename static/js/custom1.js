@@ -63,7 +63,8 @@ function getydxc() {
 				});
 
 				var title = "易点学车服务平台";
-				var link = "http://bmqdtest.yidianxueche.cn/";
+				var link = "http://ydxctrue.yidianxueche.cn/";
+				// var link = "http://bmqdtest.yidianxueche.cn/";
 				var imgUrl = "http://ydxctrue.yidianxueche.cn/template/wap/public/css/self/image/banner_1.jpg";
 				var desc = "人工智能引领驾培未来，易点学车定制中国好司机";
 				var type = "";
