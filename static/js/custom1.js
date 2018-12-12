@@ -140,7 +140,10 @@ function getydxc() {
 						cancel: function() {
 							document.title = "22";
 							// 用户取消分享后执行的回调函数
-						}
+						},
+                        fail: function (res) {
+                            alert("33");
+                        }
 					});
 				});
 			} else {
