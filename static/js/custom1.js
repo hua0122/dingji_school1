@@ -142,14 +142,14 @@ function getydxc() {
 						trigger: function(res) {
 						},
 						success: function(res) {
-								document.title="新接口已分享"
+								// document.title="新接口已分享"
 						},
 						cancel: function(res) {
 							
-							setTimeout(function(){
-								document.title="已取消"
-							   //回调要执行的代码
-							}, 500);
+// 							setTimeout(function(){
+// 								document.title="已取消"
+// 							   //回调要执行的代码
+// 							}, 500);
 							
 						},
 						fail: function(res) {
