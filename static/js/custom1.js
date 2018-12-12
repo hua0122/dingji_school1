@@ -24,13 +24,14 @@ if (/Android/gi.test(navigator.userAgent)) {
 		}
 	}
 })();
-function inputblur(){
-	$('input').on('focus',function(e){
+
+function inputblur() {
+	$('input').on('focus', function(e) {
 		this.scrollIntoView();
 		document.getElementsByTagName('body')[0].scrollTop = document.getElementsByTagName('body')[0].scrollHeight;
 		document.getElementsByTagName('html')[0].scrollTop = document.getElementsByTagName('html')[0].scrollHeight;
 	});
-	$('input').on('blur',function( ){
+	$('input').on('blur', function() {
 		$('body').scrollTop(0);
 	});
 }
@@ -138,12 +139,15 @@ function getydxc() {
 							// 用户确认分享后执行的回调函数
 						},
 						cancel: function() {
-							document.title = "22";
+							setTimeout(function() {
+								//回调要执行的代码
+								document.title = "22";
+							}, 500);
 							// 用户取消分享后执行的回调函数
 						},
-                        fail: function (res) {
-                            alert("33");
-                        }
+						fail: function(res) {
+								document.title = "33";
+						}
 					});
 				});
 			} else {
@@ -189,16 +193,16 @@ function settitle() {
 
 }
 // 微信登录
-function wxlogin(){
-		if (sessionStorage.getItem("openid") != null && sessionStorage.getItem("openid") != undefined && sessionStorage.getItem(
-				"openid") != "null" && sessionStorage.getItem("openid") != "") {
-	
+function wxlogin() {
+	if (sessionStorage.getItem("openid") != null && sessionStorage.getItem("openid") != undefined && sessionStorage.getItem(
+			"openid") != "null" && sessionStorage.getItem("openid") != "") {
+
+	} else {
+		if (window.location.href.indexOf("index/index.html") == -1) {
+			window.location.href = "http://bmqdtest.yidianxueche.cn";
 		} else {
-			if(window.location.href.indexOf("index/index.html")==-1){
-				window.location.href="http://bmqdtest.yidianxueche.cn";
-			}else{
 			var openid = getQueryString("openid");
 			sessionStorage.setItem("openid", openid)
-			}
 		}
+	}
 }
