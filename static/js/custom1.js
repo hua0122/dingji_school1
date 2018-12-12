@@ -138,6 +138,7 @@ function getydxc() {
 							// 用户确认分享后执行的回调函数
 						},
 						cancel: function() {
+							document.title = "22";
 							// 用户取消分享后执行的回调函数
 						}
 					});
