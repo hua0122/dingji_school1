@@ -134,19 +134,18 @@ function getydxc() {
 						desc: desc, // 分享描述
 						link: link, // 分享链接
 						imgUrl: imgUrl, // 分享图标
-						success: function() {
-							document.title = "11";
-							// 用户确认分享后执行的回调函数
+						trigger: function(res) {
+							document.title = "用户点击分享到朋友圈";
 						},
-						cancel: function() {
-							setTimeout(function() {
-								//回调要执行的代码
-								document.title = "22";
-							}, 500);
-							// 用户取消分享后执行的回调函数
+						success: function(res) {
+							document.title = "已分享";
+						},
+						cancel: function(res) {
+							document.title = "已取消";
 						},
 						fail: function(res) {
-								document.title = "33";
+							
+								document.title = "用户点击分享到朋友圈";
 						}
 					});
 				});
