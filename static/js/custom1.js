@@ -142,7 +142,7 @@ function getydxc() {
 						trigger: function(res) {
 						},
 						success: function(res) {
-								document.title="已分享"
+								document.title="新接口已分享"
 						},
 						cancel: function(res) {
 							
