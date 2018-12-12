@@ -63,8 +63,8 @@ function getydxc() {
 				});
 
 				var title = "易点学车服务平台";
-				var link = "http://ydxctrue.yidianxueche.cn/";
-				// var link = "http://bmqdtest.yidianxueche.cn/";
+				// var link = "http://ydxctrue.yidianxueche.cn/";
+				var link = "http://bmqdtest.yidianxueche.cn/";
 				var imgUrl = "http://ydxctrue.yidianxueche.cn/template/wap/public/css/self/image/banner_1.jpg";
 				var desc = "人工智能引领驾培未来，易点学车定制中国好司机";
 				var type = "";
@@ -142,8 +142,15 @@ function getydxc() {
 						trigger: function(res) {
 						},
 						success: function(res) {
+								document.title="已分享"
 						},
 						cancel: function(res) {
+							
+							setTimeout(function(){
+								document.title="已取消"
+							   //回调要执行的代码
+							}, 500);
+							
 						},
 						fail: function(res) {
 						}
@@ -155,7 +162,8 @@ function getydxc() {
 		},
 		error: function(data) {
 			//layer.msg('删除失败!',{icon:1,time:1000});;
-		},
+		},//以下代码放入success内，
+
 	});
 }
 // 获取url有效信息
