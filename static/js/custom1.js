@@ -36,6 +36,7 @@ function inputblur(){
 }
 document.write('<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>');
 $(function() {
+	alert(11)
 	response();
 	settitle();
 	wxlogin();
