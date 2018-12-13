@@ -464,6 +464,7 @@ function transform_order() {
 	}
 	let data = ajaxPost(sign_apply, ajaxdata)
 	if (data.status == "200") {
+		alert(JSON.stringify(data.data))
 		if (data.data == null || data.data == "null" || data.data == "") {
 			$(".confirm").show();
 		} else {
