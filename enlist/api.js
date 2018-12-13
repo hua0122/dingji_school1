@@ -462,10 +462,8 @@ function transform_order() {
 		station_id: $("#station_id").val(),
 		money:"0.01"
 	}
-	alert(JSON.stringify(ajaxdata))
 	let data = ajaxPost(sign_apply, ajaxdata)
 	if (data.status == "200") {
-		alert(JSON.stringify(data.data))
 		if (data.data == null || data.data == "null" || data.data == "") {
 			$(".confirm").show();
 		} else {
@@ -485,7 +483,7 @@ function transform_order() {
 						window.location.href = "../enlist/pay_fail.html";
 					},
 					fail: function(res) { // 支付失败回调函数
-						// window.location.href = "../enlist/pay_fail.html";
+						window.location.href = "../enlist/pay_fail.html";
 					}
 				});
 			});
