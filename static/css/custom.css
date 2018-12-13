@@ -356,7 +356,7 @@ body {
 	padding: 0 0 0 16px ;
 }
 .assess>div>div{
-	padding: 20px 16px 20px 0;
+	padding: 20px 0 20px 0;
 	border-bottom: 1px solid #D9D9D9;
 }
 .assess>div>div:last-child{
@@ -369,6 +369,16 @@ body {
 }
 .assess span{
 	float: right;
+}
+.assess .marker{
+	color: #0067FF;
+	display: flex;
+	align-items: center;
+	padding-left: .5rem;
+	box-sizing: border-box;
+}
+.assess .marker span{
+	display: flex;
 }
 .assess p{
 	padding: 16px 0 0 0;

@@ -447,13 +447,13 @@ input[type=checkbox] {
 	float: right;
 	font-size: 14px;
 	color: #0067ff;
-	margin-right: 10px;
+	margin-right: 0;
 }
 
 .study .span-right1 {
 	float: right;
 	font-size: 14px;
-	margin-right: 10px;
+	margin-right: 0;
 }
 
 .study .site p {

@@ -72,7 +72,7 @@ function study() {
 					src+='<div class="item">'+
 							'<p class="b">体检源码<span class="span-right1 codecode">'+data.data.code[i].code+'</span></p>'+
 							'<p class="b">体检新码<span class="span-right1 codeverify">'+data.data.code[i].verify+'</span></p>'+
-							'<p class="b">体检站位置<a class="span-right1 codestation_name address">'+data.data.code[i].station_name+'<span style="color: #0067ff;"><span  class="fa fa-map-marker"></span> > </span></a></p>'+
+							'<p class="b">体检站位置<a class="span-right1 codestation_name address">'+data.data.code[i].station_name+'<span class="marker"><span  class="fa fa-map-marker"></span> > </span></a></p>'+
 							'<p class="b">体检码申请时间<span class="span-right1 codecreate_time">'+data.data.code[i].create_time+'</span></p>'+
 						'</div>';
 							getBaiduLocation(".address",latlng.lng, latlng.lat, data.data.code[i].lng, data.data.code[i].lat); //转换为百度坐标
