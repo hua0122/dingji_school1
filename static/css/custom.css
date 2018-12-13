@@ -434,7 +434,7 @@ body {
 }
 .mold>div>div{
 	padding: 20px 16px 20px 0;
-	border-bottom: 1px solid #D9D9D9;
+	border-bottom: 1px solid #eee;
 }
 .mold>div>div:last-child{
 	border: 0;
