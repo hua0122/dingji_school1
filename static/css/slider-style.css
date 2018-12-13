@@ -58,8 +58,8 @@
 	.cs-circleslight .br-slidecontrol ul li {
 		display:inline-block !important;
 		float:none !important;
-		width:1rem;
-		height:1rem;
+		width:10px;
+		height:10px;
 		border-radius: 100%;
 		background: #fff;
 		filter:none !important;
@@ -67,8 +67,8 @@
 	}
 
 	.cs-circleslight .br-slidecontrol ul li .br-control-selected {
-		width:1rem;
-		height:1rem;
+		width:10px;
+		height:10px;
 		border-radius: 100%;
 		background: #007AFF;
 	}
