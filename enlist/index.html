@@ -34,6 +34,8 @@
 		<link rel="stylesheet" type="text/css" href="../static/css/custom.css" />
 		<link rel="stylesheet" type="text/css" href="../static/css/iconfont.css" />
 		<link rel="stylesheet" type="text/css" href="../static/css/new_add.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/font-awesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../static/css/font-awesome.min.css"/>
 	</head>
 
 	<style type="text/css">
@@ -42,7 +44,7 @@
 			position: relative;
 			height: 200px;
 			overflow: hidden;
-			background: url(../static/images/loading.gif) 50% no-repeat;
+			/* background: url(../static/images/loading.gif) 50% no-repeat; */
 		}
 
 		.slides {
@@ -73,16 +75,19 @@
 
 		.flex-control-nav a {
 			display: inline-block;
-			width: 14px;
-			height: 14px;
-			line-height: 40px;
 			overflow: hidden;
-			background: url(../static/images/dot.png) right 0 no-repeat;
 			cursor: pointer;
+			width: 10px;
+			height: 10px;
+			border-radius: 100%;
+			
+			background: #fff;
+			color: #fff;
 		}
 
 		.flex-control-nav .flex-active {
-			background-position: 0 0;
+			background: #0067ff;
+			color: #0067ff;
 		}
 
 		.flex-direction-nav {
@@ -117,7 +122,7 @@
 
 		.city {
 			width: 90%;
-			color: #0baae4;
+			color: #0067ff;
 			height: 30px;
 			border: none;
 		}
@@ -162,7 +167,7 @@
 		}
 
 		.c_alert_width.c_alert_wrap {
-			padding:10px 0 0 0;
+			padding: 10px 0 0 0;
 			box-sizing: border-box;
 			width: 80%;
 			z-index: 1200;
@@ -210,7 +215,7 @@
 			font-weight: bold;
 			line-height: 1;
 			text-align: center;
-			color: #228BFE;
+			color: #0067ff;
 			text-decoration: none;
 			-webkit-appearance: none;
 			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -227,7 +232,7 @@
 			width: 100%;
 			transition: all .2s ease;
 			-webkit-transition: all .2s ease;
-			
+
 		}
 
 		.c_alert_con {
@@ -256,7 +261,9 @@
 		.nav-bar-item img {
 			height: 50px;
 		}
-		.flex-prev,.flex-next{
+
+		.flex-prev,
+		.flex-next {
 			display: none !important;
 		}
 	</style>
@@ -265,7 +272,7 @@
 
 		<div class="container">
 			<div class="flexslider">
-				<ul class="slides" >
+				<ul class="slides">
 
 				</ul>
 			</div>
@@ -293,9 +300,10 @@
 			<div class="row mold">
 				<h1 class="col-xs-12" id="select-city">
 					<div class="form-group">
-						<img src="../static/images/map.png" width="20" />
-						<span style="color:#0baae4;" id="text">加载中...</span>
-						<span style="color:#0baae4;float: right"> > </span>
+						<span class="fa fa-map-marker"></span>
+						<!-- <img src="../static/images/map.png" width="20" /> -->
+						<span style="color:#0067ff;" id="text">加载中...</span>
+						<span style="color:#0067ff;float: right"> > </span>
 					</div>
 				</h1>
 				<div class="c_alert_dialog dialog_open" style="display: none">
@@ -363,7 +371,7 @@
 		</a>
 	</div>
 	<div id="container"></div>
-	
+
 	<script src="../static/js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=DBd897f58d7a63e585485e3dea011253"></script>
 	<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
@@ -374,21 +382,20 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			index();
-			
-			let garetextid=JSON.parse(sessionStorage.getItem("garetext"))
-			if (garetextid!= null && garetextid!= "null" && garetextid !=undefined && garetextid!= "" && garetextid != "undefined")
-			{
+
+			let garetextid = JSON.parse(sessionStorage.getItem("garetext"))
+			if (garetextid != null && garetextid != "null" && garetextid != undefined && garetextid != "" && garetextid !=
+				"undefined") {
 				get_list(garetextid.garetextid);
 				$("#text").html(garetextid.garetextname);
 				area();
 				for (var i = 0; i < $('input:radio[name="city"]').length; i++) {
-					if($('input:radio[name="city"]').eq(i).val()==garetextid.garetextid){
-						$('input:radio[name="city"]').eq(i).attr("checked",true);
+					if ($('input:radio[name="city"]').eq(i).val() == garetextid.garetextid) {
+						$('input:radio[name="city"]').eq(i).attr("checked", true);
 					}
 				}
-			}
-			else{
-				
+			} else {
+
 				get_area();
 			}
 			$("#select-city").click(function() {
@@ -400,19 +407,22 @@
 			$("#confirm").click(function() {
 				//获取选中的值
 				var city = $('input:radio[name="city"]:checked').val();
-// 				if (city == null) {
-// 					alert("请选择一个区域");
-// 					return false;
-// 				}
+				// 				if (city == null) {
+				// 					alert("请选择一个区域");
+				// 					return false;
+				// 				}
 				get_list(city);
 				$(".dialog_open").hide();
 				var text = $('input:radio[name="city"]:checked')[0].nextSibling.nodeValue;
 				$("#text").html(text);
 
-				sessionStorage.setItem("garetext",JSON.stringify({"garetextid":city,"garetextname":text}))
+				sessionStorage.setItem("garetext", JSON.stringify({
+					"garetextid": city,
+					"garetextname": text
+				}))
 			});
 			$("#city").change(function() {
-				
+
 				var city = $(this).val();
 				get_list(city);
 			});

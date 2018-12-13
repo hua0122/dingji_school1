@@ -53,12 +53,12 @@
 }
 
 .sign .address .map {
-	color: #0baae4;
+	color: #0067ff;
 	height: 20px;
 }
 
 .sign .address .map a {
-	color: #0baae4;
+	color: #0067ff;
 	height: 20px;
 }
 
@@ -74,7 +74,7 @@
 }
 
 .sign .total .count {
-	color: #0baae4;
+	color: #0067ff;
 }
 
 .sign .notice input {
@@ -103,14 +103,14 @@
 .sign .notice .xieyi span input {
 	width: 15px;
 	height: 15px;
-	border: 1px solid #0baae4;
+	border: 1px solid #0067ff;
 	padding-top: 3px;
 	display: inline-block;
 	float: left;
 }
 
 .sign .notice .xieyi .color a {
-	color: #0baae4;
+	color: #0067ff;
 }
 
 #color-input-red+label {
@@ -121,7 +121,7 @@
 	position: relative;
 	top: 0px;
 	left: -10px;
-	background-color: #0baae4;
+	background-color: #0067ff;
 	float: left;
 }
 
@@ -220,7 +220,7 @@ input[type=checkbox] {
 }
 
 .modal-btn a:hover {
-	color: #22A7F0;
+	color: #0067ff;
 }
 
 .modal-body input {
@@ -235,7 +235,7 @@ input[type=checkbox] {
 	width: 90%;
 	height: 40px;
 	display: block;
-	background-color: #0baae4;
+	background-color: #0067ff;
 	color: #fff;
 	margin: 0px auto;
 
@@ -370,7 +370,7 @@ input[type=checkbox] {
 }
 
 .jts .row {
-	border-bottom: 1px solid #0baae4;
+	border-bottom: 1px solid #0067ff;
 }
 
 .jts .yhq {
@@ -446,7 +446,7 @@ input[type=checkbox] {
 .study .span-right {
 	float: right;
 	font-size: 14px;
-	color: #0baae4;
+	color: #0067ff;
 	margin-right: 10px;
 }
 
@@ -482,7 +482,7 @@ input[type=checkbox] {
 
 .feedback .row .btn {
 	width: 95%;
-	background-color: #22A7F0;
+	background-color: #0067ff;
 	color: #fff;
 	height: 40px;
 	margin: 0px auto;
@@ -512,7 +512,7 @@ input[type=checkbox] {
 .success .title span {
 	float: left;
 	display: block;
-	color: #0baae4;
+	color: #0067ff;
 }
 
 .success .code {

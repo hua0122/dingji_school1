@@ -139,33 +139,33 @@ body {
 }
 
 .coach-star-1 i:nth-of-type(1) {
-    color: #22A7F0;
+    color: #0067ff;
 }
 
 .coach-star-2 i:nth-of-type(1),
 .coach-star-2 i:nth-of-type(2) {
-    color: #22A7F0;
+    color: #0067ff;
 }
 
 .coach-star-3 i:nth-of-type(1),
 .coach-star-3 i:nth-of-type(2),
 .coach-star-3 i:nth-of-type(3) {
-    color: #22A7F0;
+    color: #0067ff;
 }
 
 .coach-star-4 i:nth-of-type(1),
 .coach-star-4 i:nth-of-type(2),
 .coach-star-4 i:nth-of-type(3),
 .coach-star-4 i:nth-of-type(4) {
-    color: #22A7F0;
+    color: #0067ff;
 }
 
 .coach-star-5 i {
-    color: #22A7F0;
+    color: #0067ff;
 }
 
 .coach-course {
-    color: #22A7F0;
+    color: #0067ff;
     margin-top: 7px;
 }
 
@@ -285,7 +285,7 @@ body {
 .drill-subject{
 	float: right;
 	font-size: 1.6rem;
-	color: #22A7F0;
+	color: #0067ff;
 }
 .drill-mark{
 	padding: 20px 0;
@@ -314,7 +314,7 @@ body {
 .authentication>div{
 	padding: 18px 0 19px 0;
 	text-align: center;
-	color: #22A7F0;
+	color: #0067ff;
 }
 .authentication i{
 	font-size: 2rem;
@@ -384,10 +384,10 @@ body {
 .enroll-call{
 	padding: 11px 8px;
 	background: #fff;
-	color: #22A7F0;
+	color: #0067ff;
 }
 .enroll-btn{
-	background: #22A7F0;
+	background: #0067ff;
 	color: #fff;
 	text-align: center;
 	font-size: 1.4rem;
@@ -453,7 +453,7 @@ body {
 }
 .mold span{
 	font-size: 1.4rem;
-	color: #ff1a1a;
+	color: #0067ff;
 }
 
 .mold-on{
@@ -534,7 +534,7 @@ body {
 	color: #9B9B9B;
 }
 .protocol a{
-	color: #22A7F0;
+	color: #0067ff;
 }
 
 .success{
@@ -598,7 +598,7 @@ body {
 }
 .pay-btn a:hover{
 	border-color:transparent ;
-	background: #22A7F0;
+	background: #0067ff;
 	color: #fff;
 }
 
@@ -615,7 +615,7 @@ body {
 }
 .map-k3{
 	border-radius:50% ;
-	background: #22A7F0;
+	background: #0067ff;
 	padding: 10.5px 7px;
 	position: absolute;
 	right: 12px;
@@ -624,7 +624,7 @@ body {
 }
 .map-k2{
 	border-radius:50% ;
-	background: #22A7F0;
+	background: #0067ff;
 	padding: 10.5px 7px;
 	position: absolute;
 	right: 12px;
@@ -633,7 +633,7 @@ body {
 }
 .map-tj{
 	border-radius:50% ;
-	background: #22A7F0;
+	background: #0067ff;
 	padding: 10.5px 7px;
 	position: absolute;
 	right: 12px;
@@ -643,7 +643,7 @@ body {
 .map-dh{
 	text-align: center;
 	border-radius:50% ;
-	background: #22A7F0;
+	background: #0067ff;
 	width: 65px;
 	padding: 15px 0;
 	position: absolute;
@@ -715,7 +715,7 @@ body {
 	font-size: 1.6rem;
 }
 .trainer span{
-	color: #22A7F0;
+	color: #0067ff;
 	padding-left: 10px;
 }
 .trainer .coach-star i{
@@ -735,7 +735,7 @@ body {
 	text-align: center;
 }
 .see a{
-	color: #22A7F0;
+	color: #0067ff;
 }
 
 
@@ -775,7 +775,7 @@ body {
 	width: 100%;
 	text-align: center;
 	padding: 1rem 0;
-	background: #22A7F0;
+	background: #0067ff;
 }
 .application-btn a{
 	font-size: 1.4rem;
@@ -785,7 +785,7 @@ body {
 .mine{
 	text-align: center;
 	padding: 20px 0;
-	background: #5fabf4;
+	background: #0067ff;
 }
 .mine img{
 	border-radius: 50%;
@@ -818,7 +818,7 @@ body {
 }
 .manage i{
 	font-size: 2rem;
-	color: #22A7F0;
+	color: #0067ff;
 }
 .manage a span{
 	display: inline-block;
@@ -854,7 +854,7 @@ body {
 	color: #777 !important;
 }
 .footer a.active{
-	color: #22A7F0 !important;
+	color: #0067ff !important;
 }
 
 .order{
@@ -976,7 +976,7 @@ body {
 	border: 0;
 }
 .modal-btn a:hover{
-	color: #22A7F0;
+	color: #0067ff;
 }
 
 .my-info{
@@ -1042,4 +1042,7 @@ body {
 	bottom: 0;
 	left: 0;
 	right: 0;
+}
+.fa-map-marker{
+	font-size: 1.6rem !important;
 }

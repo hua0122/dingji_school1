@@ -229,7 +229,7 @@ function get_station() {
 			'<input type="hidden" class="station_id" value="' + data.data[i].id + '" />' +
 			'</span>' +
 			'<a class="address" class="right address">距您' + distancetext +
-			'km <img src="../static/images/map1.png" width="30"/></a>' +
+			'km <span  class="fa fa-map-marker"></span></a>' +
 			'</div>' +
 			'</li>';
 
