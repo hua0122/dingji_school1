@@ -46,7 +46,7 @@ $(function() {
 function getydxc() {
 	$.ajax({
 		type: 'GET',
-		url: 'http://ceshi.yidianxueche.cn/s_user/tp.php?method=getwxpz',
+		url: 'http://ceshi.yidianxueche.cn/s_user/tp.php?method=getwxpz&school_id='+school_id,
 		dataType: 'json',
 		success: function(data) {
 			sessionStorage.setItem("wxdata", JSON.stringify(data));
