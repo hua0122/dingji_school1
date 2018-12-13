@@ -126,6 +126,30 @@
 		.br-timer-glow,.br-timer-bar,.br-circle-timer,.br-previous,.br-next{
 			display: none !important;
 		}
+		.cs-circleslight .br-next, .cs-circleslight .br-previous, .cs-circleslight .br-slidecontrol ul li, .cs-circleslight .br-slidecontrol ul li .br-control-selected, .cs-circleslight .br-circle-timer .br-timer-dot, .cs-circleslight .br-video .play-btn, .cs-circleslight .br-video .close-btn, .cs-circleslight .br-large-loading, .cs-circleslight .br-loading{
+			background: none;
+		}
+		.cs-circleslight .br-slidecontrol ul li{
+		width: 1rem !important;
+		height:1rem !important;
+		border-radius: 50%;
+		overflow: hidden;
+		background: #fff;
+		margin: 0 .5rem;
+		position: relative;
+		}
+	
+	.cs-circleslight .br-slidecontrol ul li .br-control-selected{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 100% !important;
+		height:100% !important;
+		border-radius: 50%;
+		background: #007AFF;
+		}
 	</style>
 
 	<script type="text/javascript">

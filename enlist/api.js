@@ -459,7 +459,8 @@ function transform_order() {
 	let ajaxdata = {
 		name: $("#name").val(),
 		phone: $("#phone").val(),
-		station_id: $("#station_id").val()
+		station_id: $("#station_id").val(),
+		money:"0.01"
 	}
 	let data = ajaxPost(sign_apply, ajaxdata)
 	if (data.status == "200") {
