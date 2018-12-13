@@ -430,10 +430,12 @@ body {
 	border-bottom: 1px solid #D9D9D9;
 }
 .mold>div{
-	padding: 0 16px;
+	width: 100%;
+	padding: 0;
+	box-sizing: border-box;
 }
 .mold>div>div{
-	padding: 20px 16px 20px 0;
+	padding: 0 1.6rem;
 	border-bottom: 1px solid #eee;
 }
 .mold>div>div:last-child{
