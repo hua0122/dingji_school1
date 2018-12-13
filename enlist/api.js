@@ -483,7 +483,7 @@ function transform_order() {
 						window.location.href = "../enlist/pay_fail.html";
 					},
 					fail: function(res) { // 支付失败回调函数
-						window.location.href = "../enlist/pay_fail.html";
+						// window.location.href = "../enlist/pay_fail.html";
 					}
 				});
 			});
