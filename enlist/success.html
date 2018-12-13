@@ -36,88 +36,108 @@
 		<link rel="stylesheet" type="text/css" href="../static/css/new_add.css" />
 		<style type="text/css">
 			.shenqing div {
-							display: flex;
-							align-items: center;
-						}
-			
-						.shenqing div .left {
-							border-right: 1px solid #ccc;
-						}
-			
-						.success .code .address {
-							border: 0;
-						}
-			
-						.popo {
-							position: fixed;
-							top: 0;
-							left: 0;
-							right: 0;
-							bottom: 0;
-							background: rgba(0, 0, 0, 0.4);
-							display: none;
-						}
-			
-						.kong {
-							height: auto;
-						}
-			
-						.data input {
-							width: 100%;
-							padding: 1rem 0;
-						}
-			
-						.data a {
-							display: block;
-							padding: 1rem 0;
-						}
-						.application-btn{
-							display: block;
-						}
-						.confirm{
-							width: 80%;
-							background: #fff;
-							z-index: 1;
-							position: fixed;
-							top: 50%;
-							left: 50%;
-							transform: translate(-50%,-50%);
-							border-radius: .8rem;
-							overflow: hidden;
-							display: none;
-						}
-						.confirm .text{
-							padding: 1rem 1.5rem;
-							box-sizing: border-box;
-							border-bottom: 1px solid #ddd;
-							color: #333;
-						}
-						.confirm .btn{
-							display: flex;
-						}
-						.confirm .btn .item{
-							flex: 1;
-							text-align: center;
-							color: #333;
-						}
-						.confirm .btn .item:first-child{
-							border-right:  1px solid #ddd;
-							color: #22A7F0;
-						}
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				box-sizing: border-box;
+			}
+
+			.success .code .tit span {
+				padding: 0;
+			}
+
+			.shenqing div .left {
+				flex: 1.5;
+				border-right: 1px solid #ccc;
+				padding: 0 .6rem;
+				box-sizing: border-box;
+			}
+
+			.success .code .address {
+				border: 0;
+				padding: 0;
+				flex: .5;
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
+			}
+
+			.popo {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: rgba(0, 0, 0, 0.4);
+				display: none;
+			}
+
+			.kong {
+				height: auto;
+			}
+
+			.data input {
+				width: 100%;
+				padding: 1rem 0;
+			}
+
+			.data a {
+				display: block;
+				padding: 1rem 0;
+			}
+
+			.application-btn {
+				display: block;
+			}
+
+			.confirm {
+				width: 80%;
+				background: #fff;
+				z-index: 1;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				border-radius: .8rem;
+				overflow: hidden;
+				display: none;
+			}
+
+			.confirm .text {
+				padding: 1rem 1.5rem;
+				box-sizing: border-box;
+				border-bottom: 1px solid #ddd;
+				color: #333;
+			}
+
+			.confirm .btn {
+				display: flex;
+			}
+
+			.confirm .btn .item {
+				flex: 1;
+				text-align: center;
+				color: #333;
+			}
+
+			.confirm .btn .item:first-child {
+				border-right: 1px solid #ddd;
+				color: #22A7F0;
+			}
 		</style>
 	</head>
 
 	<body>
-			<div class="container success">
-				<div class="row img"><img src="../static/images/success.png">
+		<div class="container success">
+			<div class="row img"><img src="../static/images/success.png">
 				<h1 style="color: #0baae4;font-size: 2.6rem;">支付成功</h1>
-				</div>
-				<div class="row">
-					<div class="title" style="border-top: none">请在下方选择体检站申请体检码<span>*体检时请带上身份证原件!</span></div>
-				</div>
-				<div class="code">
-					<ul class="stationitem">
-						<!-- {volist name="station" id="item"}
+			</div>
+			<div class="row">
+				<div class="title" style="border-top: none">请在下方选择体检站申请体检码<span>*体检时请带上身份证原件!</span></div>
+			</div>
+			<div class="code">
+				<ul class="stationitem">
+					<!-- {volist name="station" id="item"}
 				<li>
 					<a href="javascript:" onclick="shenqing('{$item.id}','{$item.name}','{$item.address}')">
 					<span class="left tit">
@@ -128,75 +148,75 @@
 					</a>
 				</li>
 				{/volist} -->
-					</ul>
-				</div>
-				<div class="row explain">
-					<p class="col-xs-12">*说明：申请后您会收到体检码，请携带体检码和身份证到所选择的体检站进行体检</p>
-				</div>
-				<div class="popo"></div>
-				<form method="post" name="tj_code_form" id="tj_code_form" style="display:none;position: fixed;
+				</ul>
+			</div>
+			<div class="row explain">
+				<p class="col-xs-12">*说明：申请后您会收到体检码，请携带体检码和身份证到所选择的体检站进行体检</p>
+			</div>
+			<div class="popo"></div>
+			<form method="post" name="tj_code_form" id="tj_code_form" style="display:none;position: fixed;
 		bottom: 0;width:100%;">
-					<div class="row data">
-						<div class="col-xs-12">
-							<div>
-								<label for="">
-									<input  type="text" name="name" id="name" value="" placeholder="请输入姓名" />
-								</label>
-							</div>
-							<div>
-								<label for="">
-									<input type="text" name="phone" id="phone" value="" placeholder="请输入手机号" />
-								</label>
-							</div>
-							<div>
-								<a>
-									<div id="address">(陈家桥医院) 陈家桥医院体检站</div>
-									<input type="hidden" name="station_id" id="station_id" />
-									<!--<i></i>-->
-								</a>
-							</div>
+				<div class="row data">
+					<div class="col-xs-12">
+						<div>
+							<label for="">
+								<input type="text" name="name" id="name" value="" placeholder="请输入姓名" />
+							</label>
+						</div>
+						<div>
+							<label for="">
+								<input type="text" name="phone" id="phone" value="" placeholder="请输入手机号" />
+							</label>
+						</div>
+						<div>
+							<a>
+								<div id="address">(陈家桥医院) 陈家桥医院体检站</div>
+								<input type="hidden" name="station_id" id="station_id" />
+								<!--<i></i>-->
+							</a>
 						</div>
 					</div>
-					<a href="javascript:transform_order();" class="row application-btn" style="color: #FFFFFF;">申请体检</a>
-				</form>
-			</div>
-			<div class="confirm">
-				<div class="text">
-					体检码申请成功,您可以到学习中心最底部查看,也可以在微信公众号对话窗口的通知消息中进行查看
 				</div>
-				<div class="btn">
-					<a href="../user/study.html" class="item">去查看</a>
-					<a href="../index/index.html" class="item">返回首页</a>
-				</div>
+				<a href="javascript:transform_order();" class="row application-btn" style="color: #FFFFFF;">申请体检</a>
+			</form>
+		</div>
+		<div class="confirm">
+			<div class="text">
+				体检码申请成功,您可以到学习中心最底部查看,也可以在微信公众号对话窗口的通知消息中进行查看
 			</div>
-			
-<script src="../static/js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+			<div class="btn">
+				<a href="../user/study.html" class="item">去查看</a>
+				<a href="../index/index.html" class="item">返回首页</a>
+			</div>
+		</div>
+
+		<script src="../static/js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../static/js/custom1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
 		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&amp;ak=DBd897f58d7a63e585485e3dea011253"></script>
 		<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&amp;ak=DBd897f58d7a63e585485e3dea011253&amp;services=&amp;t=20181029172410"></script>
 
-	<script src="../static/js/apiRoot.js" type="text/javascript" charset="utf-8"></script>
-	<script src="api.js" type="text/javascript" charset="utf-8"></script>
-	<script>
-		$(function() {
-			test();
-			
-			$(".shenqing .left").on("click", function() {
-				let get_station = JSON.parse(sessionStorage.getItem("get_station"));
-				let i = $(this).parent().index();
+		<script src="../static/js/apiRoot.js" type="text/javascript" charset="utf-8"></script>
+		<script src="api.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			$(function() {
+				test();
 
-				$("#tj_code_form").show();
-				$(".popo").show();
-				$("#address").html('(' + $(this).find(".station").text() + ')' + $(this).find(".dizhi").text() );
-				$("#station_id").val($(this).find(".station_id").val());
-			})
-			$(".popo").click(function() {
+				$(".shenqing .left").on("click", function() {
+					let get_station = JSON.parse(sessionStorage.getItem("get_station"));
+					let i = $(this).parent().index();
 
-				$("#tj_code_form").hide();
-				$(".popo").hide();
+					$("#tj_code_form").show();
+					$(".popo").show();
+					$("#address").html('(' + $(this).find(".station").text() + ')' + $(this).find(".dizhi").text());
+					$("#station_id").val($(this).find(".station_id").val());
+				})
+				$(".popo").click(function() {
+
+					$("#tj_code_form").hide();
+					$(".popo").hide();
+				})
 			})
-		})
-	</script>
-</body>
+		</script>
+	</body>
 </html>
