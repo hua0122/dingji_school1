@@ -82,19 +82,6 @@ function getydxc() {
 							}))
 						}
 					});
-					
-					wx.updateAppMessageShareData({
-						title: title, // 分享标题
-						desc: desc, // 分享描述
-						link: link, // 分享链接
-						imgUrl: imgUrl, // 分享图标
-						trigger: function(res) {},
-						success: function(res) {
-							// document.title="新接口已分享"
-						},
-						cancel: function(res) {},
-						fail: function(res) {}
-					});
 					wx.updateTimelineShareData({
 						title: title, // 分享标题
 						desc: desc, // 分享描述
