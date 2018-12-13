@@ -63,6 +63,7 @@
 		border-radius: 100%;
 		background: #fff;
 		filter:none !important;
+		margin: 0 .5rem;
 	}
 
 	.cs-circleslight .br-slidecontrol ul li .br-control-selected {

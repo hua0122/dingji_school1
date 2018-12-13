@@ -50,6 +50,8 @@ function get_banner() {
 	cuteslider3.api.addEventListener(Cute.SliderEvent.WATING, function(event) {});
 	cuteslider3.api.addEventListener(Cute.SliderEvent.CHANGE_NEXT_SLIDE, function(event) {});
 	cuteslider3.api.addEventListener(Cute.SliderEvent.WATING_FOR_NEXT, function(event) {});
+
+				$(".br-thumb-up").remove();
 }
 	// document.querySelector("#cuteslider_3").style.height="100%";
 }
