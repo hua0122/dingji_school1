@@ -21,13 +21,14 @@ function get_banner() {
 	} else {
 
 		let ajaxdata = {
-			school_id: school_id
+			 
 		}
 		data = ajaxGet(index_get_banner, ajaxdata);
 		sessionStorage.setItem("get_banner_data", JSON.stringify(data))
 	}
 	let src = "";
 	
+	if(data.status=="200"){
 	for (var i = 1; i < data.data.length; i++) {
 		src +=
 			"<li data-delay='5' style='height: 100%;' data-src='5' data-trans3d='tr6,tr17,tr22,tr23,tr26,tr27,tr29,tr32,tr34,tr35,tr53,tr54,tr62,tr63,tr4,tr13' data-trans2d='tr3,tr8,tr12,tr19,tr22,tr25,tr27,tr29,tr31,tr34,tr35,tr38,tr39,tr41'>" +
@@ -49,14 +50,14 @@ function get_banner() {
 	cuteslider3.api.addEventListener(Cute.SliderEvent.WATING, function(event) {});
 	cuteslider3.api.addEventListener(Cute.SliderEvent.CHANGE_NEXT_SLIDE, function(event) {});
 	cuteslider3.api.addEventListener(Cute.SliderEvent.WATING_FOR_NEXT, function(event) {});
-
+}
 	// document.querySelector("#cuteslider_3").style.height="100%";
 }
 
 
 function get_name(get_name, index_get_name) {
 	let ajaxdata = {
-		school_id: school_id
+		 
 	}
 	let data = ajaxGet(index_get_name, ajaxdata)
 	let srcone = "<img src='" + domainName + data.data[0].picurl + "'  />" +
@@ -75,7 +76,7 @@ function get_about() {
 // 发现最美鼎吉
 function get_beautiful() {
 	let ajaxdata = {
-		school_id: school_id
+		 
 	}
 	let data = ajaxGet(index_get_beautiful, ajaxdata)
 	let src = "";
@@ -111,11 +112,14 @@ function get_student() {
 // 最新活动
 function get_activity() {
 	let ajaxdata = {
-		school_id: school_id
+		 
 	}
 	let data = ajaxGet(index_get_activity, ajaxdata)
+	
+	if(data.status=="200"){
 	$(".activity-item").find("img").attr("src", domainName + data.data.picurl)
 	$(".activity-item").find("h2").text(data.data.title)
+	}
 }
 
 function index() {

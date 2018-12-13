@@ -9,7 +9,7 @@ function feedback(content) {
 
 	let ajaxdata = {
 		content: content,
-		school_id: school_id
+		 
 	}
 	let data = ajaxPost(user_feedback, ajaxdata)
 	if (data.status == '200') {

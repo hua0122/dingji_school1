@@ -12,7 +12,8 @@ let user_index = "/api/user/index";
 // ajax-get调用
 function ajaxGet(_url, _data) {
 	let openid = sessionStorage.getItem("openid");
-	_data["openid"] = openid
+	_data["openid"] = openid,
+	_data["school_id"] = school_id;
 	var dataAjax = "";
 	$.ajax({
 		type: "get",
@@ -33,7 +34,8 @@ function ajaxGet(_url, _data) {
 function ajaxPost(_url, _data) {
 
 	let openid = sessionStorage.getItem("openid");
-	_data["openid"] = openid
+	_data["openid"] = openid;
+	_data["school_id"] = school_id;
 	var dataAjax = "";
 	$.ajax({
 		type: "post",

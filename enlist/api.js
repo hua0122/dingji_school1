@@ -28,7 +28,7 @@ let sign_get_sign ="/api/sign/get_sign";
 // banner
 function get_banner() {
 	let ajaxdata = {
-		school_id: school_id
+		 
 	}
 	let data = ajaxGet(sign_get_banner, ajaxdata)
 	let src = "";
@@ -65,7 +65,7 @@ function area(longitude, latitude) {
 	} else {
 
 		let ajaxdata = {
-			school_id: school_id
+			 
 		}
 		let data = ajaxGet(sign_get_area, ajaxdata)
 		var map = new BMap.Map("container");
@@ -151,7 +151,7 @@ function grade_detail() {
 function get_activity() {
 
 	let ajaxdata = {
-		school_id: school_id
+		 
 	};
 	let data = ajaxPost(sign_get_activity, ajaxdata)
 	let src = "";
@@ -210,7 +210,7 @@ function referral(code) {
 function get_station() {
 
 	let ajaxdata = {
-		school_id: school_id
+		 
 	}
 	let data = ajaxGet(sign_get_station, ajaxdata)
 	let src = "";
@@ -426,7 +426,6 @@ function geocoderfun(indexdata) {
 function agreement() {
 
 	let ajaxdata = {
-		school_id: school_id,
 	}
 	let data = ajaxGet(user_agreement, ajaxdata)
 	$(".yi-input").val(data.data.user.name);
