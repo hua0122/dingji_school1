@@ -22,20 +22,22 @@ let user_agreement = "/api/user/agreement";
 let sign_activity_detail = "/api/sign/activity_detail";
 let sign_apply = "/api/sign/apply";
 // 体检页面默认数据
-let sign_get_sign ="/api/sign/get_sign";
+let sign_get_sign = "/api/sign/get_sign";
 // let latlng=JSON.parse(sessionStorage.getItem("latlng"));
 // 报名api
 // banner
 function get_banner() {
 	let ajaxdata = {
-		 
+
 	}
 	let data = ajaxGet(sign_get_banner, ajaxdata)
 	let src = "";
-	for (var i = 0; i < data.data.length; i++) {
-		src += "<li style='background:url(" + domainName + data.data[i].picurl +
-			") 50% 50% no-repeat;background-size: 100%;'></li>";
+	if (data.status == "200") {
+		for (var i = 0; i < data.data.length; i++) {
+			src += "<li style='background:url(" + domainName + data.data[i].picurl +
+				") 50% 50% no-repeat;background-size: 100%;'></li>";
 
+		}
 	}
 	$(".slides").html(src);
 }
@@ -65,7 +67,7 @@ function area(longitude, latitude) {
 	} else {
 
 		let ajaxdata = {
-			 
+
 		}
 		let data = ajaxGet(sign_get_area, ajaxdata)
 		var map = new BMap.Map("container");
@@ -151,7 +153,7 @@ function grade_detail() {
 function get_activity() {
 
 	let ajaxdata = {
-		 
+
 	};
 	let data = ajaxPost(sign_get_activity, ajaxdata)
 	let src = "";
@@ -210,7 +212,7 @@ function referral(code) {
 function get_station() {
 
 	let ajaxdata = {
-		 
+
 	}
 	let data = ajaxGet(sign_get_station, ajaxdata)
 	let src = "";
@@ -384,9 +386,9 @@ function subsign() {
 
 function test() {
 	get_station();
-	let ajaxdata={};
-	let data = ajaxPost(sign_get_sign,ajaxdata);
-	if(data.status=="200"){
+	let ajaxdata = {};
+	let data = ajaxPost(sign_get_sign, ajaxdata);
+	if (data.status == "200") {
 		$("#name").val(data.data.name);
 		$("#phone").val(data.data.phone)
 		$("#name").attr("disabled", true)
@@ -425,8 +427,7 @@ function geocoderfun(indexdata) {
 // 我的协议
 function agreement() {
 
-	let ajaxdata = {
-	}
+	let ajaxdata = {}
 	let data = ajaxGet(user_agreement, ajaxdata)
 	$(".yi-input").val(data.data.user.name);
 	$(".cno-input").val(data.data.user.card);
@@ -460,7 +461,7 @@ function transform_order() {
 		name: $("#name").val(),
 		phone: $("#phone").val(),
 		station_id: $("#station_id").val(),
-		money:"0.01"
+		money: "0.01"
 	}
 	let data = ajaxPost(sign_apply, ajaxdata)
 	if (data.status == "200") {
