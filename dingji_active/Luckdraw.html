@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/public.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/popup.min.css" />
+		<title>活动首页</title>
+	</head>
+	<body>
+		<div class="bg">
+
+		</div>
+		<div class="main">
+			<div class="wz">
+				
+				<div class="box-bg">
+					
+					<div class="box">
+						<div id="start">
+							<img src="images/turntable-j.png" id="turntable" >
+						</div>
+						<div id="disk"><img src="images/turntable-ok.png" id="startbtn"></div>
+					</div>
+				</div>
+				<div class="luck-box">
+					<div class="luck-title">中奖信息公布</div>
+					<div class="luck">
+						<div class="row">158****3332抽中充电宝一个</div>
+						<div class="row">158****3332抽中充电宝一个</div>
+						<div class="row">158****3332抽中充电宝一个</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<script src="js/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jQueryRotate.2.2.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.easing.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/apiRoot.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/api.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function() {
+				$("#startbtn").rotate({
+					bind: {
+						click: function() {
+							luck();
+							
+						}
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
