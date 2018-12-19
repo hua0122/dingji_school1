@@ -16,15 +16,19 @@ let activity_invite_list = "/api/activity/invite_list";
 let activity_invite = "/api/activity/invite";
 // 抽奖
 let activity_luck = "/api/activity/luck";
+// 判断是否可以抽奖
+let activity_chance = "/api/activity/chance";
+// 中奖数据
+let activity_luck_list = "/api/activity/luck_list";
 
 // 根据邀请人id获取电话号码
 function get_tel() {
 	let ajaxdata = {
-		id: getQueryString("id")
+		id: getQueryString("yaoqing_id")
 	}
 	let data = ajaxPost(activity_get_tel, ajaxdata);
 	if (data.status == "200") {
-		$(".open-popo").show();
+		$(".open-popo").css("display", "flex");
 		$(".phone").html(data.data.tel)
 	}
 }
@@ -54,6 +58,7 @@ function login(ajaxdata) {
 		$(".iframe-popo").hide(1);
 		$(".total_amount").html(data.data.total_amount)
 		window.location.reload();
+		$("#recomphone").val("");
 	} else {
 		alert(data.msg, " ")
 	}
@@ -69,6 +74,7 @@ function toLogin() {
 // 个人信息
 function info() {
 	let userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
 	let ajaxdata = {
 		tel: userInfo.tel,
 	}
@@ -76,6 +82,18 @@ function info() {
 	if (data.status == "200") {
 		localStorage.setItem("userInfo", JSON.stringify(data.data))
 		$(".total_amount").html(data.data.total_amount)
+		if (data.data.is_prestore == 1) {
+			$(".ycmoney").html("300");
+		} else {
+			$(".ycmoney").html("0");
+		}
+		if (data.data.is_share == 0) {
+			$(".fxmoney").html(0)
+		} else {
+			$(".fxmoney").html(100)
+
+		}
+		// 
 	}
 }
 // 邀请列表
@@ -85,7 +103,15 @@ function invite_list() {
 		tel: userInfo.tel,
 	}
 	let data = ajaxPost(activity_invite_list, ajaxdata);
-
+	if (data.status == "200") {
+		let src = "";
+		for (var i = 0; i < data.data.length; i++) {
+			src += '<div class="row">' + data.data[i].name + ' ' + data.data[i].tel + '</div>';
+		}
+		$(".yqnum").html(data.data.length)
+		$(".yqmoney").html(data.data.length * 100)
+		$(".row-box").html(src);
+	}
 }
 // 邀请
 function invite() {
@@ -98,22 +124,52 @@ function invite() {
 // 预存
 function prestore() {
 	let userInfo = JSON.parse(localStorage.getItem("userInfo"));
-	let yaoqing_id=getQueryString("yaoqing_id"),id="";
-	if(yaoqing_id != null || yaoqing_id != "" || yaoqing_id != "null" || yaoqing_id != undefined || yaoqing_id != "undefined"){
-		id=yaoqing_id;
-	}else{
-		id=getQueryString("id");
+	let yaoqing_id = getQueryString("yaoqing_id"),
+		id = "";
+	if (yaoqing_id != null || yaoqing_id != "" || yaoqing_id != "null" || yaoqing_id != undefined || yaoqing_id !=
+		"undefined") {
+		id = yaoqing_id;
+	} else {
+		id = getQueryString("fenxiang_id");
 
 	}
 	let ajaxdata = {
 		amount: 100,
 		tel: userInfo.tel,
-		id: getQueryString("id")
+		id: id,
+		openid: sessionStorage.getItem("openid")
 	}
 	let data = ajaxPost(activity_prestore, ajaxdata);
 	if (data.status == "200") {
-		alert("预存成功");
-		info();
+		wx.config({
+			debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+			appId: data.data.appId, // 必填，公众号的唯一标识
+			timestamp: data.data.timestamp, // 必填，生成签名的时间戳
+			nonceStr: data.data.nonceStr, // 必填，生成签名的随机串
+			signature: data.data.signature, // 必填，签名，见附录1
+			jsApiList: ['chooseWXPay'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+		});
+		wx.ready(function() {
+			wx.chooseWXPay({
+				appId: data.data.appId, //公众号名称，由商户传入
+				timestamp: data.data.timestamp, //时间戳，自1970年以来的秒数
+				nonceStr: data.data.nonceStr, //随机串
+				package: data.data.package,
+				signType: "MD5", //微信签名方式：
+				paySign: data.data.paySign, //微信签名
+				success: function(res) {
+					alert("预存成功");
+					info();
+				},
+				cancel: function(res) {
+					alert("取消支付");
+				},
+				fail: function(res) { // 支付失败回调函数
+					alert("支付失败");
+				}
+			});
+		});
+		
 	} else {
 		alert(data.msg)
 	}
@@ -127,8 +183,7 @@ function share() {
 	let data = ajaxPost(activity_share, ajaxdata);
 	if (data.status == "200") {
 		do_share();
-		// openApp();
-		// $(".total_amount").html()
+
 	}
 }
 // 抽奖
@@ -153,6 +208,30 @@ function luck() {
 				alert(data.data.prize);
 			}
 		});
+	} else {
+		alert(data.msg)
+	}
+}
+// 查看是否可以抽奖
+function chance() {
+
+	let userInfo = JSON.parse(localStorage.getItem("userInfo"));
+	let ajaxdata = {
+		id: userInfo.id,
+	}
+	let data = ajaxPost(activity_chance, ajaxdata);
+	return data;
+}
+
+function luck_list() {
+	let ajaxdata = {}
+	let data = ajaxPost(activity_luck_list, ajaxdata);
+	if (data.status == "200") {
+		let src = "";
+		for (var i = 0; i < data.data.length; i++) {
+			src += '<div class="row">' + data.data[i].tel + '抽中' + data.data[i].luck_name + '</div>';
+		}
+		$(".luck").html(src);
 	}
 }
 //分享弹出页面层
@@ -163,10 +242,25 @@ function do_share() {
 		anim: 'up',
 		style: 'position:fixed; bottom:0; left:0; width: 100%; padding:10px 0; border:none;'
 	});
+	var $config = {
+		title: '你好,美食',
+		description: '我在你好美食,分享吃货间的快乐,现在邀请你的加入~快来和我一起分享美食吧~',
+		url: window.location.href + "?yaoqing_id=" + userInfo.id,
+		source: window.location.href + "?yaoqing_id=" + userInfo.id,
+		image: 'http://hellofood.fun/webicon.png',
+		// summary : '吃货召唤', //相当于description
+		// sites   : ['qzone', 'qq', 'weibo','wechat', 'douban'], // 启用的站点
+		disabled: ['google', 'facebook', 'twitter', 'linyin'], // 禁用的站点
+		wechatQrcodeTitle: "微信扫一扫：分享", // 微信二维码提示文字
+		wechatQrcodeHelper: '立即下载发送专属二维码,邀请朋友加入',
+	};
+
+	socialShare('.social-share', $config);
+	alert("分享后需要小伙伴浏览您的分享链接才可以抽奖哟！")
 }
 //邀请弹出页面层
 function do_Invitation() {
-	
+
 
 	layer.open({
 		type: 1,
@@ -175,40 +269,16 @@ function do_Invitation() {
 		style: 'position:fixed; bottom:0; left:0; width: 100%; padding:10px 0; border:none;'
 	});
 }
-
-function openApp() {
-	// 安卓：
-
-	var state = null;
-	try {
-		if (scheme != '') {
-			openIframe.src = '[scheme]://[host]/[openwith]';
-		}
-	} catch (e) {}
-	if (state) {
-		window.close();
-	} else {
-		location.href = '下载地址';
-	}
-
-	// 苹果：
-
-	if (scheme != '') {
-		window.location.href = '[scheme]://';
-	}
-}
-
 function downloadIamge(selector, name) {
-	// 通过选择器获取img元素，
-	var img = document.querySelector(selector)
-	// 将图片的src属性作为URL地址
-	var url = img.src
-	var a = document.createElement('a')
-	var event = new MouseEvent('click')
-
-	a.download = name || '下载图片名称'
-	a.href = url
-
-	a.dispatchEvent(event)
-	alert(1)
+    // 通过选择器获取img元素，
+    var img = document.querySelector(selector)
+    // 将图片的src属性作为URL地址
+    var url = img.src
+    var a = document.createElement('a')
+    var event = new MouseEvent('click')
+    
+    a.download = name || '下载图片名称'
+    a.href = url
+    
+    a.dispatchEvent(event)
 }

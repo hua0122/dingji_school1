@@ -10,7 +10,6 @@
 	background-size: 100% 100%;
 }
 .open-popo{
-	display: none;
 	position: fixed;
 	top: 0;
 	bottom: 0;
@@ -22,6 +21,7 @@
 	justify-content: center;
 	flex-wrap: wrap;
 	z-index: 999;
+	display: none;
 }
 .open-popo .op-bg{
 	width: 2.54rem;
@@ -73,18 +73,34 @@
 
 .main .top .logo-box {
 	position: absolute;
-	width: .75rem;
+	width:.651rem;
 	top: .15rem;
 	left: .1rem;
 }
 
 .main .top .login-box {
 	position: absolute;
-	width: .41rem;
+	width: 1rem;
 	top: .15rem;
 	right: .1rem;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
 }
-
+.main .top .login-box .username{
+	color: #ee9314;
+}
+.main .top .login-box .img{
+	
+	width: .41rem;
+	height: .225rem;
+	background: url(../images/login-icon.png) no-repeat center;
+	background-size: 100% 100%;
+	text-align: center;
+	line-height: .225rem;
+	color: #fff;
+	font-size: .12rem;
+}
 .main .top .tule-box {
 	position: absolute;
 	width: .75rem;
@@ -201,8 +217,13 @@
 	height: .2rem;
 	line-height: .125rem;
 }
-
+.culmn .row-box{
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
 .culmn .row {
+	width: 50%;
 	line-height: .2rem;
 }
 
