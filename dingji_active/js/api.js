@@ -221,6 +221,7 @@ function prestore_h5() {
 	}
 	let data = ajaxPost(activity_prestore_h5, ajaxdata);
 	if (data.status == "200") {
+		console.log(data.data.package)
 		// location.href=data.data.mweb_url;
 
 	} else {
