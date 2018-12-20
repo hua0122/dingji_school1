@@ -222,7 +222,7 @@ function prestore_h5() {
 	let data = ajaxPost(activity_prestore_h5, ajaxdata);
 	if (data.status == "200") {
 		console.log("https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?"+data.data.package)
-		// location.href="https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?"+data.data.package;
+		location.href="https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?"+data.data.package;
 
 	} else {
 		layer.open({
