@@ -343,6 +343,9 @@ function do_Invitation() {
 				$(".layermainimg.qq").css("display", "flex");
 				$(".layermainimg.wechat").css("display", "none");
 			});
+			$(layero).on("click", ".icon-qzone", function() {
+				 window.location.href= window.location.href.split("?")[0];
+			});
 		}
 	});
 }
