@@ -8,6 +8,8 @@ let activity_info = "/api/activity/info";
 let activity_get_tel = "/api/activity/get_tel";
 // 预存
 let activity_prestore = "/api/activity/prestore";
+// h5预存
+let activity_prestore_h5 = "/api/activity/prestore_h5";
 // 分享前
 let activity_share = "/api/activity/share";
 // 邀请列表
@@ -190,6 +192,36 @@ function prestore() {
 				}
 			});
 		});
+
+	} else {
+		layer.open({
+			content: data.msg,
+			btn: '确定'
+		});
+	}
+}
+
+// 预存
+function prestore_h5() {
+	let userInfo = JSON.parse(localStorage.getItem("userInfo"));
+	let yaoqing_id = getQueryString("yaoqing_id"),
+		id = "";
+	if (yaoqing_id != null || yaoqing_id != "" || yaoqing_id != "null" || yaoqing_id != undefined || yaoqing_id !=
+		"undefined") {
+		id = yaoqing_id;
+	} else {
+		id = getQueryString("fenxiang_id");
+
+	}
+	let ajaxdata = {
+		amount: 100,
+		tel: userInfo.tel,
+		id: id,
+		school_id:school_id
+	}
+	let data = ajaxPost(activity_prestore_h5, ajaxdata);
+	if (data.status == "200") {
+		location.href=data.data.mweb_url;
 
 	} else {
 		layer.open({
