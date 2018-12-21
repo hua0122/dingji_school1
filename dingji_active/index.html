@@ -244,7 +244,7 @@
 					"http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=[" + fenxiangurl +
 					"]&title=分享&pics=http://ydxctrue.yidianxueche.cn/template/wap/public/css/self/image/banner_1.jpg&desc=帮我助力&summary=好嗨哟&site=qq空间分享"
 				);
-				let yaoqingurl = "["+window.location.href.split("?")[0] + "?yaoqing_id=" + userInfo.id+"]";
+				let yaoqingurl = encodeURIComponent(window.location.href.split("?")[0] + "?yaoqing_id=" + userInfo.id);
 
 				$("#Invitation_box .icon-qzone").attr("href",
 					"http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=" + yaoqingurl +
