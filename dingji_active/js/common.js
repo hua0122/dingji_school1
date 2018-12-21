@@ -10,6 +10,7 @@ var response = function() {
  };
  response();
 if (window.location.href.charAt(window.location.href.length - 1) == "=") {
+	alert(1)
 	let locationHref = window.location.href.substring(0, window.location.href.length - 1);
 	window.location.href = locationHref;
 }
