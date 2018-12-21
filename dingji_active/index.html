@@ -236,6 +236,7 @@
 		<script type="text/javascript" src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 		<script src="js/navigator.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
+			
 			let userInfo = JSON.parse(localStorage.getItem("userInfo"));
 			if (userInfo == null || userInfo == "" || userInfo == "null" || userInfo == undefined || userInfo == "undefined") {} else {
 				// 分享链接生成
@@ -275,11 +276,6 @@
 			}
 
 			$(function() {
-				if (getQueryStringdengy("openid") != null && getQueryStringdengy("openid") != undefined && getQueryStringdengy(
-						"openid") != "null" && getQueryStringdengy("openid") != "") {
-					
-					prestore();
-				}
 				// 根据邀请人id获取电话号码
 				get_tel();
 				if (userInfo == null || userInfo == "" || userInfo == "null" || userInfo == undefined || userInfo == "undefined") {} else {
@@ -290,6 +286,14 @@
 						localStorage.removeItem("userInfo");
 						window.location.reload();
 					})
+					let openid = getQueryStringdengy("openid");
+					if (openid== null || openid== undefined || openid== "null" || openid== "") {
+						
+					}else{
+						var openidg = getQueryStringdengy("openid");
+						localStorage.setItem("openid", openidg);
+						prestore();
+						}
 					// 个人信息
 					info();
 					// 邀请列表
@@ -318,7 +322,7 @@
 
 						var ua = navigator.userAgent.toLowerCase(); //获取浏览器标识并转换为小写
 						if (ua.match(/MicroMessenger/i) == "micromessenger") {
-							let openid = sessionStorage.getItem("openid");
+							let openid = localStorage.getItem("openid");
 							if (openid == null || openid == "" || openid == "null" || openid == undefined || openid == "undefined") {
 								window.location.href =getwxinfo;
 							} else {
