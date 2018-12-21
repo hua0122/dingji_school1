@@ -34,10 +34,19 @@ function get_tel() {
 	if (data.status == "200") {
 		$(".open-popo").css("display", "flex");
 		$(".phone").html(data.data.tel)
-		share_after(data.data.tel)
 	}
 }
 // 分享成功之后调一下
+// 根据分享人id获取电话号码
+function get_telfenxiang() {
+	let ajaxdata = {
+		id: getQueryString("fenxiang_id")
+	}
+	let data = ajaxPost(activity_get_tel, ajaxdata);
+	if (data.status == "200") {
+		share_after(data.data.tel)
+	}
+}
 function share_after(tel) {
 	let ajaxdata = {
 		tel: tel
@@ -178,8 +187,8 @@ function prestore() {
 					layer.open({
 						content: "预存成功",
 						btn: '确定',
-						yes: function(index,layero) {
-							 layer.close(index);
+						yes: function(index, layero) {
+							layer.close(index);
 							locationReplace();
 						}
 					});
@@ -189,8 +198,8 @@ function prestore() {
 					layer.open({
 						content: "取消支付",
 						btn: '确定',
-						yes: function(index,layero) {
-							 layer.close(index);
+						yes: function(index, layero) {
+							layer.close(index);
 							locationReplace();
 						}
 					});
@@ -200,8 +209,8 @@ function prestore() {
 					layer.open({
 						content: "支付失败",
 						btn: '确定',
-						yes: function(index,layero) {
-							 layer.close(index);
+						yes: function(index, layero) {
+							layer.close(index);
 							locationReplace();
 						}
 					});
@@ -214,8 +223,8 @@ function prestore() {
 		layer.open({
 			content: data.msg,
 			btn: '确定',
-			yes: function(index,layero) {
-				 layer.close(index);
+			yes: function(index, layero) {
+				layer.close(index);
 				locationReplace();
 			}
 		});

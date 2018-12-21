@@ -278,6 +278,7 @@
 			$(function() {
 				// 根据邀请人id获取电话号码
 				get_tel();
+				get_telfenxiang();
 				if (userInfo == null || userInfo == "" || userInfo == "null" || userInfo == undefined || userInfo == "undefined") {} else {
 					$(".username").html(userInfo.tel.replace(userInfo.tel.substring(3, 7), '****'))
 					$(".login.img").html("退出");
@@ -404,14 +405,8 @@
 						});
 						return;
 					}
-					let yaoqing_id = getQueryString("yaoqing_id"),
-						id = "";
-					if (yaoqing_id != null || yaoqing_id != "" || yaoqing_id != "null" || yaoqing_id != undefined || yaoqing_id !=
-						"undefined") {
-						id = yaoqing_id;
-					} else {
-						id = getQueryString("fenxiang_id");
-					}
+					let id = getQueryString("yaoqing_id") || getQueryString("fenxiang_id");
+					console.log(id)
 					let ajaxdata = {
 						tel: recomphone,
 						code: recomcode,
