@@ -246,8 +246,14 @@ function prestore_h5() {
 	}
 	let data = ajaxPost(activity_prestore_h5, ajaxdata);
 	if (data.status == "200") {
+<<<<<<< HEAD
 		console.log("https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?" + data.data.package)
 		location.href = "https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?" + data.data.package+"&package="+data.data.timestamp;;
+=======
+		console.log(data.data);
+		console.log("https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?" + data.data.package+"&package"+data.data.timestamp)
+		location.href = "https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?" + data.data.package+"&package="+data.data.timestamp;
+>>>>>>> 02c4d393c988c1846ab9def0604d23f889c2f68c
 
 	} else {
 		layer.open({
