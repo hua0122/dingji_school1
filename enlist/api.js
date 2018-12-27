@@ -63,7 +63,11 @@ function area(longitude, latitude) {
 	let src = "";
 	if (uniqsortdata != null && uniqsortdata != "null" && uniqsortdata != undefined && uniqsortdata != "" && uniqsortdata !=
 		"undefined") {
-
+		for (var i = 0; i < uniqsortdata.length; i++) {
+			src += "<label><font><input type='radio' name='city' value=" + uniqsortdata[i].id + "/>" + uniqsortdata[i].name +
+				"</font><font style='font-size:12px;'>" + Math.round(uniqsortdata[i].Distance) + "km</font></label><br/>"
+		}
+		$("#area").html(src);
 	} else {
 
 		let ajaxdata = {
@@ -98,11 +102,7 @@ function area(longitude, latitude) {
 
 		geocoderfun(uniqsortdata);
 	}
-	for (var i = 0; i < uniqsortdata.length; i++) {
-		src += "<label><font><input type='radio' name='city' value=" + uniqsortdata[i].id + "/>" + uniqsortdata[i].name +
-			"</font><font style='font-size:12px;'>" + Math.round(uniqsortdata[i].Distance) + "km</font></label><br/>"
-	}
-	$("#area").html(src);
+
 }
 // 班别列表
 function get_list(city) {
@@ -111,7 +111,6 @@ function get_list(city) {
 	};
 	let data = ajaxPost(sign_get_grade, ajaxdata)
 	let src = "";
-	alert("班别")
 
 	if (data.data != null && data.data.length != 0) {
 
@@ -398,29 +397,45 @@ function test() {
 }
 
 function geocoderfun(indexdata) {
+	let src="";
+	for (var l = 0; l < indexdata.length; l++) {
+		src += "<label><font><input type='radio' name='city' value=" + indexdata[l].id + "/>" + indexdata[l].name +
+			"</font><font style='font-size:12px;'>" + Math.round(indexdata[l].Distance) + "km</font></label><br/>"
+	}
+	$("#area").html(src);
+	let distance = [];
 	for (var i = 0; i < indexdata.length; i++) {
-		let distance = [];
 		if (indexdata[i].Distance <= 5) {
 			distance.push({
 				id: i,
 				distance: indexdata[i].Distance
 			});
 		}
-		if (distance.length != 0) {
-			let distanceMin = Math.min.apply(null, distance); //最小值
-			if (distance.length == 1) {
-				let dataindex = distance[0].id;
-				$("#city").val(indexdata[dataindex].id);
-				get_list(indexdata[dataindex].id);
-				$("#text").html(indexdata[dataindex].name);
-			} else {
 
-				$(".dialog_open").show();
+	}
+	if (distance.length != 0) {
+		let distanceMin = Math.min.apply(null, distance); //最小值
+		if (distance.length == 1) {
+			let dataindex = distance[0].id;
+			$("#city").val(indexdata[dataindex].id);
+			get_list(indexdata[dataindex].id);
+			$("#text").html(indexdata[dataindex].name);
+			sessionStorage.setItem("garetext", JSON.stringify({
+				"garetextid": indexdata[dataindex].id + "/",
+				"garetextname": indexdata[dataindex].name
+			}))
+			let garetextid = JSON.parse(sessionStorage.getItem("garetext"))
+			for (var c = 0; c < $('input:radio[name="city"]').length; c++) {
+				if ($('input:radio[name="city"]').eq(c).val() == garetextid.garetextid) {
+					$('input:radio[name="city"]').eq(c).attr("checked", true);
+				}
 			}
 		} else {
-
 			$(".dialog_open").show();
 		}
+	} else {
+
+		$(".dialog_open").show();
 	}
 }
 
@@ -466,7 +481,8 @@ function transform_order() {
 	let data = ajaxPost(sign_apply, ajaxdata)
 	if (data.status == "200") {
 		if (data.data == null || data.data == "null" || data.data == "") {
-			$(".confirm").show();
+			$(".scok").show();
+			$("#tj_code_form").hide();
 		} else {
 			wx.ready(function() {
 				wx.chooseWXPay({
@@ -494,8 +510,11 @@ function transform_order() {
 	} else if (data.status == "500") {
 		alert(data.msg);
 	} else {
+		$(".gobaoming").show();
+		$("#tj_code_form").hide();
+		$(".gobaoming .text").html(data.msg)
+		$(".gobaoming h1").html("提示")
 		localStorage.hurl = window.location.href;
-		window.location.href = domainName + "/api/user/getwxinfo";
 	}
 
 }
