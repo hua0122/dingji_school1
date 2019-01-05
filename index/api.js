@@ -56,12 +56,11 @@ function get_banner() {
 		cuteslider3.api.addEventListener(Cute.SliderEvent.CHANGE_END, function(event) {});
 		cuteslider3.api.addEventListener(Cute.SliderEvent.WATING, function(event) {});
 		cuteslider3.api.addEventListener(Cute.SliderEvent.CHANGE_NEXT_SLIDE, function(event) {});
-		cuteslider3.api.addEventListener(Cute.SliderEvent.WATING_FOR_NEXT, function(event) {});
-		if($("#volistbanner1 .load").length==1){
+		cuteslider3.api.addEventListener(Cute.SliderEvent.WATING_FOR_NEXT, function(event) {setTimeout(function(){
 			$("#cuteslider_3_wrapper").css({
 				"background": ""
 			})
-		}
+		},7000)});
 		
 		$(".br-thumb-up").remove();
 	}
