@@ -29,10 +29,10 @@ function get_banner() {
 	let src = "";
 	
 	if(data.status=="200"){
-		debugger
-		$(".c-demoslider").css({
+		$("#cuteslider_3_wrapper").css({
 			"background":"url("+domainName + data.data[0].picurl+") no-repeat center center"
 		})
+		debugger
 		
 	for (var i = 1; i < data.data.length; i++) {
 		src +=
