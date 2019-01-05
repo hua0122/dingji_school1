@@ -52,10 +52,26 @@ function get_banner() {
 		$("#volistbanner1").html(bannersrc);
 		var cuteslider3 = new Cute.Slider();
 		cuteslider3.setup("cuteslider_3", "cuteslider_3_wrapper", "../static/css/slider-style.css");
-		cuteslider3.api.addEventListener(Cute.SliderEvent.CHANGE_START, function(event) {});
-		cuteslider3.api.addEventListener(Cute.SliderEvent.CHANGE_END, function(event) {});
-		cuteslider3.api.addEventListener(Cute.SliderEvent.WATING, function(event) {});
-		cuteslider3.api.addEventListener(Cute.SliderEvent.CHANGE_NEXT_SLIDE, function(event) {});
+		cuteslider3.api.addEventListener(Cute.SliderEvent.CHANGE_START, function(event) {
+			$("#cuteslider_3_wrapper").css({
+				"background": ""
+			})
+		});
+		cuteslider3.api.addEventListener(Cute.SliderEvent.CHANGE_END, function(event) {
+			$("#cuteslider_3_wrapper").css({
+				"background": ""
+			})
+		});
+		cuteslider3.api.addEventListener(Cute.SliderEvent.WATING, function(event) {
+			$("#cuteslider_3_wrapper").css({
+				"background": ""
+			})
+		});
+		cuteslider3.api.addEventListener(Cute.SliderEvent.CHANGE_NEXT_SLIDE, function(event) {
+			$("#cuteslider_3_wrapper").css({
+				"background": ""
+			})
+		});
 		cuteslider3.api.addEventListener(Cute.SliderEvent.WATING_FOR_NEXT, function(event) {
 			$("#cuteslider_3_wrapper").css({
 				"background": ""
