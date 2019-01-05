@@ -29,7 +29,7 @@ function get_banner() {
 	let src = "";
 	
 	if(data.status=="200"){
-		
+		debugger
 		$(".cs-circleslight .br-large-loading .img").css({
 			"background":"url("+domainName + data.data[0].picurl+") no-repeat center center"
 		})
