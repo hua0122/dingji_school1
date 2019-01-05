@@ -33,7 +33,6 @@ function get_banner() {
 			"background":"url("+domainName + data.data[0].picurl+") no-repeat center",
 			"width":"100%"
 		})
-		debugger
 		
 	for (var i = 1; i < data.data.length; i++) {
 		src +=
