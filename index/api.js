@@ -31,6 +31,7 @@ function get_banner() {
 	if(data.status=="200"){
 		$("#cuteslider_3_wrapper").css({
 			"background":"url("+domainName + data.data[0].picurl+") no-repeat center",
+			"background-size":"100% 100%",
 			"width":"100%"
 		})
 		
