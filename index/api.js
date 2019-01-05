@@ -37,7 +37,7 @@ function get_banner() {
 
 		for (var i = 1; i < data.data.length; i++) {
 			src +=
-				"<li data-delay='5' style='height: 100%;' data-src='5' data-trans3d='tr6,tr17,tr22,tr23,tr26,tr27,tr29,tr32,tr34,tr35,tr53,tr54,tr62,tr63,tr4,tr13' data-trans2d='tr3,tr8,tr12,tr19,tr22,tr25,tr27,tr29,tr31,tr34,tr35,tr38,tr39,tr41'>" +
+				"<li class='load' data-delay='5' style='height: 100%;' data-src='5' data-trans3d='tr6,tr17,tr22,tr23,tr26,tr27,tr29,tr32,tr34,tr35,tr53,tr54,tr62,tr63,tr4,tr13' data-trans2d='tr3,tr8,tr12,tr19,tr22,tr25,tr27,tr29,tr31,tr34,tr35,tr38,tr39,tr41'>" +
 				"<img style='height: 100%;'   src='../static/images/blank.png' data-src='" + domainName + data.data[i].picurl +
 				"' data-thumb='" +
 				domainName + data.data[i].picurl + "'/>" +
@@ -57,11 +57,12 @@ function get_banner() {
 		cuteslider3.api.addEventListener(Cute.SliderEvent.WATING, function(event) {});
 		cuteslider3.api.addEventListener(Cute.SliderEvent.CHANGE_NEXT_SLIDE, function(event) {});
 		cuteslider3.api.addEventListener(Cute.SliderEvent.WATING_FOR_NEXT, function(event) {});
-		setTimeout(function(){
+		if($("#volistbanner1 .load").length==1){
 			$("#cuteslider_3_wrapper").css({
 				"background": ""
 			})
-		},10000)
+		}
+		
 		$(".br-thumb-up").remove();
 	}
 	// document.querySelector("#cuteslider_3").style.height="100%";
