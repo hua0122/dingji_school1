@@ -66,8 +66,18 @@
 			}
 
 			.modal-body-active {
+				position: relative;
+			}
+
+			.modal-body-active::after {
+				widows: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
 				border: 1px solid #0067FF;
-				box-sizing: border-box;
 			}
 
 			.activity-name {
