@@ -322,8 +322,7 @@
 				$("#activity .modal-body").on("click", function() {
 					if ($(this).hasClass("modal-body-active")) {
 						$(this).removeClass("modal-body-active");
-						$(".activity").addClass("activity-tjm");
-						$(".activity").html(">");
+						$(".activity .activity-name").html("");
 					} else {
 						$('input:radio[name="activity_id"]').attr("checked", false);
 						$(this).addClass("modal-body-active").siblings(".modal-body").removeClass("modal-body-active");
