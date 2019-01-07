@@ -45,11 +45,47 @@
 		<link rel="stylesheet" type="text/css" href="../static/css/iconfont.css">
 		<link rel="stylesheet" type="text/css" href="../static/css/new_add.css" />
 		<style type="text/css">
-			.container{
+			.container {
 				padding-bottom: 10rem;
 			}
+
+			#activity {
+				display: flex;
+				padding: 3rem 2rem;
+				box-sizing: border-box;
+				justify-content: space-between;
+			}
+
+			#activity .modal-body input {
+				display: none;
+			}
+
+			#activity .modal-body {
+				margin-left: 0;
+				padding: 2rem 1rem;
+			}
+
+			.modal-body-active {
+				border: 1px solid #0067FF;
+				box-sizing: border-box;
+			}
+
+			.activity-name {
+				flex: 1;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				text-align: right;
+			}
+
+			.yhq-code {
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				text-align: right;
+			}
 		</style>
-	<link rel="stylesheet" type="text/css" href="../static/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../static/css/font-awesome.min.css" />
 	</head>
 
 	<body>
@@ -73,7 +109,7 @@
 							</span></span></span>
 					<span class="map right">
 						<!-- <img src="../static/images/map1.png" width="20" /> -->
-						<span  class="fa fa-map-marker"></span>
+						<span class="fa fa-map-marker"></span>
 						>
 					</span>
 				</a>
@@ -81,12 +117,13 @@
 
 			<div class="row address" onclick="javascript:jts()">
 				<span class="left">活动</span>
-				<span class="map activity right"> > </span>
+				<span class="map activity-tjm activity right"><span class="activity-name"></span>
+					<span yhqid="" id="coupon_id" class="yhq-code"></span>></span>
 			</div>
 
 			<div class="row address" onclick="javascript:dr_submit()">
 				<span class="left">推荐码</span>
-				<span class="map activity right"> 填写推荐码 > </span>
+				<span class="map activity-tjm tjm-code right" id="inviter" inviterid="">填写推荐码 > </span>
 			</div>
 
 			<div class="row address total" id="total">
@@ -282,41 +319,52 @@
 
 				});
 				//活动选择
-				$('input:radio[name="activity_id"]').on("click", function() {
-
-					let total_count = sessionStorage.getItem("total_count");
-					if ($(this).context.checked) {
-						var activity = this.value;
-						let ajaxdata = {
-							activity_id: activity
-						};
-						let data = ajaxPost(sign_activity_detail, ajaxdata);
-						if (data.status == "400") {
-							alert(data.msg);
-						} else {
-							if (data.data.type == 1 || data.data.type == "1" || data.data.type == 2 || data.data.type == "2") {
-								var count = parseFloat(parseFloat(grade_detail.price) - data.data.amount).toFixed(2);
-							}
-							if (data.data.type == 3 || data.data.type == "3") {
-								var count = parseFloat(parseFloat(grade_detail.price) + data.data.amount).toFixed(2);
-							}
-							$(".total-count").html(count);
-							sessionStorage.setItem("total_count", count);
-						}
+				$("#activity .modal-body").on("click", function() {
+					if ($(this).hasClass("modal-body-active")) {
+						$(this).removeClass("modal-body-active");
+						$(".activity").addClass("activity-tjm");
+						$(".activity").html(">");
 					} else {
-						$(".total-count").html(parseFloat(grade_detail.price).toFixed(2));
-						sessionStorage.setItem("total_count", parseFloat(grade_detail.price).toFixed(2));
+						$('input:radio[name="activity_id"]').attr("checked", false);
+						$(this).addClass("modal-body-active").siblings(".modal-body").removeClass("modal-body-active");
+						$(this).find('input:radio[name="activity_id"]').attr("checked", true);
+						let total_count = sessionStorage.getItem("total_count");
+						if ($(this).find('input:radio[name="activity_id"]').attr("checked")) {
+							var activity = $(this).find('input:radio[name="activity_id"]').val();
+							let ajaxdata = {
+								activity_id: activity
+							};
+							let data = ajaxPost(sign_activity_detail, ajaxdata);
+							if (data.status == "400") {
+								alert(data.msg);
+							} else {
+								if (data.data.type == 1 || data.data.type == "1" || data.data.type == 2 || data.data.type == "2") {
+									var count = parseFloat(parseFloat(grade_detail.price) - data.data.amount).toFixed(2);
+								}
+								if (data.data.type == 3 || data.data.type == "3") {
+									var count = parseFloat(parseFloat(grade_detail.price) + data.data.amount).toFixed(2);
+								}
+
+								$(".activity .activity-name").html(data.data.name);
+
+
+								$(".activity").removeClass("activity-tjm");
+								$(".total-count").html(count);
+								sessionStorage.setItem("total_count", count);
+							}
+						} else {
+							$(".total-count").html(parseFloat(grade_detail.price).toFixed(2));
+							sessionStorage.setItem("total_count", parseFloat(grade_detail.price).toFixed(2));
+						}
 					}
 				})
-				
-							inputblur();
+				inputblur();
 
 			});
 
 
 			//优惠券确认
-			$("#yhq").click(function() {
-
+			$("#yhq").on("click", function() {
 				$(".jts").hide();
 				//do something
 				var code = $("#yhq_code").val();
@@ -331,8 +379,8 @@
 				$(".dialog_open").hide();
 				//do something 查询推荐码是否有效
 				var code = $("#code").val();
-				if (code) {
 
+				if (code) {
 					referral(code);
 				}
 
@@ -353,8 +401,6 @@
 			function other() {
 				$(".other").show();
 			}
-
-
 		</script>
 
 
