@@ -65,7 +65,7 @@ function getydxc() {
 
 				var title = "鼎吉驾校服务平台";
 				// var link = "http://ydxctrue.yidianxueche.cn/";
-				var link = "http://ydxc.yidianxueche.cn/";
+				var link = "http://djjx.yidianxueche.cn/";
 				var imgUrl = "http://ydxctrue.yidianxueche.cn/template/wap/public/css/self/image/banner_1.jpg";
 				var desc = "鼎吉驾校，让学车变得容易点";
 				var type = "";
